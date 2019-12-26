@@ -123,7 +123,40 @@ Date:   Thu Dec 26 14:39:20 2019 +0900
 
 
 
+## 원격 저장소(remote repository) 활용하기
 
+원격 저장소 기능을 제공하는 다양한 서비스 중에 github를 기준으로 설명한다.
 
+### 0. 준비사항
 
+* github에 repository 생성
+
+### 1. 원격 저장소 등록
+
+```bash
+$ git add remote add origin [깃허브URL]
+```
+
+* 원격저장소(remote)로 `origin` 이라는 이름으로 `[깃허브URL]` 을 등록(`add`) 한다.
+* 등록된 원격 저장소 목록을 보기 위해서는 아래의 명령어를 활용한다.
+
+    ```bash
+    $ git remote -v
+    origin  https://github.com/madfalc0n/TIL.git (fetch)
+    origin  https://github.com/madfalc0n/TIL.git (push)
+    ```
+
+### 2. `push` - 원격저장소 업로드
+
+```bash
+$ git push origin master
+```
+
+`origin` 으로 설정된 원격저장소에 `master` branch로 업로드(`push`)
+
+이후 변경사항이 생길 때마다, `add` - `commit` , `push` 를 반복하면 된다.
+
+그리고, 항상 모든 명령어 이후에 연관된 상태를 확인하자.
+
+`status` , `log` , `remote -v` 
 
