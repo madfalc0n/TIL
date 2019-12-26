@@ -160,3 +160,20 @@ $ git push origin master
 
 `status` , `log` , `remote -v` 
 
+### 3.`pull` - 원격저장소 다운로드
+
+```bash
+$ git pull origin master
+```
+
+원격 저장소의 변경 사항을 받아온다.
+
+### 4. `clone` 
+
+```bash
+$ git clone 깃허브url
+```
+
+원격 저장소를 복제 한다.
+
+**주의! `init` 명령어와 같이 기억하자!**
