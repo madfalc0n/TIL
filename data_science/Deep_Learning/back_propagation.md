@@ -22,7 +22,7 @@
 4.  위 과정을 더이상 오차가 줄어들지 않을 때까지 반복한다.
 
 <img src="./images/backpropagation_1.jpg" alt="backpropagation_1" style="zoom:50%;" />
-<img src="C:\Users\myounghwan\Image-analysis-and-develope\Deep_Learning\20191230\images\backpropagation_2.jpg" alt="backpropagation_2" style="zoom:33%;" />
+<img src="./images/backpropagation_2.jpg" alt="backpropagation_2" style="zoom:33%;" />
 
 > 출처: 모두의 딥러닝
 
