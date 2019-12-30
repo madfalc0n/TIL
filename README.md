@@ -11,3 +11,16 @@
 
 ## 2. Python
 
+
+
+## 3. Machine Learning
+
+
+
+## 4. Deep Learning
+- [deep_learning?](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/Deep_Learning.md)
+- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/tensorflow.md)
+- [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/Keras.md)
+- [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/Perceptron.md)
+- [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/gradient_descent.md)
+- [back_propagation](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/back_propagation.md)
