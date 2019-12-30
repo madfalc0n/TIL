@@ -6,7 +6,7 @@
 >
 >3. 가중치에서 기울기를 빼도 값의 변화가 없을 때까지 계속해서 가중치 수정 작업을 반복하는 것
 
-<img src="C:\Users\myounghwan\Image-analysis-and-develope\Deep_Learning\20191230\images\backpropagation_3.jpg" alt="backpropagation_3" style="zoom: 50%;" />
+<img src="./images/backpropagation_3.jpg" alt="backpropagation_3" style="zoom: 50%;" />
 
 > 출처 : 모두의 딥러닝
 
@@ -21,7 +21,7 @@
 3.  경사 하강법을 이용해 바로 앞 가중치를 오차가 작아지는 방향으로 업데이트한다.
 4.  위 과정을 더이상 오차가 줄어들지 않을 때까지 반복한다.
 
-<img src="C:\Users\myounghwan\Image-analysis-and-develope\Deep_Learning\20191230\images\backpropagation_1.jpg" alt="backpropagation_1" style="zoom:50%;" />
+<img src="./images/backpropagation_1.jpg" alt="backpropagation_1" style="zoom:50%;" />
 <img src="C:\Users\myounghwan\Image-analysis-and-develope\Deep_Learning\20191230\images\backpropagation_2.jpg" alt="backpropagation_2" style="zoom:33%;" />
 
 > 출처: 모두의 딥러닝
@@ -34,7 +34,7 @@
 2. 시그모이드를 미분하면 최대치가 0.3이며 1보다 작으므로 계속 곱하다 보면 0에 가까워진다.
 3. 즉 시그모이드는 층을 거쳐 갈수록 기울기가 사라져 가중치를 수정하기 어려워 진다.
 
-<img src="C:/Users/myounghwan/Image-analysis-and-develope/Deep_Learning/20191230/images/sigmoid_1.jpg" alt="sigmoid_1" style="zoom:50%;" />
+<img src="./images/sigmoid_1.jpg" alt="sigmoid_1" style="zoom:50%;" />
 
 > 출처: 모두의 딥러닝
 
@@ -42,7 +42,7 @@
 
 1. 다른 함수로 대체
 
-<img src="C:/Users/myounghwan/Image-analysis-and-develope/Deep_Learning/20191230/images/sigmoid_2.jpg" alt="sigmoid_2" style="zoom: 67%;" />
+<img src="./images/sigmoid_2.jpg" alt="sigmoid_2" style="zoom: 67%;" />
 
 > 출처: 모두의 딥러닝
 

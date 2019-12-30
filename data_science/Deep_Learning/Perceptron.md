@@ -4,7 +4,7 @@
 >
 > 2. 뉴런과 뉴런이 서로 새로운 연결을 만들기도 하고 필요에 따라 위치를 바꾸는 것처럼, 여러 층의 퍼셉트론을 서로 연결시키고 복잡하게 조합하여 주어진 입력 값에 대한 판단을 하게 하는 것
 
-<img src="images/Scheme-of-a-perceptron-A-nonlinear-activation-function-BULLET-is-applied-to-the.png" alt="Scheme-of-a-perceptron-A-nonlinear-activation-function-BULLET-is-applied-to-the" style="zoom: 33%;" />
+<img src="./images/Scheme-of-a-perceptron-A-nonlinear-activation-function-BULLET-is-applied-to-the.png" alt="Scheme-of-a-perceptron-A-nonlinear-activation-function-BULLET-is-applied-to-the" style="zoom: 33%;" />
 
 > Sheme of a perceptron (출처 : D Álvarez, 2017)
 

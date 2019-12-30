@@ -4,7 +4,7 @@
 >
 > 2. 기본 개념은 함수의 [기울기](https://ko.wikipedia.org/wiki/기울기_(벡터))(경사)를 구하여 기울기가 낮은 쪽으로 계속 이동시켜서 [극값](https://ko.wikipedia.org/wiki/극값)에 이를 때까지 반복시키는 것
 
-![gradient_descent](C:/Users/myounghwan/TIL/data_science/Machine_Learning/images/gradient_descent.png)
+![gradient_descent](./images/gradient_descent.png)
 
 #### 평가 및 장단점
 
