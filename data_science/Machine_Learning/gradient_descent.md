@@ -21,3 +21,14 @@
 > 기계는 그러지 못한다. 따라서 그를 해결하기 위한 매커니즘으로 **Convex Function**을 활용한다. 
 >
 > 이를 활용하면 어디서 시작하든지 간에 우리가 원하는 지점에 갈 수 있는 것이다. 
+
+
+
+
+
+
+
+## 참고
+
+- 참고1 : [https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%82%AC_%ED%95%98%EA%B0%95%EB%B2%95](https://ko.wikipedia.org/wiki/경사_하강법)
+- 참고2 : https://gdyoon.tistory.com/9
