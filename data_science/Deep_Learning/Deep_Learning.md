@@ -8,3 +8,15 @@
 #### 참고
 
 - 참고1 : [딥러닝_학습방법](https://wikidocs.net/36033)
+
+
+
+## MINST
+
+> Mixed National Institute of Standards and Technology)
+>
+> 손글씨 데이터셋
+
+struct.unpack 사용시 fmt 매개변수 값 '>II' 의미
+
+1.
