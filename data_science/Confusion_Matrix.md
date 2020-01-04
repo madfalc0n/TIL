@@ -34,18 +34,21 @@
    - 모델이 예측한 것 중 실제로 True인 항목에 대한 비율
    - 모델이 예측한 항목중 실제로 맞춘(정답) 애들
    - 정확성에는  P와N 두 종류의 오류에 대해 동일한 비용을 가정한다는 문제가 있다. 99 %의 정확도는 문제에 따라 우수, 양호, 평범하거나 열악하거나 끔찍할 수 있다.
+   
    ![Confusion_Matrix_3](images/Confusion_Matrix_3.png)
    
 2. Precision(정밀도)
    - 모델이 Positive라고 분류한 것 중 실제로 True인 것에 대한 비율
    - 모델이 비가 온다고 분류한 것 중 실제로 True인 것
    - `PPV(Positive Predictive Value)` 라고도 불림
+   
    ![Confusion_Matrix_1](images/Confusion_Matrix_1.png)
    
 3. Recall(재현율)
    - 실제 True 인 것중에 모델이 True라고 예측한 것의 비율
    - 실제 비가온다고 가정하고 모델예측결과가 비가온다고 가정한 비율
    - 헷깔릴수도 있다. **실제 비가 온다는 것을 전제로 생각해야 한다.**
+   
    ![Confusion_Matrix_2](images/Confusion_Matrix_2.png)
 
 ```
@@ -60,10 +63,6 @@
 참고: https://sumniya.tistory.com/26
 ```
 
-
-
-
-
 4. F1-Score
 
    - Precision과 Recall의 조화평균
@@ -75,10 +74,6 @@
      ![Confusion_Matrix_5](images/Confusion_Matrix_5.png)
      ![Confusion_Matrix_7](images/Confusion_Matrix_7.png)
 
-
-
-
-
 5. 2.1 Fall-out
    - Fall-out은 **FPR(False Positive Rate)**으로도 불리며, 실제 False인 data 중에서 모델이 True라고 예측한 비율입니다. 즉, 모델이 실제 false data인데 True라고 잘못 예측(분류)한 것으로 다음과 같이 표현할 수 있습니다.
    ![img](images/9940C44C5BE139F21C.png)
@@ -87,11 +82,12 @@
    - 여러 임계값들을 기준으로 Recall-Fallout의 변화를 시각화한 것입니다. Fallout은 실제 False인 data 중에서 모델이 True로 분류한, 그리고 Recall은 실제 True인 data 중에서 모델이 True로 분류한 비율을 나타낸 지표로써, 이 두 지표를 각각 x, y의 축으로 놓고 그려지는 그래프를 해석합니다. 아래 예시를 보죠.
    ![img](images/99B70D3E5BE144CF15.png)
    
-> Image Source: https://www.medcalc.org/manual/roc-curves.php
+   > Image Source: https://www.medcalc.org/manual/roc-curves.php
 
    - curve가 왼쪽 위 모서리에 가까울수록 모델의 성능이 좋다고 평가합니다. 즉, Recall이 크고 Fall-out이 작은 모형이 좋은 모형인 것입니다. 또한 y=x 그래프보다 상단에 위치해야 어느정도 성능이 있다고 말할 수 있습니다.
 
 7. AUC(Area Under Curve)
+   
    - ROC curve는 그래프이기 때문에 명확한 수치로써 비교하기가 어렵습니다. 따라서 그래프 아래의 면적값을 이용합니다. 이것이 바로 **AUC(Area Under Curve)**입니다. 최대값은 1이며 좋은 모델(즉, Fall-out에 비해 Recall 값이 클수록) 1에 가까운 값이 나옵니다.
 
 
