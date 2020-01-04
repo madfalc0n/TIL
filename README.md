@@ -14,8 +14,8 @@
 
 
 ## 3. Data Science
-- [deep_learning](https://github.com/madfalc0n/TIL/blob/master/data_science/deep_learning.md)
-- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/tensorflow.md)
+- [deep_learning](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning.md)
+- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Tensorflow.md)
 - [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Keras.md)
 - [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Perceptron.md)
 - [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/gradient_descent.md)
