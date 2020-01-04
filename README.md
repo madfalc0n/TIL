@@ -27,3 +27,4 @@
 - [softmax_function.md](https://github.com/madfalc0n/TIL/blob/master/data_science/softmax_function.md)
 - [Supervised_learning.md](https://github.com/madfalc0n/TIL/blob/master/data_science/Supervised_learning.md)
 - [UnSupervised_Learning.md](https://github.com/madfalc0n/TIL/blob/master/data_science/UnSupervised_Learning.md)
+- [Confusion Matrix](https://github.com/madfalc0n/TIL/blob/master/data_science/Confusion_Matrix.md)
