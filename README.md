@@ -13,14 +13,17 @@
 
 
 
-## 3. Machine Learning
-
-
-
-## 4. Deep Learning
-- [deep_learning?](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/Deep_Learning.md)
-- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/tensorflow.md)
-- [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/Keras.md)
-- [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/Perceptron.md)
-- [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/gradient_descent.md)
-- [back_propagation](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning/back_propagation.md)
+## 3. Data Science
+- [deep_learning](https://github.com/madfalc0n/TIL/blob/master/data_science/deep_learning.md)
+- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/tensorflow.md)
+- [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Keras.md)
+- [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Perceptron.md)
+- [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/gradient_descent.md)
+- [back_propagation](https://github.com/madfalc0n/TIL/blob/master/data_science/back_propagation.md)
+- [correlation.md](https://github.com/madfalc0n/TIL/blob/master/data_science/correlation.md)
+- [K-Fold_cross_Validation.md](https://github.com/madfalc0n/TIL/blob/master/data_science/K-Fold_cross_Validation.md)
+- [LGBM.md](https://github.com/madfalc0n/TIL/blob/master/data_science/LGBM.md)
+- [MNIST.md](https://github.com/madfalc0n/TIL/blob/master/data_science/MNIST.md)
+- [softmax_function.md](https://github.com/madfalc0n/TIL/blob/master/data_science/softmax_function.md)
+- [Supervised_learning.md](https://github.com/madfalc0n/TIL/blob/master/data_science/Supervised_learning.md)
+- [UnSupervised_Learning.md](https://github.com/madfalc0n/TIL/blob/master/data_science/UnSupervised_Learning.md)
