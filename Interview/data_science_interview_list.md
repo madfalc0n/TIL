@@ -35,26 +35,26 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 
 ## Contents
 
-- [공통 질문](Interview/data_science_interview_list.md#공통-질문)
-- [프로젝트](Interview/data_science_interview_list.md#프로젝트)
-- [통계 및 수학](Interview/data_science_interview_list.md#통계-및-수학)
-- [분석 일반](Interview/data_science_interview_list.md#분석-일반)
-- [머신러닝](Interview/data_science_interview_list.md#머신러닝)
+- [공통 질문](data_science_interview_list.md#공통-질문)
+- [프로젝트](data_science_interview_list.md#프로젝트)
+- [통계 및 수학](data_science_interview_list.md#통계-및-수학)
+- [분석 일반](data_science_interview_list.md#분석-일반)
+- [머신러닝](data_science_interview_list.md#머신러닝)
 - 딥러닝
-  - [딥러닝 일반](Interview/data_science_interview_list.md#딥러닝-일반)
-  - [컴퓨터 비전](Interview/data_science_interview_list.md#컴퓨터-비전)
-  - [자연어 처리](Interview/data_science_interview_list.md#자연어-처리)
-  - [강화학습](Interview/data_science_interview_list.md#강화학습)
-  - [GAN](Interview/data_science_interview_list.md#gan)
-- [추천 시스템](Interview/data_science_interview_list.md#추천-시스템)
-- [데이터베이스](Interview/data_science_interview_list.md#데이터베이스)
-- [데이터 시각화](Interview/data_science_interview_list.md#데이터-시각화)
-- [시스템 엔지니어링](Interview/data_science_interview_list.md#시스템-엔지니어링)
-- [분산처리](Interview/data_science_interview_list.md#분산처리)
-- [웹 아키텍쳐](Interview/data_science_interview_list.md#웹-아키텍쳐)
-- [서비스 구현](Interview/data_science_interview_list.md#서비스-구현)
-- [대 고객 사이드](Interview/data_science_interview_list.md#대-고객-사이드)
-- [개인정보](Interview/data_science_interview_list.md#개인정보)
+  - [딥러닝 일반](data_science_interview_list.md#딥러닝-일반)
+  - [컴퓨터 비전](data_science_interview_list.md#컴퓨터-비전)
+  - [자연어 처리](data_science_interview_list.md#자연어-처리)
+  - [강화학습](data_science_interview_list.md#강화학습)
+  - [GAN](data_science_interview_list.md#gan)
+- [추천 시스템](data_science_interview_list.md#추천-시스템)
+- [데이터베이스](data_science_interview_list.md#데이터베이스)
+- [데이터 시각화](data_science_interview_list.md#데이터-시각화)
+- [시스템 엔지니어링](data_science_interview_list.md#시스템-엔지니어링)
+- [분산처리](data_science_interview_list.md#분산처리)
+- [웹 아키텍쳐](data_science_interview_list.md#웹-아키텍쳐)
+- [서비스 구현](data_science_interview_list.md#서비스-구현)
+- [대 고객 사이드](data_science_interview_list.md#대-고객-사이드)
+- [개인정보](data_science_interview_list.md#개인정보)
 
 ## 공통 질문
 
@@ -67,7 +67,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 왜 저희가 지원자를 뽑아야 하나요?
 - 지원자의 단점은 무엇인가요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 프로젝트
 
@@ -80,7 +80,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 해당 프로젝트를 다시 진행한다고 하면 어떻게 할 것인가요?
 - Kaggle에서 수상을 하면 데이터 분석을 잘 할까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 통계 및 수학
 
@@ -114,7 +114,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - Bias를 통제하는 방법은 무엇입니까?
 - 로그 함수는 어떤 경우 유용합니까? 사례를 들어 설명해주세요
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 분석 일반
 
@@ -127,7 +127,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 나만의 feature selection 방식을 설명해봅시다.
 - 데이터 간의 유사도를 계산할 때, feature의 수가 많다면(예: 100개 이상), 이러한 high-dimensional clustering을 어떻게 풀어야할까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 머신러닝
 
@@ -162,7 +162,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 스팸 필터에 로지스틱 리그레션을 많이 사용하는 이유는 무엇일까요?
 - OLS(ordinary least squre) regression의 공식은 무엇인가요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 딥러닝
 
@@ -220,7 +220,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - TF, Keras, PyTorch 등을 사용할 때 디버깅 노하우는?
 - 뉴럴넷의 가장 큰 단점은 무엇인가? 이를 위해 나온 One-Shot Learning은 무엇인가?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 컴퓨터 비전
 
@@ -249,7 +249,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
   - 풀링시에 만약 Max를 사용한다면 그 이유는?
   - 시퀀스 데이터에 CNN을 적용하는 것이 가능할까?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 자연어 처리
 
@@ -278,7 +278,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
   - 남자와 여자가 가까울까? 남자와 자동차가 가까울까?
   - 번역을 Unsupervised로 할 수 있을까?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 강화학습
 
@@ -291,7 +291,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 강화학습이 어려운 이유는 무엇일까요? 그것을 어떤 방식으로 해결할 수 있을까요?
 - 강화학습을 사용해 테트리스에서 고득점을 얻는 프로그램을 만드려고 합니다. 어떻게 만들어야 할까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## GAN
 
@@ -310,7 +310,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
   - D를 학습할때 G의 Weight을 고정해야 한다. 방법은?
   - 학습이 잘 안될때 시도해 볼 수 있는 방법들은?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 추천 시스템
 
@@ -328,7 +328,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - Cold Start의 경우엔 어떻게 추천해줘야 할까요?
 - 고객사들은 기존 추천서비스에 대한 의문이 있습니다. 주로 매출이 실제 오르는가 하는 것인데, 이를 검증하기 위한 방법에는 어떤 것이 있을까요? 위 관점에서 우리 서비스의 성능을 고객에게 명확하게 인지시키기 위한 방법을 생각해봅시다.
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 데이터베이스
 
@@ -347,7 +347,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 동작하는 MySQL에 Alter table을 하면 안되는 이유를 설명해주세요. 그리고 대안을 설명해주세요
 - 빡세게 동작하고 있는 MySQL을 백업뜨기 위해서는 어떤 방법이 필요할까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 데이터 시각화
 
@@ -360,7 +360,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 워드클라우드는 보기엔 예쁘지만 약점이 있습니다. 어떤 약점일까요?
 - 어떤 1차원값이, 데이터가 몰려있어서 직선상에 표현했을 때 보기가 쉽지 않습니다. 어떻게 해야할까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 시스템 엔지니어링
 
@@ -376,7 +376,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 관리하는 컴퓨터가 10대가 넘었습니다. 중요한 모니터링 지표는 뭐가 있을까요? 뭐로 하실건가요?
 - GIT의 소스가 있고, 서비스 사용중인 웹서버가 10대 이상 넘게 있습니다. 어떻게 배포할건가요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 분산처리
 
@@ -392,7 +392,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 대용량 자료를 빠르게 lookup해야 하는 일이 있습니다. (100GB 이상, 100ms언더로 특정자료 찾기). 어떤 백엔드를 사용하시겠나요? 느린 백엔드를 사용한다면 이를 보완할 방법은 뭐가 있을까요?
 - 데이터를 여러 머신으로 부터 모으기 위해 여러 선택지가 있을 수 있습니다. (flume, fluentd등) 아예 소스로부터 kafka등의 메시징 시스템을 바로 쓸 수도 있습니다. 어떤 것을 선호하시나요? 왜죠?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 웹 아키텍쳐
 
@@ -402,7 +402,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 하나의 IP에서 여러 도메인의 HTTPS 서버를 운영할 수 있을까요? 안된다면 왜인가요? 또 이걸 해결하는 방법이 있는데 그건 뭘까요?
 - 개발이 한창 진행되는 와중에도 서비스는 계속 운영되어야 합니다. 이를 가능하게 하는 상용 deploy 환경은 어떻게 구현가능한가요? WEB/WAS/DB/Cluster 각각의 영역에서 중요한 변화가 수반되는 경우에도 동작 가능한, 가장 Cost가 적은 방식을 구상하고 시나리오를 만들어봅시다.
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 서비스 구현
 
@@ -415,7 +415,7 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 여러 웹사이트를 돌아다니는 사용자를 하나로 엮어서 보고자 합니다. 우리가 각 사이트의 웹에 우리 코드를 삽입할 수 있다고 가정할 때, 이것이 가능한가요? 가능하다면, 그 방법에는 어떤 것이 있을까요?
 - 고객사 혹은 외부 서버와의 데이터 전달이 필요한 경우가 있습니다. 데이터 전달 과정에서 보안을 위해 당연히(plain text)로 전송하는 것은 안됩니다. 어떤 방법이 있을까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 대 고객 사이드
 
@@ -431,10 +431,11 @@ https://zzsza.github.io/data/2018/02/17/datascience-interivew-questions/
 - 인터뷰나 강의에 활용하기 위한 백데이터는 어느 수준까지 일반화 해서 사용해야 할까요?
 - 고객사가 우리와 일하고 싶은데 현재는 capa가 되지 않습니다. 어떻게 대처해야 할까요?
 
-##### [목차로 이동](Interview/data_science_interview_list.md#contents)
+##### [목차로 이동](data_science_interview_list.md#contents)
 
 ## 개인정보
 
 - 어떤 정보들이 개인정보에 해당할까요? ID는 개인정보에 해당할까요? 이를 어기지 않는 합법적 방법으로 식별하고 싶으면 어떻게 해야할까요?
 - 국내 개인 정보 보호 현황에 대한 견해는 어떠한지요? 만약 사업을 진행하는데 장애요소로 작용한다면, 이에 대한 해결 방안은 어떤 것이 있을까요?
+- 제3자 쿠키는 왜 문제가 되나요?다면, 이에 대한 해결 방안은 어떤 것이 있을까요?
 - 제3자 쿠키는 왜 문제가 되나요?
