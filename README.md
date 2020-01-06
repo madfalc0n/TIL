@@ -29,3 +29,10 @@
 - [UnSupervised_Learning.md](https://github.com/madfalc0n/TIL/blob/master/data_science/UnSupervised_Learning.md)
 - [Confusion Matrix](https://github.com/madfalc0n/TIL/blob/master/data_science/Confusion_Matrix.md)
 - [CNN(Convolutional Neural Network)](https://github.com/madfalc0n/TIL/blob/master/data_science/CNN.md)
+
+
+
+## 4. Computer Vision
+
+- [Digital image processing](https://github.com/madfalc0n/TIL/blob/master/computer_processing/Digital_image_processing.md)
+- [OpenCV](https://github.com/madfalc0n/TIL/blob/master/computer_processing/OpenCV.md)
