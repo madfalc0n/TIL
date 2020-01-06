@@ -2,10 +2,6 @@
 
 > 매일 배운 내용을 정리합시다.
 
-## 0. Interview
-
-- [데이터사이언스 면접 예상질문리스트](./Interview/data_science_interview_list.md)
-
 
 
 ## 1. git
