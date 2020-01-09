@@ -58,7 +58,7 @@ def imshow(tit,image):
     #thr,mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     #cv2.THRESH_OTSU는 자동으로 역치값을 평균에 의해 정해준다.
     ```
-  ```
+
     
     <img src="images/image-20200109214337676.png" alt="image-20200109214337676" style="zoom:50%;" /><img src="images/image-20200109214350522.png" alt="image-20200109214350522" style="zoom:50%;" />
     
@@ -66,9 +66,7 @@ def imshow(tit,image):
     
     > 왼쪽이 원본 , 오른쪽이 스레솔드를 이용해 잡음 제거
     
-    
-  ```
-
+  
 - cv2.adaptiveThreshold(src, maxValue, adaptiveMethod, thresholdType, blockSize, C)
 
   - 이전 Threshold 함수가 `임계값을 이미지 전체에 적용`한경우이며 해당 함수는 `영역별로 임계값을 적용` 하는것이다.
@@ -123,18 +121,151 @@ def imshow(tit,image):
     - cv2.RETR_EXTERNAL : contours line중 가장 바같쪽 Line만 찾음.
     - cv2.RETR_LIST : 모든 contours line을 찾지만, hierachy 관계를 구성하지 않음.
     - cv2.RETR_CCOMP : 모든 contours line을 찾으며, hieracy관계는 2-level로 구성함.
-- cv2.RETR_TREE : 모든 contours line을 찾으며, 모든 hieracy관계를 구성함.
+    - cv2.RETR_TREE : 모든 contours line을 찾으며, 모든 hieracy관계를 구성함.
     
-- method
+  - method
+    
+    >contours를 찾을 때 사용하는 근사치 방법
+    
+      - cv2.CHAIN_APPROX_NONE : 모든 contours point를 저장.
+    
+      - cv2.CHAIN_APPROX_SIMPLE : contours line을 그릴 수 있는 point 만 저장. (ex; 사각형이면 4개 point)
+    
+      - cv2.CHAIN_APPROX_TC89_L1 : contours point를 찾는 algorithm
+    
+      - cv2.CHAIN_APPROX_TC89_KCOS : contours point를 찾는 algorithm
+    
+  - Method에 대해서 설명을 하면 아래 예제의 결과에서 처럼 사각형의 contours line을 그릴 때, `cv2.CHAIN_APPROX_NONE` 는 모든 point를 저장하고 `cv2.CHAIN_APPROX_SIMPLE` 는 4개의 point만을 저장하여 메모리를 절약.
   
-  >contours를 찾을 때 사용하는 근사치 방법
+ - cv2.drawContours(image, contours, contourIdx, color[, thickness[, lineType[, hierarchy[, maxLevel[, offset]]]]]) → dst
+   
+    - contour 그려진 결과를 반환
+    - image – 원본 이미지
+      contours – contours정보.
+      contourIdx – contours list type에서 몇번째 contours line을 그릴 것인지. -1 이면 전체
+      color – contours line color
+      thickness – contours line의 두께. 음수이면 contours line의 내부를 채움.
     
-    - cv2.CHAIN_APPROX_NONE : 모든 contours point를 저장.
-    - cv2.CHAIN_APPROX_SIMPLE : contours line을 그릴 수 있는 point 만 저장. (ex; 사각형이면 4개 point)
-    - cv2.CHAIN_APPROX_TC89_L1 : contours point를 찾는 algorithm
-    - cv2.CHAIN_APPROX_TC89_KCOS : contours point를 찾는 algorithm
+    - 사용예시
     
-  - Method에 대해서 설명을 하면 아래 예제의 결과에서 처럼 사각형의 contours line을 그릴 때, `cv2.CHAIN_APPROX_NONE` 는 모든 point를 저장하고 `cv2.CHAIN_APPROX_SIMPLE` 는 4개의 point만을 저장하여 메모리를 절약합니다.
-  
-  - 사용예시
+      ```python
+      contours[0].shape #cv2.CHAIN_APPROX_SIMPLE(4 point)
+      (4, 1, 2)
+      contours[0].shape #cv2.CHAIN_APPROX_NONE(750 point)
+      (750, 1, 2)
+      contours, _ = cv2.findContours(binary,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    print(contours)
+      [array([[[48,  6]],
+           [[49,  7]]], dtype=int32)]
+      cv2.drawContours(img, coutours, -1, (0, 255, 255), 1) 
+      #img에 contours 값 적용, -1은 찾아진 꼭지점 전부 색칠,  맨뒤 값은 꼭지점굵기
+      ```
+
+      <img src="images/점선2.PNG" alt="점선2" style="zoom:50%;" /><img src="images/점선.png" alt="점선" style="zoom:50%;" />
+
+
+​    
+
+- cv2.arcLength(con,True)
+
+     - `Contour의 둘레 길이`를 구할 수 있습니다. 사각형의 경우는 둘레길이의 합이 됩니다. 아래 함수의 2번째 argument가 `true이면 폐곡선 도형을 만들어 둘레길이`를 구하고, `False이면 시작점과 끝점을 연결하지 않고 둘레 길이`를 구합니다.
+
+     
+
+- cv2.approxPolyDP(curve, epsilon, closed[, approxCurve]) → approxCurve
+
+     - curve – contours point array
+     - epsilon – original cuve와 근사치의 최대거리. 최대거리가 클 수록 더 먼 곳의 Point까지 고려하기 때문에 Point수가 줄어듬.
+     - closed – 폐곡선 여부
+     - 근사치가 적용된 contours point array 반환
+
+     
+
+- cv2.putText(img, text, org, font, fontSacle, color)
+
+     - 이미지에 텍스트 추가
+
+     - img – image
+
+     - text – 표시할 문자열
+
+     - org – 문자열이 표시될 위치. 문자열의 bottom-left corner점
+
+     - font – font type. CV2.FONT_XXX
+
+     - fontSacle – Font Size
+
+     - color – fond color
+
+          
+
+- cv2.ellipse(img, center, axes, angle, startAngle, endAngle, color[, thickness[, lineType[, shift]]]) → img
+
+     - 중심점, 반지름 크기, 색깔, 굵기
+     - img – image
+     - center – 타원의 중심
+     - axes – 중심에서 가장 큰 거리와 작은 거리
+     - angle – 타원의 기울기 각
+     - startAngle – 타원의 시작 각도
+     - endAngle – 타원이 끝나는 각도
+     - color – 타원의 색
+     - thickness – 선 두께 -1이면 안쪽을 채움
+
+     
+
+- cv2.morphologyEx(src, op, kernel[, dst[, anchor[, iterations[, borderType[, borderValue]]]]]) → dst
+
+     - src – Source image. The number of channels can be arbitrary. The depth should be one of CV_8U, CV_16U, CV_16S, CV_32F` or ``CV_64F.
+
+     - op – Type of a morphological operation that can be one of the following:
+
+          - MORPH_OPEN - an opening operation
+          - MORPH_CLOSE - a closing operation
+          - MORPH_GRADIENT - a morphological gradient. Dilation과 erosion의 차이.
+          - MORPH_TOPHAT - “top hat”. Opeining과 원본 이미지의 차이
+          - MORPH_BLACKHAT - “black hat”. Closing과 원본 이미지의 차이
+
+     - kernel – structuring element. cv2.getStructuringElemet() 함수로 만들 수 있음.
+
+     - anchor – structuring element의 중심. default (-1,-1)로 중심점.
+
+     - iterations – erosion and dilation 적용 횟수
+
+     - borderType – Pixel extrapolation method. See borderInterpolate for details.
+
+     - borderValue – Border value in case of a constant border. The default value has a special meaning.
+
+     - 사용예시
+
+          ```python
+          #침식 연산자
+          dilated = cv2.morphologyEx(binary, cv2.MORPH_DILATE, (3,3), iterations = 8)
+          # 이터레이션 수 커질수록 흩어짐
+          
+          #팽창 연산자, 구멍이 메워짐
+          eroded = cv2.morphologyEx(binary, cv2.MORPH_ERODE, (3,3), iterations = 10) 
+          #이터레이션 수 커질수록 뭉쳐짐
+          
+          #침식후 팽창, 주변잡음 제거후 완만하게, 잔 테두리 제거하기
+          opened = cv2.morphologyEx(binary, cv2.MORPH_OPEN,
+                cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5)), 
+                 iterations = 3 )
+          
+          #팽창후 침식, 비어있는 구멍 채운 후 원래사이즈로 복귀 , 구멍메꾸기
+          closed = cv2.morphologyEx(binary, cv2.MORPH_CLOSE,
+                cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3)), 
+                 iterations = 12 )
+          ```
+
+          <img src="C:\Users\myounghwan\TIL\computer_processing\images\침식팽창.png" alt="침식팽창" style="zoom:50%;" />
+
+
+
+
+
+- area = cv2.contourArea(con) # 컨투어의 영역(면적)을 계산, 실수값으로 나옴
+
+
+
+
 
