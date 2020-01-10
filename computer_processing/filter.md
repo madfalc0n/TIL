@@ -36,11 +36,10 @@ def imshow(tit,image):
 ### 사용하는 함수 종류
 
 - cv2.imread('이미지명', [0]) 
-  
-- 0을 입력하게 되면 `흑백`으로 가져옴, 0을 입력하지 않으면 `컬러(RGB)`로 가져옴
-  
-  
-  
+  - 0을 입력하게 되면 `흑백`으로 가져옴, 0을 입력하지 않으면 `컬러(RGB)`로 가져옴
+
+
+
 - cv2.threshold(이미지,  기준값, 최대값, type )
 
   > 색상을 이진화 하기 위해 사용
@@ -201,6 +200,7 @@ def imshow(tit,image):
 
 - cv2.ellipse(img, center, axes, angle, startAngle, endAngle, color[, thickness[, lineType[, shift]]]) → img
 
+     - 타원 그리기
      - 중심점, 반지름 크기, 색깔, 굵기
      - img – image
      - center – 타원의 중심
@@ -257,7 +257,7 @@ def imshow(tit,image):
                  iterations = 12 )
           ```
 
-          <img src="C:\Users\myounghwan\TIL\computer_processing\images\침식팽창.png" alt="침식팽창" style="zoom:50%;" />
+          <img src="images/침식팽창.png" alt="침식팽창" style="zoom:50%;" />
 
 
 
@@ -267,5 +267,159 @@ def imshow(tit,image):
 
 
 
+- cv2.Canny(원본 이미지, 임계값1, 임계값2, 커널 크기, L2그라디언트) #지금도 많이 씀
+
+  - 반환 값은 0 또는 255로 나옴
+
+  - 임계값1은 임계값1 이하에 포함된 가장자리는 가장자리에서 제외합니다.
+
+  - 임계값2는 임계값2 이상에 포함된 가장자리는 가장자리로 간주합니다.
+
+  - 커널 크기는 Sobel 마스크의 Aperture Size를 의미합니다. 포함하지 않을 경우, 자동으로 할당됩니다.
+
+  - L2그라디언트는 L2방식의 사용 유/무를 설정합니다. 사용하지 않을 경우, 자동적으로 L1그라디언트 방식을 사용합니다.
+
+  - L2그라디언트 : (dI/dx)2+(dI/dy)2
+    L1그라디언트 : ∥dI/dx∥+∥dI/dy∥
+
+    
+
+- cv2.circle(img, center, radian, color, thickness)
+
+  - 원그리기
+
+  - img – 그림을 그릴 이미지
+
+  - center – 원의 중심 좌표(x, y)
+
+  - radian – 반지름
+
+  - color – BGR형태의 Color
+
+  - thickness – 선의 두께, -1 이면 원 안쪽을 채움
+
+  - 사용예시
+
+    ```python
+    cv2.circle(img, (x, y), int(r), (255, 255, 0), 2)
+    # x,y, r(반지름), 색깔, 선굵기(-1은 꽉채움)
+    ```
+
+    <img src="images/image-20200110112818072.png" alt="image-20200110112818072" style="zoom:50%;" /><img src="images/image-20200110112927465.png" alt="image-20200110112927465" style="zoom:50%;" />
+    
+    > 왼쪽이 0이상일떄, 오른쪽이 -1일때
 
 
+
+- cv2.HoughCircles(image, method, dp, minDist[, circles[, param1[, param2[, minRadius[, maxRadius]]]]]) → circles
+
+  - 원을 찾아주는 전용함수
+
+  - image – 8-bit single-channel image. grayscale image.
+
+  - method – 검출 방법. 
+
+    - 현재는 `HOUGH_GRADIENT(엣지가 있는지 없는지 판단)`가 있음.
+    - 캐니엣지가 따로 들어가므로 캐니함수 안써도됨
+
+  - dp
+
+    - dp=1이면 Input Image와 동일한 해상도.(고정으로 씀) 
+    - 2일때는 결과를 반으로 줌
+
+  - minDist
+
+    - 검출한 원의 중심과의 최소거리. 
+    - 값이 작으면 원이 아닌 것들도 검출이 되고, 너무 크면 원을 놓칠 수 있음.
+
+  - param1
+
+    - 내부적으로 사용하는 canny edge 검출기에 전달되는 Paramter
+    - edge threshold low ->  edge가 검출되어 같은 원이 검출됨
+    - 에지문턱값으로 불림, 값이 작으면 많이 생성되기 때문에 원이 많이 검출될 
+    - 크면 에지가 검출안되기 때문에 원의수도 줄어듬
+    - 바둑개수가  검출이 안되면 낮값을 낮춰야 함
+
+  - param2
+
+    - 이 값이 작을 수록 오류가 높아짐. 크면 검출률이 낮아짐.
+    - 추정후보지가 원이라고 생각한 수 
+    - 크면 정말 원인 애들만 검출하라
+    - 작으면 작은 원인 애들도 검출하라
+
+  - minRadius – 원의 최소 반지름.
+
+  - maxRadius – 원의 최대 반지름.
+
+  - 사용예시
+
+    ```python
+    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=100, param2=30, minRadius=10, maxRadius=50)
+    #그레이스케일 이미지 출력
+    #cv2.HOUGH_GRADIENT 로 검출하라
+    #기존 이미지와 동일한 해상도로 설정하라
+    #
+    #
+    #서로다른 원간에 최소거리를 20으로 설정하라
+    #검출된 원의 크기가 10~50 사이만 선정하라
+    ```
+
+    
+
+- cv2.getRotationMatrix2D(center, angle, scale) → M
+
+  - 이미지를 회전 시킴
+
+  - center – 이미지의 중심 좌표
+
+  - angle – 회전 각도
+
+  - scale – scale factor(확대율)
+
+  - 값은 다음과 같은 행렬로 나온다.
+
+  - 사용예시
+
+    ```python
+  img = cv2.imread("./data/Lena.png")
+    height, width = img.shape[:2]
+    #print(width,height )
+    
+    img_center = (width /2, height/2)
+    M = cv2.getRotationMatrix2D(img_center, 30, 0.7) # 이미지, 회전각도, 확대배율
+    print(M)
+    [[  0.60621778   0.35        11.20824764]
+     [ -0.35         0.60621778 190.40824764]]
+    ```
+    
+    
+    
+    <img src="images/image-20200110144723535.png" alt="image-20200110144723535" style="zoom: 80%;" />
+    
+    <img src="images/image-20200110144831452.png" alt="image-20200110144831452" style="zoom:50%;" /><img src="images/image-20200110144800061.png" alt="image-20200110144800061" style="zoom:50%;" />
+
+
+
+- cv2.flip(img,0) #사진 뒤집기
+
+
+
+- cv2.getPerspectiveTransform(pts1,pts2)
+
+- cv2.warpPerspective(img, M , (width,height) )
+
+  - Perspective(원근법) 변환은 직선의 성질만 유지가 되고, 선의 평행성은 유지가 되지 않는 변환입니다. 기차길은 서로 평행하지만 원근변환을 거치면 평행성은 유지 되지 못하고 하나의 점에서 만나는 것 처럼 보입니다.(반대의 변환도 가능)
+
+    4개의 Point의 Input값과이동할 output Point 가 필요합니다.
+
+    변환 행렬을 구하기 위해서는 `cv2.getPerspectiveTransform()` 함수가 필요하며, `cv2.warpPerspective()` 함수에 변환행렬값을 적용하여 최종 결과 이미지를 얻을 수 있습니다.
+
+
+
+
+
+인터플레이스 알고리즘
+
+거꾸로 푸는
+
+작은해상도의 이미지를 큰 해상도로 복사할때 사용
