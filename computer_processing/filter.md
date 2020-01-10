@@ -109,12 +109,24 @@ def imshow(tit,image):
     
     <img src="images/image-20200109215210151.png" alt="image-20200109215210151" style="zoom:50%;" /><img src="images/image-20200109215222785.png" alt="image-20200109215222785" style="zoom:50%;" />
   
+
+
+
+- cv2.medianBlur(src, ksize)
+  - 커널과 픽셀의 값들을 정렬 후 평균값을 선택하여 적용
+  - src – 1,3,4 channel image. depth가 CV_8U, CV_16U, or CV_32F 이면 ksize는 3또는5, CV_8U이면 더 큰 ksize가능
+  - ksize – 1보다 큰 홀수
+
+
+
 - cv2.findContours(image, mode, method[, contours[, hierarchy[, offset]]]) → image, contours, hierarchy
 
   - image – 8비트 싱글채널 이미지 또는  binary 이미지
 
-  - mode
+  - 이미지 가져오기전에 copy 함수 이용해서 가져와야함,, 원본에 영향을 미치는 함수이기 때문
 
+  - mode
+  
     > contours를 찾는 방법
     
     - cv2.RETR_EXTERNAL : contours line중 가장 바같쪽 Line만 찾음.
@@ -169,16 +181,33 @@ def imshow(tit,image):
 
      - `Contour의 둘레 길이`를 구할 수 있습니다. 사각형의 경우는 둘레길이의 합이 됩니다. 아래 함수의 2번째 argument가 `true이면 폐곡선 도형을 만들어 둘레길이`를 구하고, `False이면 시작점과 끝점을 연결하지 않고 둘레 길이`를 구합니다.
 
-     
+     - 사용예시
+
+       ```python
+       peri = cv2.arcLength(c, True)
+       #c는 contours 요소 중 하나
+       ```
+
+       
 
 - cv2.approxPolyDP(curve, epsilon, closed[, approxCurve]) → approxCurve
 
      - curve – contours point array
+
      - epsilon – original cuve와 근사치의 최대거리. 최대거리가 클 수록 더 먼 곳의 Point까지 고려하기 때문에 Point수가 줄어듬.
+
      - closed – 폐곡선 여부
+
      - 근사치가 적용된 contours point array 반환
 
-     
+     - 사용예시
+
+       ```python
+       approx = cv2.approxPolyDP(c, 0.02 * peri, True) 
+       #c는 contours의 값 일부, 꼭지점의 개수를 반환한다.
+       ```
+
+       
 
 - cv2.putText(img, text, org, font, fontSacle, color)
 
@@ -246,12 +275,12 @@ def imshow(tit,image):
           eroded = cv2.morphologyEx(binary, cv2.MORPH_ERODE, (3,3), iterations = 10) 
           #이터레이션 수 커질수록 뭉쳐짐
           
-          #침식후 팽창, 주변잡음 제거후 완만하게, 잔 테두리 제거하기
+          #개방, 주변잡음 제거후 완만하게, 잔 테두리 제거하기
           opened = cv2.morphologyEx(binary, cv2.MORPH_OPEN,
                 cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5)), 
                  iterations = 3 )
           
-          #팽창후 침식, 비어있는 구멍 채운 후 원래사이즈로 복귀 , 구멍메꾸기
+          #폐쇄, 비어있는 구멍 채운 후 원래사이즈로 복귀 , 구멍메꾸기
           closed = cv2.morphologyEx(binary, cv2.MORPH_CLOSE,
                 cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3)), 
                  iterations = 12 )
@@ -263,11 +292,15 @@ def imshow(tit,image):
 
 
 
-- area = cv2.contourArea(con) # 컨투어의 영역(면적)을 계산, 실수값으로 나옴
+- area = cv2.contourArea(con) 
+  - 컨투어의 영역(면적)을 계산, 실수값으로 나옴
+  - 사물 탐지할때 사용하면 될듯
 
 
 
-- cv2.Canny(원본 이미지, 임계값1, 임계값2, 커널 크기, L2그라디언트) #지금도 많이 씀
+- cv2.Canny(원본 이미지, 임계값1, 임계값2, 커널 크기, L2그라디언트) 
+
+  - 많이 쓰는 함수
 
   - 반환 값은 0 또는 255로 나옴
 
@@ -282,7 +315,16 @@ def imshow(tit,image):
   - L2그라디언트 : (dI/dx)2+(dI/dy)2
     L1그라디언트 : ∥dI/dx∥+∥dI/dy∥
 
-    
+  - 사용예시
+
+    ```python
+    edged = cv2.Canny(gray, 10, 250) 
+    #외곽선정보 따는거, 가우시안 안쓰면 엣지들이 많이 나옴. 250보다 크면 무조건 엣지를 보겠다. 10보다 작으면 엣지를 안본다
+    ```
+
+    <img src="images/image-20200110193539523.png" alt="image-20200110193539523" style="zoom:50%;" />
+
+
 
 - cv2.circle(img, center, radian, color, thickness)
 
@@ -362,9 +404,42 @@ def imshow(tit,image):
     #
     #서로다른 원간에 최소거리를 20으로 설정하라
     #검출된 원의 크기가 10~50 사이만 선정하라
-    ```
-
+    print(circles) 
+  [[[513.5 123.5  26.4]
+         :      :     :
+      [194.5  49.5  31.4]]]
+    #  x좌표   y좌표  반지름
     
+    from collections import Counter
+    
+    def detect_weiqi(img): #하얀색인지 파란색인지 정해주는 함수
+        txt = 'black'
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        _, threshold = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
+    
+        c = Counter(list(threshold.flatten()))
+        if c.most_common()[0][0] != 0:
+            txt = 'white'
+        return txt, threshold
+    
+    circles = np.uint16(np.around(circles))
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    for i in circles[0, :]:
+        x, y, r = i    
+        cv2.circle(img, (x, y), r, (0, 0, 255), 5)
+        crop_img = img[y - r:y + r, x - r:x + r]    
+        txt, threshold = detect_weiqi(crop_img) 
+        if txt == 'black' :  
+            cv2.circle(img, (x, y),int(r*0.7), (0, 0, 0), -1)
+        else :
+            cv2.circle(img, (x, y), int(r*0.7), (255, 255, 255), -1)         
+    imshow("", img)
+    ```
+    
+    <img src="images/image-20200110202904595.png" alt="image-20200110202904595" style="zoom:50%;" /><img src="images/image-20200110202816451.png" alt="image-20200110202816451" style="zoom:80%;" />
+
+
+
 
 - cv2.getRotationMatrix2D(center, angle, scale) → M
 
@@ -394,27 +469,130 @@ def imshow(tit,image):
     
     
     
-    <img src="images/image-20200110144723535.png" alt="image-20200110144723535" style="zoom: 80%;" />
-    
-    <img src="images/image-20200110144831452.png" alt="image-20200110144831452" style="zoom:50%;" /><img src="images/image-20200110144800061.png" alt="image-20200110144800061" style="zoom:50%;" />
+    <img src="images/image-20200110144723535.png" alt="image-20200110144723535" style="zoom: 50%;" /> <img src="images/image-20200110144831452.png" alt="image-20200110144831452" style="zoom:50%;" /><img src="images/image-20200110144800061.png" alt="image-20200110144800061" style="zoom:50%;" />
 
 
 
 - cv2.flip(img,0) #사진 뒤집기
 
+    <img src="images/image-20200110144831452.png" alt="image-20200110144831452" style="zoom:50%;" /><img src="images/image-20200110201217442.png" alt="image-20200110201217442" style="zoom:50%;" />
+
+
+
+- cv2.warpAffine(src, M, dsize)
+
+  - 이미지의 위치 변경
+
+  - src – Image
+
+  - M – 변환 행렬
+
+  - dsize (tuple) – output image size(ex; (width=columns, height=rows)
+
+  - 사용예시
+
+    ```python
+    img = cv2.imread("./data/Lena.png")
+    height, width = img.shape[:2]
+    print(width,height )
+    m = np.float32([
+        [1,0,20], 
+        [0,1,30]
+    #   x,y,크기
+    ])
+    dst = cv2.warpAffine(img, m , (width, height), borderValue=(255,50,50) )
+    imshow('',dst)
+    ```
+
+    <img src="images/image-20200110201537757.png" alt="image-20200110201537757" style="zoom:50%;" />
+
+
+
 
 
 - cv2.getPerspectiveTransform(pts1,pts2)
-
+  
+  - 이미지 합체, 해당 점의 4 쌍에서 원근 변환을 계산
+  
+  - src – 소스 이미지에서 사각형 꼭지점의 좌표.
+    dst – 대상 이미지에서 해당 사각형 꼭지점의 좌표.
+  
+  - 사용예시
+  
+    ```python
+    #좌표순서
+    point_list = [[27,179], [611,36], [118,534], [754,325]]
+    
+    pts1 = np.float32([list(point_list[0]),
+                      list(point_list[1]),
+                      list(point_list[2]),
+                      list(point_list[3])
+                      ])
+    print(pts1)# 꼭지점 4개
+    [[ 27. 179.]
+     [611.  36.]
+     [118. 534.]
+     [754. 325.]]
+    
+    pts2 = np.float32([ [0,0],[width,0],[0,height],[width,height] ])
+    print(pts2) # 0,0 -> 0,x -> y,0 -> x,y 순
+    [[  0.    0. ]
+     [405.5   0. ]
+     [  0.  288.5]
+     [405.5 288.5]]
+    
+    M = cv2.getPerspectiveTransform(pts1,pts2) # 이미지, 회전각도, 확대배율
+    print(M)
+    [[ 6.11584185e-01 -1.56772284e-01  1.15494658e+01]
+     [ 2.26751420e-01  9.26033771e-01 -1.71882333e+02]
+     [-1.29571760e-04  4.23781663e-04  1.00000000e+00]]
+    ```
+  
+  
+  
 - cv2.warpPerspective(img, M , (width,height) )
+
+  - 이미지에 원근 변환을 적용
 
   - Perspective(원근법) 변환은 직선의 성질만 유지가 되고, 선의 평행성은 유지가 되지 않는 변환입니다. 기차길은 서로 평행하지만 원근변환을 거치면 평행성은 유지 되지 못하고 하나의 점에서 만나는 것 처럼 보입니다.(반대의 변환도 가능)
 
-    4개의 Point의 Input값과이동할 output Point 가 필요합니다.
+  - 4개의 Point의 Input값과이동할 output Point 가 필요합니다.
 
-    변환 행렬을 구하기 위해서는 `cv2.getPerspectiveTransform()` 함수가 필요하며, `cv2.warpPerspective()` 함수에 변환행렬값을 적용하여 최종 결과 이미지를 얻을 수 있습니다.
+  - 변환 행렬을 구하기 위해서는 `cv2.getPerspectiveTransform()` 함수가 필요하며, `cv2.warpPerspective()` 함수에 변환행렬값을 적용하여 최종 결과 이미지를 얻을 수 있습니다.
 
+  - src – 입력 이미지.
 
+  - dst – 크기 dsize 와 유형이 같은 이미지를 출력합니다 src.
+
+  - M – 3 회 ~ 3 회 변환 행렬.
+
+  - dsize – 출력 이미지의 크기입니다.
+
+  - flags – 보간 방법 ( INTER_LINEAR또는 INTER_NEAREST)과 선택적인 플래그의 
+
+  - WARP_INVERSE_MAP조합 M으로 역변환 ( \ texttt {dst} \ rightarrow \ texttt {src}) 으로 설정 됩니다 .
+
+  - borderMode – 픽셀 외삽 법 ( BORDER_CONSTANT또는 BORDER_REPLICATE).
+
+  - borderValue – 경계가 일정한 경우에 사용되는 값. 기본적으로 0과 같습니다.
+
+  - 사용예시
+
+    ```python
+    M = cv2.getPerspectiveTransform(pts1,pts2) # 이미지, 회전각도, 확대배율
+    print(M)
+    
+    #원근법 이미지에 적용
+    rotate_img = cv2.warpPerspective(img, M , (width,height) ) 
+    imshow(" ", img) #원본 
+    imshow('',rotate_img)#적용본
+    ```
+
+    <img src="images/image-20200110202421483.png" alt="image-20200110202421483" style="zoom:50%;" /><img src="images/image-20200110202408938.png" alt="image-20200110202408938" style="zoom:50%;" />
+    
+    <img src="images/image-20200110202446090.png" alt="image-20200110202446090" style="zoom:50%;" /><img src="images/image-20200110202454427.png" alt="image-20200110202454427" style="zoom:50%;" />
+
+    <img src="images/image-20200110202538340.png" alt="image-20200110202538340" style="zoom:50%;" /><img src="images/image-20200110202600913.png" alt="image-20200110202600913" style="zoom:50%;" />
 
 
 
