@@ -13,13 +13,15 @@
 
 ## 2. Python
 
-
+- [python_function](python/python_function.md)
+- [Flask](python/Flask.md)
 
 ## 3. Data Science
 - [deep_learning](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning.md)
 - [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Tensorflow.md)
 - [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Keras.md)
 - [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Perceptron.md)
+- [Neural_Net](data_science/Neural_Network.md)
 - [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/gradient_descent.md)
 - [back_propagation](https://github.com/madfalc0n/TIL/blob/master/data_science/back_propagation.md)
 - [correlation.md](https://github.com/madfalc0n/TIL/blob/master/data_science/correlation.md)
@@ -38,3 +40,16 @@
 
 - [Digital image processing](https://github.com/madfalc0n/TIL/blob/master/computer_processing/Digital_image_processing.md)
 - [OpenCV](https://github.com/madfalc0n/TIL/blob/master/computer_processing/OpenCV.md)
+
+- [OCR](computer_processing/use_OCR.md)
+- [Filter](computer_processing/filter.md)
+- [Corner](computer_processing/Corner.md)
+- [QRcode](computer_processing/QRCODE.md)
+- [Stitching](computer_processing/stitching.md)
+
+
+
+## 5. Algorithm
+
+- [algorithm_study](algorithm_study/algorithm_study.md)
+
