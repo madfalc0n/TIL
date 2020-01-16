@@ -82,7 +82,7 @@ https://www.palletsprojects.com/p/flask/ 참조
    
    ```
 
-   <img src="C:/Users/student/KMH/Image-analysis-and-develope/project/2.Create_a_chatbot_with_Open_Builder/images/image-20200115155228360.png" alt="image-20200115155228360" style="zoom:50%;" />
+   <img src="images/image-20200115155228360.png" alt="image-20200115155228360" style="zoom:50%;" />
 
    
 
@@ -112,19 +112,19 @@ https://www.palletsprojects.com/p/flask/ 참조
    }
    ```
 
-   <img src="C:/Users/student/KMH/Image-analysis-and-develope/project/2.Create_a_chatbot_with_Open_Builder/images/image-20200115153827322.png" alt="image-20200115153827322" style="zoom:30%;" />
+   <img src="images/image-20200115153827322.png" alt="image-20200115153827322" style="zoom:30%;" />
 
    > 접속시 홈페이지에서는 글자가 깨져서 보이지만 개발자도구로 보았을 떈 잘 받아옴을 확인
 
    
 
-   <img src="C:/Users/student/KMH/Image-analysis-and-develope/project/2.Create_a_chatbot_with_Open_Builder/images/image-20200115153911857.png" alt="image-20200115153911857" style="zoom:30%;" /><img src="C:/Users/student/KMH/Image-analysis-and-develope/project/2.Create_a_chatbot_with_Open_Builder/images/image-20200115154031171.png" alt="image-20200115154031171" style="zoom:30%;" />
+   <img src="images/image-20200115153911857.png" alt="image-20200115153911857" style="zoom:30%;" /><img src="images/image-20200115154031171.png" alt="image-20200115154031171" style="zoom:30%;" />
 
    > GET 메소드 와 POST 메소드, POST는 405를 주며 에러 발생
 
    
 
-   <img src="C:/Users/student/KMH/Image-analysis-and-develope/project/2.Create_a_chatbot_with_Open_Builder/images/image-20200115153952808.png" alt="image-20200115153952808" style="zoom:30%;" /><img src="C:/Users/student/KMH/Image-analysis-and-develope/project/2.Create_a_chatbot_with_Open_Builder/images/image-20200115155131489.png" alt="image-20200115155131489" style="zoom:30%;" />
+   <img src="images/image-20200115153952808.png" alt="image-20200115153952808" style="zoom:30%;" /><img src="images/image-20200115155131489.png" alt="image-20200115155131489" style="zoom:30%;" />
 
    > url 뒤에 파라미터 'hi222' 입력시 404 에러 발생, 지정된 경로만 접속 가능
 
