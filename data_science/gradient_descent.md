@@ -1,8 +1,9 @@
 ## Gradient descent(경사 하강법)
 
 > 1. 미분 기울기를 이용하는 **경사 하강법(gradient decent)**은 이차 함수 그래프에서 오차를 비교하여 가장 **작은 방향으로 이동시키는 방법**
->2. 기본 개념은 함수의 [기울기](https://ko.wikipedia.org/wiki/기울기_(벡터))(경사)를 구하여 기울기가 낮은 쪽으로 계속 이동시켜서 [극값](https://ko.wikipedia.org/wiki/극값)에 이를 때까지 반복시키는 것
+> 2. 기본 개념은 함수의 [기울기](https://ko.wikipedia.org/wiki/기울기_(벡터))(경사)를 구하여 기울기가 낮은 쪽으로 계속 이동시켜서 [극값](https://ko.wikipedia.org/wiki/극값)에 이를 때까지 반복시키는 것
 > 3. 즉, Cost(loss)의 w편미분을 통해 w의 변화량을 구해서 가져와 Gradient descent를 태우면 랜덤으로 초기화된 w라 하더라도 어느순간 좋은 w를 찾아가는 학습이 이루어짐
+> 4. 전체 그래프는 알 수가 없으므로 어느방향으로 가야 최저점을 찾을 수 있는지 알아보는 방법
 
 ![gradient_descent](./images/gradient_descent.png)
 

@@ -36,6 +36,14 @@
 
 
 
+## 3.1 Keras Functions
+
+- [Callbacks](/data_science/Keras_callback_Function.md)
+
+- [ initializers](/data_science)
+
+
+
 ## 4. Computer Vision
 
 - [Digital image processing](https://github.com/madfalc0n/TIL/blob/master/computer_processing/Digital_image_processing.md)

@@ -40,11 +40,29 @@ Dense(8, input_dim=4, init='uniform', activation='relu'))
 - activation : 활성화 함수 설정
   - linear : 디폴트 값, 입력뉴런과 가중치로 계산된 결과값이 그대로 출력으로 나옴
   - relu : rectifier 함수, 은익층에 주로 쓰임
+    - 미분시 기울기가 양수는 1, 음수는 0
+  - reakyrelu: 미분시 기울기가 양수는 1, 음수는 0.1
+    - 딥러닝에서는 많이 쓰임
   - sigmoid : 시그모이드 함수, 이진 분류 문제에서 출력층에 주로 쓰임
+    - 문제가 있다. 
+    - 미분시 값이 0이 많이 생긴다. 
+    - 역전파에서 가중치를 곱할때 0으로 되므로 기울기 소실 문제가 발생한다.
   - softmax : 소프트맥스 함수, 다중 클래스 분류 문제에서 출력층에 주로 쓰임
 
 > 1. Dense 레이어는 입력 뉴런 수에 상관없이 출력 뉴런 수를 자유롭게 설정할 수 있기 때문에 출력층으로 많이 사용된다 
 > 2. 이진 분류문제에서는 0과 1을 나타내는 출력 뉴런이 하나만 있으면 되기 때문에 아래 코드처럼 출력 뉴런이 1개이고, 입력 뉴런과 가중치를 계산한 값을 0에서 1사이로 표현할 수 있는 활성화 함수인 sigmoid을 사용한다.
+
+- 예시
+
+  ```python
+  df
+  ```
+
+  
+
+
+
+
 
 
 
@@ -85,6 +103,20 @@ model.fit(x, y, batch_size=32, epochs=10)
 
 
 
+### 1.3 모델 정보 확인
+
+https://keras.io/models/about-keras-models/
+
+
+
+
+
+
+
+
+
+
+
 ## 2. 모델 학습과정 표시
 
 > fit을 통해 학습을 진행할 경우 화면에 여러 수치들이 로그로 표시된다. 이 로그로 학습을 중단할지 계속할지 판단하는 중요한 척도가 되는데 이를 그래프로 보면 더 직관적일 것이다.
@@ -98,39 +130,28 @@ model.fit(x, y, batch_size=32, epochs=10)
 > 사용은 모델.history 형식으로 사용한다.
 
 ```python
-hist = model.fit(X_train, Y_train, epochs=1000, batch_size=10, validation_data=(X_val, Y_val))
-print(hist.history['loss']) #매 에포크(x) 마다의 훈련 손실값(y)
-print(hist.history['acc']) #매 에포크(x) 마다의 훈련 정확도(y)
-print(hist.history['val_loss']) #매 에포크(x) 마다의 검증 손실값(y)
-print(hist.history['val_acc']) #매 에포크(x) 마다의 검증 정확도(y)
+model = Sequential() 
+model.add(Dense(10,input_dim=2)) #1번째 히든층 , (노드수 * input) + bias(node) 수
+model.add(Activation('sigmoid'))
+
+model.add(Dense(10)) #출력 층 
+model.add(Activation('sigmoid'))
+
+model.add(Dense(10)) #출력 층 
+model.add(Activation('sigmoid'))
+
+model.add(Dense(1)) #출력 층 
+model.add(Activation('sigmoid'))
 
 
-#그래프 예시
-%matplotlib inline
-import matplotlib.pyplot as plt
-
-fig, loss_ax = plt.subplots()
-
-acc_ax = loss_ax.twinx()
-
-loss_ax.plot(hist.history['loss'], 'y', label='train loss')
-loss_ax.plot(hist.history['val_loss'], 'r', label='val loss')
-
-acc_ax.plot(hist.history['acc'], 'b', label='train acc')
-acc_ax.plot(hist.history['val_acc'], 'g', label='val acc')
-
-loss_ax.set_xlabel('epoch')
-loss_ax.set_ylabel('loss')
-acc_ax.set_ylabel('accuray')
-
-loss_ax.legend(loc='upper left')
-acc_ax.legend(loc='lower left')
-
-plt.show()
-
+model.summary()
+#입력데이터가 몇개인지 모르기 때문에 출력이 None으로 나옴
+#학습한 파라미터는 261개 , 학습되지 않은 파라미터는 0개
 ```
 
+![image-20200120210938500](images/image-20200120210938500.png)
 
+> Total params: 
 
 ## 3. 학습모델 보기/저장/불러오기
 
