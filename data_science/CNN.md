@@ -24,16 +24,21 @@
 ```markdown
 1. Input size -> N (i.e. N x N)
 2. Filter size -> F (i.e. F x F)
-3. Output size -> k:=(N-F)/stride + 1 where k is an integer.(stride는 스텝수)
+3. Output size -> k:=(N-F)/stride + 1 where k is an integer.(stride는 스텝수, 다음 픽셀로 갈 때 넘어갈 수)
 ```
 
+![image-20200121172915902](images/image-20200121172915902.png)
+
 - `Input, Filter, stride` 를 통해 나온 `Output`을 `convolution layer`라고 부른다. 즉, 하나의 filter당 하나의`activation`이 하나 주어지면 이에 따른 `convolution layer`를 얻을 수 있다는 것이다. 
+
 - filter가 달라지면 이에 따른 activation을 다르게 줄 수 있으니까(꼭 달라야 하는 것은 아니지만), 이로부터 나오는 새로운 convolution layer를 생각할 수 있을 것이다. 
+
 - 예를 들어 6개의 filter로부터 6개의 convolution layer를 얻었다고 가정하면 N=4, F=2 이기 때문에 3x3짜리 convolution layer를 6개 얻은 셈이다. 이를 하나로 합치면 3x3x6짜리 `convolution layers`(또는 `activation maps`라 부름)를 얻게 된다. 
 
   <img src="images/CNN_3.PNG" alt="CNN_3" style="zoom:50%;" />
 
 - 이렇게 activation maps까지 얻는 일련의 과정을 `convolution`이라고 한다. 
+
 - 상황에 따라서는 filter에서 하나의 값을 얻는 것 자체를 `convolution`이라고 하기도 하지만 초점은 **기존의 것으로부터 filter를 거쳐 새로운 것을 만들어내는 것을 `convolution`**으로 이해하면 된다.
 
 

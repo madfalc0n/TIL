@@ -9,3 +9,8 @@
 
 
 <img src="images/Normal_Distribution.png" alt="Normal_Distribution" style="zoom: 50%;" />
+
+
+
+## 정규분포 초기화의 문제점
+
