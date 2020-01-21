@@ -19,7 +19,7 @@
 >
 > 각 스텝별로 1개의 Value를 얻으며 위 과정을 반복하면 3x3의 Output을 얻게된다
 
-### input과 filter 사이즈에 따른 output 출력 공식 
+## 1. input과 filter 사이즈에 따른 output 출력 공식 
 
 ```markdown
 1. Input size -> N (i.e. N x N)
@@ -43,13 +43,13 @@
 
 
 
-### Padding
+## 2.Padding
 
 > 1. 차원이 줄어드는 것은 수학적으로 데이터의 손실이 발생한다고 말한다(4x4 는 총 16차원이지만 output은 3x3으로 9차원으로 줄게됨, 즉 데이터 손실이 발생).
 > 2. 기존 Input의 차원의 수를 Output에서도 유지하기 위해 사용하는 방법이 패딩이다.(인풋이 4x4라면 출력도 4x4 처럼)
 > 3. 간단하게 말하면 **Convolution layer의 출력 데이터가 줄어드는 것을 방지하는 방법**
 
-#### zero padding
+### zero padding
 
 > 기존 input(4x4) 에서 위아래 양옆으로 0을 덧대면서 6x6 로 확장하는 것
 >
@@ -57,7 +57,7 @@
 
 <img src="images/CNN_5.PNG" alt="CNN_5" style="zoom: 33%;" />
 
-#### padding 추가에 따른 output 공식
+### padding 추가에 따른 output 공식
 
 ```markdown
 1. Total size ; N
@@ -79,23 +79,33 @@
 
 
 
-### Max pooling
+## 3.Max pooling
 
 > 1. 컨볼루션 층을 통해 이미지 특징을 도출 결과가 여전히 크고 복잡하면 다시 한번 축소해야 하는데 다시 축소하는 과정을 `풀링(pooling)` 또는 `서브 샘플링(sub sampling)`이라고 한다
 > 2. 맥스 풀링은 정해진 구역 안에서 가장 큰 값만 다음 층으로 넘기고 나머지는 버린다. 
 
 <img src="images/CNN_4.PNG" alt="CNN_4" style="zoom:50%;" />
 
-### 
 
-### Overfitting 피하기
+## 4.Overfitting 피하기
 
 >1. 딥러닝 학습을 실행할 때 가장 중요한 것은 **과적합을 얼마나 효과적으로 피하는가** 이다. **`드롭아웃(drop out)`** 기법은 은닉층에 배치된 노드 중 일부를 임의로 꺼주는 것으로 랜덤하게 노드를 끔으로써 학습 데이터에 지나치게 치우쳐서 학습되는 과적합을 방지할 수 있다.
 
 <img src="images/CNN_7.PNG" alt="CNN_7" style="zoom:50%;" />
 
 
+## 5.케라스를 통한 CNN 
 
-### 참고
+- 초기 파라미터 값
+  - (필터 수 * 커널사이즈) + 필터 수
+- 다차원 사이즈의 이미지들을 모두 1차원으로 변환(flatten) 후 이후 Dense 레이어 연결 시 노드의 수를 flatten 후 output 의 0.7배가 제일 적당하다.
+
+<img src="C:\Users\myounghwan\TIL\data_science\images\cnn_history.PNG" alt="cnn_history" style="zoom:50%;" />
+
+
+
+
+
+## 참고
 
 1. 참고1: [CNN](https://medium.com/@hobinjeong/cnn-convolutional-neural-network-9f600dd3b395)
