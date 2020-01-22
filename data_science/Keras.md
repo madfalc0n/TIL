@@ -172,6 +172,77 @@ SVG(model_to_dot(model, show_shapes=True, dpi=70).create(prog='dot', format='svg
 
 ![image-20200113170508291](images/image-20200113170508291.png)
 
+#### 성능보기
+
+1. 레이어 이름 및 학습여부 불러오기
+
+   ```python
+   #구글이나 다른 곳 에서 받아오는경우 학습할 필요가 없으므로 학습여부를 False를 적용
+   
+   for l in model.layers:
+       print(l.name, end=' ')#레이어 이름 불러옴
+       print(l.trainable) # 각 레이어별 파라미터 학습하는지(True,False) 불러옴
+   
+   """
+   conv2d_4 True
+   batch_normalization_5 True
+   activation_6 True
+   conv2d_5 True
+   batch_normalization_6 True
+   activation_7 True
+   max_pooling2d_3 True
+   flatten_3 True
+   dense_6 True
+   batch_normalization_7 True
+   activation_8 True
+   dense_7 True
+   batch_normalization_8 True
+   activation_9 True
+   dense_8 True
+   """
+   ```
+
+2. 레이어 별 가중치(weights) 가져오기
+
+   ```python
+   w = model.layers[0].get_weights()
+   print(w[0].shape) # 필터정보, 3x3 필터 32개, 4차원이다
+   # (3, 3, 1, 32)
+   print(w[1].shape) # 바이어스, 3x3 필터에 대한 바이어스
+   # (32,)
+   
+   print(w[0][:,:,0,0]) # 첫번째 레이어의 첫번째 필터
+   """
+   [[-0.12290492  0.04244514 -0.04609224]
+    [-0.0319558   0.06170759  0.02228296]
+    [-0.04274586 -0.13481027 -0.12018647]]
+    """
+   
+   print(w[0][:,:,0,1]) # 첫번째 레이어의 두번째 필터
+   """
+   [[ 0.09120643 -0.06998023 -0.06497919]
+    [ 0.01968259 -0.03767462 -0.02453482]
+    [-0.00404546  0.00604137 -0.06189056]]
+    """
+   ```
+
+3. 입력 영상에 대해 출력한 결과
+
+   ```python
+   model.layers[0].output # shape 가 나온다
+   #<tf.Tensor 'conv2d_4/BiasAdd:0' shape=(None, 22, 22, 32) dtype=float32>
+   ```
+
+   
+
+
+
+
+
+
+
+
+
 
 
 ### 3.2 학습모델 저장

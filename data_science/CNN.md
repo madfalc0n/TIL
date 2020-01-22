@@ -93,14 +93,19 @@
 
 <img src="images/CNN_7.PNG" alt="CNN_7" style="zoom:50%;" />
 
-
 ## 5.케라스를 통한 CNN 
+
+1. 데이터셋 불러옴
+2. 원핫인코딩으로 변환
+3. 4차원으로 변환(갯수 ,영상크기, 채널수)
 
 - 초기 파라미터 값
   - (필터 수 * 커널사이즈) + 필터 수
 - 다차원 사이즈의 이미지들을 모두 1차원으로 변환(flatten) 후 이후 Dense 레이어 연결 시 노드의 수를 flatten 후 output 의 0.7배가 제일 적당하다.
 
-<img src="C:\Users\myounghwan\TIL\data_science\images\cnn_history.PNG" alt="cnn_history" style="zoom:50%;" />
+<img src="images/cnn_history.PNG" alt="cnn_history" style="zoom:50%;" />
+
+
 
 
 
