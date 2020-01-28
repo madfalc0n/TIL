@@ -601,3 +601,14 @@ def imshow(tit,image):
 거꾸로 푸는
 
 작은해상도의 이미지를 큰 해상도로 복사할때 사용
+
+
+
+
+
+
+
+
+
+- cv2.CascadeClassifier
+  - haarcascade 가 가장 많이 산업화가 되었다.
