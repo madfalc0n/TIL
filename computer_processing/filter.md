@@ -612,3 +612,9 @@ def imshow(tit,image):
 
 - cv2.CascadeClassifier
   - haarcascade 가 가장 많이 산업화가 되었다.
+
+
+
+
+
+https://datascienceschool.net/view-notebook/7eb4b2a440824bb0a8c2c7ce3da7a4e2/
