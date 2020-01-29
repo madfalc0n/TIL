@@ -59,7 +59,7 @@
 
 ## 5. Computer Vision
 
-- [Object Detection](computer_processing/Object_Detection.md)
+- [Object Detection](computer_processing/Object_detection.md)
 
 - [Segmentation](computer_processing/Segmentation.md)
 

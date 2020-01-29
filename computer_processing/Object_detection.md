@@ -40,7 +40,7 @@
   imshow('src', src)    
   ```
 
-  ![image-20200129003013345](images\image-20200129003013345.png)![image-20200129004156855](images\image-20200129004156855.png)
+  ![image-20200129003013345](images/image-20200129003013345.png)![image-20200129004156855](images/image-20200129004156855.png)
 
   > 얼굴 검출과 눈 검출, 눈 같은 경우 검출이 제대로 되지 않는 것을 볼 수 있다.
 
@@ -74,7 +74,7 @@
   imshow('src', src)  
   ```
 
-  ![image-20200129003534129](images\image-20200129003534129.png)
+  ![image-20200129003534129](images/image-20200129003534129.png)
 
   
 
@@ -90,13 +90,13 @@
 
 1. 이미지 전처리를 위한 crop 및 resize 
 
-   <img src="images\image-20200129010353415.png" alt="image-20200129010353415" style="zoom:33%;" />
+   <img src="images/image-20200129010353415.png" alt="image-20200129010353415" style="zoom:33%;" />
 
 2. 이미지의 gradient 계산
 
    - x, y 축에 대해 edge 추출을 위해 커널 적용 후 gradient 계산
 
-   <img src="images\image-20200129010520372.png" alt="image-20200129010520372" style="zoom:33%;" />
+   <img src="images/image-20200129010520372.png" alt="image-20200129010520372" style="zoom:33%;" />
 
    - sobel 필터를 통해 gradient 에 따른 이미지를 검출 할 수 있음
 
@@ -115,9 +115,9 @@
 
      - gradient의 magnitude와 direction을 아래의 식을 통해 얻을 수 있음
 
-     ![image-20200129010832747](images\image-20200129010832747.png)
+     ![image-20200129010832747](images/image-20200129010832747.png)
 
-     <img src="images\image-20200129011024382.png" alt="image-20200129011024382" style="zoom:50%;" />
+     <img src="images/image-20200129011024382.png" alt="image-20200129011024382" style="zoom:50%;" />
 
      > 왼쪽: x-gradient 의 절대 값, 중앙: y-graident의 절대 값,  오른쪽: gradient의 magnitude(벡터크기)
 
@@ -126,7 +126,7 @@
    - 해당 이미지(64 x 128)는 8x8 로 ROI(얼굴,머리,상단 등)를 검출하기에는 충분하며 16(128/8), 8(64/8)의 이미지로 다시 표현한 것 
    - 만약 crop 및 resize의 크기를 다르게 할 경우 최적의 셀을 알아봐야 할 것
 
-   <img src="images\image-20200129011602238.png" alt="image-20200129011602238" style="zoom:50%;" />
+   <img src="images/image-20200129011602238.png" alt="image-20200129011602238" style="zoom:50%;" />
 
    - 위는 8x8 패치에 대한 Gradient의 크기와 방향에 대해서 나타낸 사진이다.
 
@@ -138,7 +138,7 @@
 
    - 아래의 사진은 nbins=9로 두어서 0 ~ 180도를 9개의 bin으로서 표현한 것 이다.
 
-     <img src="images\image-20200129012010321.png" alt="image-20200129012010321" style="zoom:50%;" />
+     <img src="images/image-20200129012010321.png" alt="image-20200129012010321" style="zoom:50%;" />
 
      > direction이 80 일떄 값은2 이며 10도일때 값은 4이지만 0과 20사이 절반이므로 각각 2 씩 들어가게된다.
 
