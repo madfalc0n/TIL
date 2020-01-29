@@ -44,7 +44,7 @@
 
 
 
-## 4. Computer Vision
+## 4. Image Processing
 
 - [Digital image processing](https://github.com/madfalc0n/TIL/blob/master/computer_processing/Digital_image_processing.md)
 - [OpenCV](https://github.com/madfalc0n/TIL/blob/master/computer_processing/OpenCV.md)
@@ -57,13 +57,21 @@
 
 
 
-## 5. data structure
+## 5. Computer Vision
+
+- [Object Detection](computer_processing/Object_Detection.md)
+
+- [Segmentation](computer_processing/Segmentation.md)
+
+
+
+## 6. data structure
 
 
 
 
 
-## 6. Algorithm
+## 7. Algorithm
 
 - [algorithm_study](algorithm_study/algorithm_study.md)
 

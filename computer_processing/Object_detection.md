@@ -10,7 +10,7 @@
 
 - 이미지에서 feature 를 검출하기 위해 모든 가능한 크기의 커널에 대해 이미지의 모든부분에 적용을 해야 한다. 예시로 adaboost를 꼽을수 있지만 이 방법으로는 시간이 너무 걸리게되는 무식한 작업인데 예를들어 3x3 크기의 이미지에 대해 이 방법을 적용할 경우 수만가지에 대해 계산을 해야 한다.
 
-  <img src="C:/Users/myounghwan/TIL/computer_processing/images/image-20200129002259235.png" alt="image-20200129002259235" style="zoom:50%;" />
+  <img src="images/image-20200129002259235.png" alt="image-20200129002259235" style="zoom:50%;" />
 
 
 
@@ -150,42 +150,70 @@
 
 
 
-
-
-## semantic segmentation
-
-> 전통적인 기법, 픽셀별로 어디에 속하는지,
-
-슬라이딩 윈도우방식으로 매 픽셀단위로 분류
-
-
-
-
-
-
-
-## instance segmentation
-
-> 오브젝트 찾고 세그멘테이션 하는게 인스턴스 세그멘테이션
-
-
-
-
-
-## YOLO(You Only Look Once)
+## YOLO(You Only Look Once) v3
 
 > 1. 격자 단위로 나누어 한번에 클래스를 판단하고 이를 통합해 최종 객체를 구분
 > 2. 기존의 방법들과 달리 Object detection을 이미지 픽셀 좌표에 대응되는 bounding box을 찾음
 > 3. 이에 대한 class확률을 구하는 Single Regression Problem으로 해결
 > 4. 기존에 사용하던 방식들을 이미지를 스캔하는 방식으로 객체를 인식하였기 때문에 속도가 현처히 느렸음
+> 5. 제일 최근까지 개발된 것이 현재 v3 임
+> 6. **Input 이미지 또는 영상 사이즈는 무조건 416x416**으로 맞춰 주어야 함
 
 <img src="images/image-20200129212006670.png" alt="image-20200129212006670" style="zoom:50%;" />
 
+> YOLO는 이미지를 13x13 cell로 나누게 된다.
 
 
-- 네트워크 구성은 Darknet 을 기반으로 설계 되었다.
 
-  <img src="images/image-20200129220221189.png" alt="image-20200129220221189" style="zoom:50%;" />
+### Network Architecture for YOLO v3 
+
+#### YOLO v3 Full Network Architecture
+
+![image-20200130011023897](images/image-20200130011023897.png)
+
+>  - YOLO v3 Network base는 Darknet-53 을 기반으로 설계 되었다.
+>  - 빨간네모에 속한 번호들은 각 layer의 번호
+>  - 출력 layer 들의 이름은 각각 `YOLO_82`, `YOLO_94`, `YOLO_106` 
+>  - 위 출력 layer를 통해 **세가지의 서로다른 scale을 통해 bounding box를 dectect한다.**
+
+
+
+#### Darknet-53 Network
+
+<img src="images/image-20200129220221189.png" alt="image-20200129220221189" style="zoom:50%;" />
+
+> - Darknet-53의 Network Architecture, 53은 layer의 수를 의미
+> - Imagenet에서 train 시킨 Network를 이용, YOLO v2 는 Darknet-19를 기반으로 만들어짐
+
+  
+
+### Detection at three Scales
+
+> YOLO v3 의 핵심은 **세가지의 서로다른 scale을 통해 bounding box를 dectect한다.** 
+>
+> 서로 사이즈가 다른 세가지의 맵에서 1x1 kernel로 detect를 수행하며 아래의 조건을 통해 다음의 식을 가진다.
+
+- `YOLO v3`, `COCO`에서 train 된 경우 
+  1. **B = 3** , bounding box의 수 
+  2. **C = 80** , Class(분류항목)의 수
+
+```markdown
+kernel = 1 x 1 x (B x (5 + C) )
+kernel = 1 x 1 x 255
+```
+
+<img src="images/image-20200130014719702.png" alt="image-20200130014719702" style="zoom:50%;" />
+
+> Bounding box에는 해당 박스의 x,y, w(넓이),h(높이) , Po(object일 확률), 각 class의 확률 정보가 들어가 있다.  
+
+
+
+- 3개의 scale을 통해 예측할 때 **이미지의 크기를 32, 16, 8 로 Downsampling**을 진행함
+  1. 첫번째 탐지는 82번 레이어(`YOLO_82`)에서 수행된다. 
+     1. 81번째 레이어에서 이미지를 Downsampling하여 81 레이어의 Stride가  32가 된다. 
+     2. 82번 레이어에서 기존 이미지 사이즈인 416x416에서 32를 나누어 13x13으로 변환되며 1x1 커널을 사용해 13x13x255 의 map을 가진다. 
+
+
 
 
 
@@ -193,9 +221,7 @@
 
 ### 실습코드
 
-
-
-
+- [YOLO](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/Deep_Learning/20200128/opencvyolo.ipynb)
 
 
 
@@ -218,3 +244,7 @@ confidence 오브젝트일 확률
 https://www.learnopencv.com/histogram-of-oriented-gradients/
 
 https://wjddyd66.github.io/opencv/OpenCV(8)/
+
+https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b
+
+https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/
