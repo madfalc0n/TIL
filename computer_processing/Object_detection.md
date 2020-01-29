@@ -144,6 +144,75 @@
 
 
 
+
+
+
+
+
+
+
+
+## semantic segmentation
+
+> 전통적인 기법, 픽셀별로 어디에 속하는지,
+
+슬라이딩 윈도우방식으로 매 픽셀단위로 분류
+
+
+
+
+
+
+
+## instance segmentation
+
+> 오브젝트 찾고 세그멘테이션 하는게 인스턴스 세그멘테이션
+
+
+
+
+
+## YOLO(You Only Look Once)
+
+> 1. 격자 단위로 나누어 한번에 클래스를 판단하고 이를 통합해 최종 객체를 구분
+> 2. 기존의 방법들과 달리 Object detection을 이미지 픽셀 좌표에 대응되는 bounding box을 찾음
+> 3. 이에 대한 class확률을 구하는 Single Regression Problem으로 해결
+> 4. 기존에 사용하던 방식들을 이미지를 스캔하는 방식으로 객체를 인식하였기 때문에 속도가 현처히 느렸음
+
+<img src="images/image-20200129212006670.png" alt="image-20200129212006670" style="zoom:50%;" />
+
+
+
+- 네트워크 구성은 Darknet 을 기반으로 설계 되었다.
+
+  <img src="images/image-20200129220221189.png" alt="image-20200129220221189" style="zoom:50%;" />
+
+
+
+
+
+### 실습코드
+
+
+
+
+
+
+
+
+
+
+
+confidence 오브젝트일 확률
+
+바운딩박스
+
+나
+
+
+
+
+
 참고주소:
 
 https://www.learnopencv.com/histogram-of-oriented-gradients/

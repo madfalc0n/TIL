@@ -6,7 +6,7 @@
 
 그레이 영상을 넣고 자동으로 찾아줌
 
-
+주변보다 상대적으로 값이 높거나 낮거나 하는 애를 뽑겠다.
 
 - cv2.cornerHarris(src, blockSize, ksize, k[, dst[, borderType]]) → dst
   - src – Input single-channel 8-bit or floating-point image.
