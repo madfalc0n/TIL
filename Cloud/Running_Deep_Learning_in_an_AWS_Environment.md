@@ -74,18 +74,78 @@ c.NotebookApp.password = u'sha1:51d2ebfdf7b8:efb8df2872e01648fbe56dbbdd157154608
 
 
 
-## Darknet 사용
+
+
+## Darknet 와 기존 YOLO를 통해 학습된 Weights 로 테스트 해보기
 
 1. `git clone https://github.com/pjreddie/darknet.git` 입력 후 clone 받기
+
 2. `cd darknet` 후 `vi Makefile` 입력 후 다음과 같이 설정 변경
 
-    ```
-    CUDA 사용 GPU=1
-    opencv 사용 OPENCV=1
-    ```
+   ```
+   CUDA 사용 GPU=1
+   opencv 사용 OPENCV=1
+   ```
 
 3. `make` 입력 후 설정 컴파일 진행
 
 4. `wget https://pjreddie.com/media/files/yolov3.weights` 입력 후 학습이 적용된 weight 파일 다운로드
 
 5. `./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg` 입력 후  테스트 진행
+
+
+
+
+
+
+
+
+
+## Darknet 과 YOLO를 통해 object detection 해보기
+
+### 사전 셋팅
+
+- `Darknet`이 설치 되어 있어야 함
+
+
+
+- 다음 명령어를 통해 train 및 test 진행
+  - ./darknet detector train [data파일] [YOLO 컨피그파일] [darknet network 파일 ] > [로그기록할파일명]
+
+```bash
+lab03@ip-172-31-40-104:~/darknet$ ./darknet detector train ~/myoung_snow_unzip/darknet.data ~/myoung_snow_unzip/darknet-yolov3.cfg ~/myoung_snow_unzip/darknet53.conv.74 > ~/myoung_snow_unzip/snowman.log
+layer     filters    size              input                output
+    0 conv     32  3 x 3 / 1   416 x 416 x   3   ->   416 x 416 x  32  0.299 BFLOPs
+    1 conv     64  3 x 3 / 2   416 x 416 x  32   ->   208 x 208 x  64  1.595 BFLOPs
+    2 conv     32  1 x 1 / 1   208 x 208 x  64   ->   208 x 208 x  32  0.177 BFLOPs
+                                         .
+                                         .
+  104 conv    256  3 x 3 / 1   104 x 104 x 128   ->   104 x 104 x 256  6.380 BFLOPs
+  105 conv     18  1 x 1 / 1   104 x 104 x 256   ->   104 x 104 x  18  0.100 BFLOPs
+  106 yolo
+Loading weights from /home/lab03/myoung_snow_unzip/darknet53.conv.74...Done!
+```
+
+- 로그파일 확인
+
+```bash
+lab03@ip-172-31-40-104:~/myoung_snow_unzip$ cat snowman.log
+darknet-yolov3
+Learning Rate: 0.001, Momentum: 0.9, Decay: 0.0005
+Resizing
+384
+Loaded: 0.091182 seconds
+Region 82 Avg IOU: 0.219281, Class: 0.531767, Obj: 0.530265, No Obj: 0.572117, .5R: 0.222222, .75R: 0.000000,  count: 9
+Region 94 Avg IOU: 0.342721, Class: 0.062154, Obj: 0.898800, No Obj: 0.495300, .5R: 0.000000, .75R: 0.000000,  count: 1
+Region 106 Avg IOU: -nan, Class: -nan, Obj: -nan, No Obj: 0.612533, .5R: -nan, .75R: -nan,  count: 0
+Region 82 Avg IOU: 0.269220, Class: 0.574327, Obj: 0.628691, No Obj: 0.572319, .5R: 0.200000, .75R: 0.000000,  count: 5
+Region 94 Avg IOU: 0.011954, Class: 0.749137, Obj: 0.728491, No Obj: 0.495370, .5R: 
+                                         .
+                                         .
+lab03@ip-172-31-40-104:~/myoung_snow_unzip$                              
+lab03@ip-172-31-40-104:~/myoung_snow_unzip$ cat snowman.log | grep 'avg'
+1: 3968.200195, 3968.200195 avg, 0.000000 rate, 2503.904047 seconds, 64 images
+2: 3961.218994, 3967.502197 avg, 0.000000 rate, 2536.935550 seconds, 128 images
+
+```
+
