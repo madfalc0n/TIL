@@ -62,6 +62,27 @@
 
 
 
+## cv2.resize(원본 이미지, 결과 이미지 크기, 보간법)
+
+> 이미지의 사이즈를 변경하게 해주는 함수
+
+```python
+r_size = cv2.resize(src, dsize=(800, 640), interpolation=cv2.INTER_AREA)
+#dsize는 실제 변경 할 사이즈
+r_size2 = cv2.resize(src, dsize=(0, 0), fx=0.4, fy=0.6, interpolation=cv2.INTER_LINEAR)
+# 결과 이미지 크기가 (0, 0)으로 크기를 설정하지 않은 경우, fx와 fy를 이용하여 이미지의 비율을 조절 가능
+#fx,fy 가 각각 0.4, 0.6인 경우, 원본 이미지 너비와 높이도 0.4, 0.6배로 변경
+#결과 이미지 크기와 가로비, 세로비가 모두 설정된 경우, 결과 이미지 크기의 값으로 이미지의 크기가 조절 됨
+```
+
+- 사이즈가 변할경우 pixel 사이의 값도 결정을 해주어야 하는데 이 때 사용하는 것이 보간법임.  많이 사용되는 보간법은 사이즈를 줄일 때는 `cv2.INTER_AREA` , 사이즈를 크게할 때는 `cv2.INTER_CUBIC` , `cv2.INTER_LINEAR` 을 사용
+
+
+
+
+
+
+
 ## 실습
 
 1. [RGB_test](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/20200106/1.1_rgb_test.ipynb)

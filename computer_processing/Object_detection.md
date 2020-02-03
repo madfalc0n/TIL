@@ -4,6 +4,26 @@
 
 
 
+## IoU(Intersection over Union)
+
+> - object detection에서 모델을 훈련하거나 예측할 때 사용하는 도구로 특정 데이터 집합에서 물체 탐지기의 정확도를 측정하는 데 사용되는 평가 지표이다.
+>- 일반적으로 HOG + Linear SVM 물체 탐지기  및 Convolutional Neural Network 탐지기 (R-CNN, Faster R-CNN, YOLO 등) 의 성능을 평가하는 데 사용되는 Union over Intersection을 찾을 수 있다 . 그러나  예측을 생성하는 데 사용 된 실제 알고리즘 은 중요하지 않다.
+
+<img src="images/image-20200203184537757.png" alt="image-20200203184537757" style="zoom:40%;" /><img src="images/iou_equation-1580722503217.png" alt="iou_equation-1580722503217" style="zoom:40%;" />
+
+> - 수작업으로 표시한 진짜 경계상자(Ground-truth bounding box)와 모델이 예측한 경계상자(Predicted bounding box)
+> - IoU = 교집합의 영역 넓이/ 합집합의 영역 넓이
+
+![image-20200203183721860](images/image-20200203183721860.png)
+
+> IOU의 평가지표, 영역이 많이 겹칠수록 점수도 높다. 성능을 올리기 위해 IoU threshold 값을 조절해서 모델링 하기도 한다.
+
+
+
+## NMS(Non-Maximum Suppression) 알고리즘
+
+
+
 
 
 ## cv2.CascadeClassifier()
@@ -157,7 +177,7 @@
 > 3. 이에 대한 class확률을 구하는 Single Regression Problem으로 해결
 > 4. 기존에 사용하던 방식들을 이미지를 스캔하는 방식으로 객체를 인식하였기 때문에 속도가 현처히 느렸음
 > 5. 제일 최근까지 개발된 것이 현재 v3 임
-> 6. **Input 이미지 또는 영상 사이즈는 무조건 416x416**으로 맞춰 주어야 함
+> 6. **Input 이미지 또는 영상 사이즈는 무조건 416x416**(v3 기준)으로 맞춰 주어야 함
 
 <img src="images/image-20200129212006670.png" alt="image-20200129212006670" style="zoom:50%;" />
 
@@ -208,10 +228,60 @@ kernel = 1 x 1 x 255
 
 
 
-- 3개의 scale을 통해 예측할 때 **이미지의 크기를 32, 16, 8 로 Downsampling**을 진행함
+- 3개의 scale을 통해 예측할 때 **이미지의 크기를 32, 16, 8 사이즈로 Downsampling**을 진행함
+  
   1. 첫번째 탐지는 82번 레이어(`YOLO_82`)에서 수행된다. 
-     1. 81번째 레이어에서 이미지를 Downsampling하여 81 레이어의 Stride가  32가 된다. 
-     2. 82번 레이어에서 기존 이미지 사이즈인 416x416에서 32를 나누어 13x13으로 변환되며 1x1 커널을 사용해 13x13x255 의 map을 가진다. 
+     
+     <img src="images/image-20200203175417924.png" alt="image-20200203175417924" style="zoom:50%;" />
+     
+     1. 81번째 레이어에서 이미지를 **Downsampling**하여 81 레이어의 Stride가  32가 된다. 
+     2. 82번 레이어에서 기존 이미지 사이즈인 416x416에서 32를 나누어 **13x13**으로 변환되며 1x1 커널을 사용해 **13x13x255** 의 detection map을 가진다. 
+     
+  2. 두번째 탐지는 94번 레이어(`YOLO_94`)에서 수행된다.
+  
+     <img src="images/image-20200203175729171.png" alt="image-20200203175729171" style="zoom:50%;" />
+  
+     1. **26x26** 사이즈로 2배가 되는 **Upsampling** 되기 전 61번의 레이어와 추가적으로 결합된다.
+     2. 최종적으로 94번 레이어에서 **26x26x255** 의 detection  map을 가진다.
+  
+  3. 세번째 탐지는 106번 레이어에서 수행된다.
+  
+     <img src="images/image-20200203180204247.png" alt="image-20200203180204247" style="zoom:50%;" />
+  
+     1. **52x52** 사이즈로 되기 전 36번의 레이어와 추가적으로 결합된다.
+     2. 최종적으로 106번 레이어에서 **52x52x255**의 detection map을 가진다.
+
+
+
+### Anchor Boxes(앵커박스)
+
+> - 검출되는 bounding box의 너비와 높이를 예측하는것이 합리적일 수 있으나 실제 학습중에는 불안정한 gradient 가 발생한다. 
+>- 최근의 객체탐지기는 로그공간 변화를 예측하거나 미리 사전에 정의된 bounding box를 **앵커박스**라 부르는데 앵커박스로 오프셋 하기도 한다.
+> - YOLO v3에는 각 셀당 3개의 앵커 박스가 있으며 **총 9개**(3개의 스케일 x 셀당 3개의 박스)의 bounding box를 예측한다.
+
+#### 1. Bounding box의 수
+
+> 동일한 사이즈의 이미지에서 v3는 v2보다 더많은 바운딩박스를 예측한다.
+>
+> 416x416 사이즈에서 v2는 13x13x5 = **845개** 의 바운딩 박스를 예측한다.
+>
+> v3의 경우 각 스케일당 3개 씩으로 507(13x13x3), 2028(26x26x3), 8112(52x52x3) 총 **10,647개**의 바운딩 박스를 예측한다.
+
+#### 2. 예측하기
+
+> 아래의 사진은 bounding box를 얻기 위해 네트워크 출력이 변환되는 과정을 설명한 것이다.
+
+<img src="images/image-20200203185406892.png" alt="image-20200203185406892" style="zoom:50%;" /><img src="images/image-20200203185519810.png" alt="image-20200203185519810" style="zoom:50%;" />
+
+- bx, by, bw, bh 는 예측의 x, y 중심 좌표, 너비 및 높이
+
+- tx, ty, tw, th 는 네트워크가 출력하는 것(Output). 
+
+- cx 와 cy 는 그리드의 왼쪽 위 좌표이고, pw 및 ph 는 box에 대한 앵커의 치수
+
+  
+
+  > 출처: http://christopher5106.github.io/object/detectors/2017/08/10/bounding-box-object-detectors-understanding-yolo.html
 
 
 
