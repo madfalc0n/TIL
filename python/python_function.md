@@ -1,4 +1,4 @@
-# 파이썬 함수들
+## 파이썬 함수들
 
 
 
@@ -35,4 +35,28 @@
       print(ceil(130/4)) #33
       ```
 
-      
+- Json 관련 함수
+
+  - Json 형식으로 된 파일을 읽고 쓸때 사용
+
+  - json() 함수는 str형식을 dict 로 변경 json.dumps()는 dict를 str 형식으로 변경
+
+  - 사용예시
+
+    ```python
+    #data_send는 dict형
+    """
+    data_send = {
+            'query': 'text', 
+            'sessionId': 'sessionId',
+            'lang': 'ko', 
+            'timezone' : 'Asia/Seoul'
+        }
+    """
+    str_data_send = json.dumps(data_send)
+    print(type(str_data_send)) #<class 'str'>
+    
+    str_data_send.json() #이렇게 사용해서 dict 로 변경한다.
+    ```
+
+    
