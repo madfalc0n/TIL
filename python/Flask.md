@@ -8,11 +8,11 @@ https://www.palletsprojects.com/p/flask/ 참조
 
 
 
-## 1. 절차 및 테스트
+## Flask 모듈 설치
 
-1. pip install flask
+1. `pip install flask`
 
-2. flask 입력
+2. `flask` 입력 후 설치 되었는지 확인
 
    ```python
    (base) C:\Users\student>flask
@@ -47,7 +47,12 @@ https://www.palletsprojects.com/p/flask/ 참조
    (base) C:\Users\student>
    ```
 
-3. `.py` 형식의 파일 하나 만들고 다음의 소스코드 추가 후 저장(ex. main.py)
+
+
+
+## Flask 웹 서버 실행(방법1)
+
+1. `.py` 형식의 파일 하나 만들고 다음의 소스코드 추가 후 저장(ex. main.py)
 
    ```python
    from flask import Flask, escape, request
@@ -60,7 +65,7 @@ https://www.palletsprojects.com/p/flask/ 참조
        return f'Hello, {escape(name)}!'
    ```
 
-4. `CMD` 또는 아나콘다 프롬프트에서 다음과 같이 입력
+2. `CMD` 또는 아나콘다 프롬프트에서 다음과 같이 입력
 
    1. `cd`명령어를 통해 main.py가 있는 디렉토리로 이동
    2. `set flask_APP=main.py` 입력
@@ -84,9 +89,50 @@ https://www.palletsprojects.com/p/flask/ 참조
 
    <img src="images/image-20200115155228360.png" alt="image-20200115155228360" style="zoom:50%;" />
 
+
+
+
+## Flask 웹 서버 실행(방법2)
+
+1. `.py` 형식의 파일 하나 만들고 다음의 소스코드 추가 후 저장(ex. server.py)
+
+   ```python
+   from flask import Flask
+   
+   app = Flask(__name__)
+   
+   @app.route('/')
+   def home():
+       return "hello~~"
+   
+   if __name__ == '__main__':
+       app.run(host='0.0.0.0', port =80, debug=True) 
+       #debug 모드 True 면 변경사항 바뀌면 알아서 서버가 재실행 됨
+   ```
+
+2. `CMD` 또는 아나콘다 프롬프트에서 다음과 같이 입력
+
+   1. `cd`명령어를 통해 server.py가 있는 디렉토리로 이동
+   2. `python server.py` 입력
+
+   ```bash
+   (base) C:\Users\student\KMH\Image-analysis-and-develope\Chatbot\20200205>python 1.4_server.py
+    * Serving Flask app "1.4_server" (lazy loading)
+    * Environment: production
+      WARNING: This is a development server. Do not use it in a production deployment.
+      Use a production WSGI server instead.
+    * Debug mode: on
+    * Restarting with stat
+    * Debugger is active!
+    * Debugger PIN: 116-648-529
+    * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+   ```
+
    
 
-5. 예제 바꿔서 해보기
+## GET 방식과 POST 방식 테스트
+
+1. 예제 바꿔서 해보기
 
    ```python
    @app.route('/hello') #디렉토리별 지정 가능, GET 만 가능
@@ -132,7 +178,7 @@ https://www.palletsprojects.com/p/flask/ 참조
 
 
 
-## 2. POST 메소드와 json 형식으로  DB 저장 및 출력
+## POST 메소드와 json 형식으로  DB 저장 및 출력
 
 > POSTMAN 프로그램을 통해 각 메소드 별로 요청시 처리 됨
 
@@ -202,13 +248,42 @@ https://www.palletsprojects.com/p/flask/ 참조
 
 
 
-## 3. DB관련 호출시
+## DB관련 호출시
 
 ```python
 import pickle
 
 db = pickle.load('./db.bin')
-
 pickle.dump(db, './db.bin')
 ```
+
+
+
+## Image 관련 호출시
+
+> - 플라스크에서는 해당소스코드 경로에 `static`폴더를 생성하고 이미지를 만든 후 호출하면 된다. 
+> - default로 `static` 폴더를 만들면 호출되도록 설정되어 있으며 static 폴더의 이름을 바꿔서 호출하면 안된다(따로 내부 설정필요).
+
+```python
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "<img src=/static/f14.jpg />"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port =80, debug=True) #debug 모드 True 면 변경사항 바뀌면 알아서 서버가 재실행 됨
+```
+
+<img src="images/image-20200206102715358.png" alt="image-20200206102715358" style="zoom: 33%;" />
+
+> `static` 폴더의 이름을 변경하고 변경된 폴더에 이미지를 넣고 호출하면 호출이 되지 않는다.
+
+
+
+
+
+## 방문자 수 표시하기
 
