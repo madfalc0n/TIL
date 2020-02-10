@@ -1,6 +1,8 @@
 # TIL (Today I Learned)
 
 > 매일 배운 내용을 정리합시다.
+>
+> 완성이 덜 된 부분도 많으며 스택처럼 작성해 나갈 예정입니다.
 
 
 
@@ -17,6 +19,7 @@
 - [Flask](python/Flask.md)
 
 ## 3. Data Science
+
 - [deep_learning](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning.md)
 - [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Tensorflow.md)
 - [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Keras.md)
@@ -39,7 +42,6 @@
 ## 3.1 Keras Functions
 
 - [Callbacks](/data_science/Keras_callback_Function.md)
-
 - [ initializers](/data_science)
 
 
@@ -48,7 +50,6 @@
 
 - [Digital image processing](https://github.com/madfalc0n/TIL/blob/master/computer_processing/Digital_image_processing.md)
 - [OpenCV](https://github.com/madfalc0n/TIL/blob/master/computer_processing/OpenCV.md)
-
 - [OCR](computer_processing/use_OCR.md)
 - [Filter](computer_processing/filter.md)
 - [Corner](computer_processing/Corner.md)
@@ -60,7 +61,6 @@
 ## 5. Computer Vision
 
 - [Object Detection](computer_processing/Object_detection.md)
-
 - [Segmentation](computer_processing/Segmentation.md)
 
 

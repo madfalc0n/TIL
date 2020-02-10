@@ -34,4 +34,4 @@
 ValueError: The estimator KerasClassifier should be a classifier.
 ```
 
-해당 원인은 skikit-learn 버전으로 인한 에러로  버전을 0.22 에서 0.21.3으로 맞추면 된다.
+해당 원인은 skicit-learn 버전으로 인한 에러로  버전을 0.22 에서 0.21.3으로 맞추면 된다.
