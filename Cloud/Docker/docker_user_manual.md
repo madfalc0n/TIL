@@ -1,13 +1,15 @@
 # Docker 관리 메뉴얼
 
-### User 권한 설정
+##  User 권한 설정
 
-#### "sudo usermod -a -G docker [userID]" 
- - sudo 없이 docker 명령어 사용 가능하도록 권한 변경, 입력 후 tty? 데몬 재시작해야 함
+> 리눅스에서 docker 명령을 사용시 `root` 권한으로 실행되기 때문에 항상 `sudo`를 붙힌 후 docker 명령을 실행해야 함. 아래 명령어를 통해 `sudo` 없이도 사용가능하도록 설정 가능
+
+ - sudo usermod -a -G docker [userID]" 
+    - sudo 없이 docker 명령어 사용 가능하도록 권한 변경, 로그아웃 후 다시 로그인 해야 함
 
 
 
-### Image 관련
+## Image 관련
 
 1. Docker image pull/push
 
@@ -22,7 +24,7 @@
 
 
 
-#### 1.1 Image 조회 및 삭제
+### 1.1 Image 조회 및 삭제
  - image 조회 : "docker images"
 ```bash
 	madfalcon@test_madfalcon_server:~$ docker images
@@ -140,7 +142,7 @@
 
 
 
-#### 2 docker container 관련
+## 2 docker container 관련
  - 컨테이너 조회 : "docker container [-a]"
 	- TIP : '-a' 옵션은 모든 컨테이너를 조회, 기존은 실행중인 컨테이너만 조회, '-q' 옵션은 IMAGE 또는 container ID만 조회
 	- TIP : 실행중인 모든 컨테이너 작동 중지 : "docker container stop $(docker container ls -aq)"

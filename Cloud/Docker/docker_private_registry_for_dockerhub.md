@@ -1,8 +1,8 @@
 # Dockerhub 를 이용한 Private registry 이용방법
 
-### 1. Dockerhub(https://hub.docker.com) 에서 회원가입을 진행
+## 1. Dockerhub(https://hub.docker.com) 회원가입
 
-### 2. CLI에서 'docker login' 입력 후 회원가입한 ID와 비밀번호 입력
+## 2. CLI에서 'docker login' 입력 후 회원가입한 ID와 비밀번호 입력
 ```bash
 - EX) ID가 chadool116일 경우
 	madfalcon@test_madfalcon_server:~$ docker login 
@@ -19,7 +19,7 @@
 	madfalcon@test_madfalcon_server:~$
 ```
 
-### 3. tag 명령어를 이용하여 생성한 이미지를 다음과 같이 복사
+## 3. tag 명령어를 이용하여 생성한 이미지를 다음과 같이 복사
  - 'madfalcon/node-web-app'를 다음의 명령어로 태깅할 수 있음
  - "docker tag [기존이미지] [회원가입ID/생성한이미지파일]"
  - 예시) "docker tag madfalcon/node-web-app:latest chadool116/node-web-app"
@@ -40,7 +40,7 @@
 		hello-world               latest              fce289e99eb9        11 months ago       1.84kB
 ```
 
-### 4. push 명령어를 이용해 Dockerhub의 private registry에 업로드
+## 4. push 명령어를 이용해 Dockerhub의 private registry에 업로드
  - "docker push [회원가입ID/생성한이미지파일]"
  - 예시) "docker push chadool116/node-web-app"
  - push 후 dockerhub에서 이미지가 업로드 되었음을 확인할 수 있음
@@ -59,7 +59,7 @@
 	madfalcon@test_madfalcon_server:~$
 ```
 
-### 5. pull 명령어를 이용해 Dockerhub에 업로드한 이미지 가져오기
+## 5. pull 명령어를 이용해 Dockerhub에 업로드한 이미지 가져오기
  - "docker pull [업로드한 이미지]
  - 예시) "docker pull chadool116/node-web-app"
 ```bash
