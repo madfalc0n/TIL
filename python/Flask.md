@@ -287,3 +287,83 @@ if __name__ == '__main__':
 
 ## 방문자 수 표시하기
 
+
+
+
+
+## Flask 로 웹서버 구축
+
+> Flask 는 기본적으로 `static`이라는 정적 폴더를 제공한다. 해당 경로에 이미지를 넣을 경우 호출이 가능하다.
+
+### Flask 웹 구조
+
+![image-20200212153007967](images/image-20200212153007967.png)
+
+
+
+
+
+- 웹 서버 코드 예시
+
+```python
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+listdata = [{"id":0, "img":"img1.jpg", "title":"개구리1" },
+            {"id":1, "img":"img2.jpg", "title":"개구리2" },
+            {"id":2, "img":"img3.jpg", "title":"개구리3" }
+            ]
+
+@app.route('/')
+def home():
+    return render_template('home.html', title="My YOLO Page")
+
+@app.route('/image')
+def image():
+    return render_template('image.html', listdata=listdata)
+
+@app.route('/view')
+def image_view():
+    id = request.args.get("id")
+    print(id)
+    return render_template('view.html', s=listdata[int(id)])
+
+@app.route('/fileUpload', methods = ['POST'])
+def fileUpload():
+    f = request.files['file1']
+    f.save("./static/" + f.filename)
+    title = request.form.get("title")
+    id = len(listdata)
+    listdata.append({"id": id, "img": f.filename, "title": title})
+    return f'{f.filename} - 제목 {title}: 업로드 성공! <br> <img src=/static/{f.filename}>
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+### 자바스크립트 이용하기
+
+- 소스예시
+
+  ```html
+  <script>
+      alert("업로드 완료")
+      window.location.href = '/image'
+  
+  </script>
+  ```
+
+![image-20200212152403216](images/image-20200212152403216.png)
+

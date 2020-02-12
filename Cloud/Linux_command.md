@@ -20,8 +20,8 @@
   lab03     3264  3100  0 15:00 pts/9    00:00:00 ps -ef
   lab03@ip-172-31-40-104:~$
   
-  ```
-  
+```
+
 - 프로세스 죽이는 명령어
 
   - **`kill [번호] [PID값]`** 을 이용해 강제로 프로세스를 죽일수 있다. 좀비 프로세스를 죽일 때 유용하다.
@@ -128,5 +128,40 @@ lab03@ip-172-31-40-104:~$ watch -n 2 nvidia-smi
 ```bash
 lab03@ip-172-31-40-104:~/myoung_snow_unzip$ tail -f snowman.log
 darknet-yolov3
+```
+
+
+
+## 백그라운드 모드로 진행
+
+- 파일 실행 후 `컨트롤 + z` 누르고 쉘로 빠져나올 수 있음
+- 이때 파일 프로세스는 `Stop` 상태가 됨
+
+```bash
+(base) lab03@ip-172-31-40-104:~/web$ jupyter-notebook --ip 0.0.0.0 --port 8892
+[I 14:14:49.776 NotebookApp] [nb_conda_kernels] enabled, 26 kernels found
+[W 14:14:50.696 NotebookApp] No web browser found: could not locate runnable browser.
+[I 14:15:04.970 NotebookApp] 302 GET / (121.134.206.54) 0.59ms
+[I 14:15:04.974 NotebookApp] 302 GET /tree? (121.134.206.54) 0.50ms
+[I 14:15:06.265 NotebookApp] 302 POST /login?next=%2Ftree%3F (121.134.206.54) 0.76ms
+
+^Z
+[1]+  Stopped                 jupyter-notebook --ip 0.0.0.0 --port 8892
+
+# jobs 명령어를 입력하면 프로그램의 상태를 확인 가능
+(base) lab03@ip-172-31-40-104:~/web$ jobs
+[1]+  Stopped                 jupyter-notebook --ip 0.0.0.0 --port 8892
+```
+
+- `bg %1` 입력 후 백그라운드로 전환 된 프로그램을 다시 `running` 상태로 전환 시킴
+
+```bash
+(base) lab03@ip-172-31-40-104:~/web$ bg %1
+[1]+ jupyter-notebook --ip 0.0.0.0 --port 8892 &
+
+(base) lab03@ip-172-31-40-104:~/web$ jobs
+[1]+  Running                 jupyter-notebook --ip 0.0.0.0 --port 8892 &
+
+(base) lab03@ip-172-31-40-104:~/web$
 ```
 

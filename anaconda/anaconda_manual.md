@@ -196,3 +196,27 @@ The following packages will be UPDATED:
 Proceed ([y]/n)?
 이런식으로 설치하며 된다.
 ```
+
+
+
+
+
+## 가상환경 export 
+
+- `export` 할 가상환경 `activate` 후 아래의 명령어 입력
+
+  - conda activate [export할 가상환경이름]
+  - conda env export > [아무파일명].yaml
+
+  ```bash
+  (base) C:\Users\student\Downloads>conda activate py36
+  
+  (py36) C:\Users\student\Downloads>conda env export > py36.yaml
+  ```
+
+
+
+## 가상환경 import
+
+- 아래의 명령어를 통해 가상환경 `import` 
+  - conda env create -f [export 한 파일명]
