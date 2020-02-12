@@ -165,3 +165,91 @@ darknet-yolov3
 (base) lab03@ip-172-31-40-104:~/web$
 ```
 
+
+
+## 사용자 계정 관련
+
+### 계정 생성
+
+- `useradd [옵션] [사용자계정]` - 계정을 새로 생성
+
+  - 옵션정보
+
+    ```markdown
+     -c comment : 사용자 이름 또는 정보
+     -d home_directory : 사용자 계정 홈 디렉토리
+     -e expire_date : 사용자 계정 유효 기간
+     -f inactive_time : 비활성 기간
+     -g initial_group : 기본 그룹
+     -G groups : 기본그룹외에 추가로 소속될 그룹
+     -s shell : 기본 로그인 셀
+     -u uid : 사용자 계정 uid
+     -k skel SKEL_DIR : skel 디렉토리를 기본을 사용하지 않고 특정 디렉토리로 지정
+     -m create-home : 새 사용자를 위한 홈디렉토리 생성
+    
+    
+    출처: https://klkl0.tistory.com/41 [살만한 세상 만들기]
+    ```
+
+    
+
+- `passwd [사용자계정]` - 계정에 대한 비밀번호를 지정해 줌
+
+  ![image-20200213014420161](images/image-20200213014420161.png)
+
+### 계정 수정
+
+- `usermod [옵션] [사용자계정]` - 계정을 옵션에 따라 지정한다.
+
+  - 옵션정보
+
+    ```markdown
+     -c comment : 사용자 이름 또는 정보
+     -d home_directory : 사용자 계정 홈 디렉토리
+     -e expire_date : 사용자 계정 유효 기간
+     -f inactive_time : 비활성 기간
+     -g initial_group : 기본 그룹
+     -G grous : 추가 그룹 변경
+     -s shell : 기본 로그인 셀
+     -u uid : 사용자 계정 uid
+     -m move-home : 홈디렉토리 변경시, 새 홈딩렉토리로 파일 이동(-d 옵션하고만 사용할 수 있음)
+     -l : 사용자명 변경
+     -L : 사용자의 패스워드에 Lock을 걸어 로그인 제한
+    
+    
+    출처: https://klkl0.tistory.com/41 [살만한 세상 만들기]
+    ```
+
+    
+
+### 계정 삭제
+
+- `userdel [사용자계정]`
+
+
+
+### 계정 정보 확인
+
+- `users` 명령어를 입력해 현재 접속중인 계정 정보를 확인
+
+  ![image-20200213015021025](images/image-20200213015021025.png)
+
+- `id` 명령어를 입력해 계정에 대한 정보를 확인
+
+  <img src="images/image-20200213015040056.png" alt="image-20200213015040056" style="zoom:50%;" /><img src="images/image-20200213015108720.png" alt="image-20200213015108720" style="zoom:50%;" />
+
+
+
+### 사용자가 `sudo` 명령어로 root 권한 얻지 못할 경우
+
+- 사용자가 sudo 명령어를 통해 root 권한 명령을 수행 중 다음의 에러가 발생할 수 있다.
+
+![image-20200213013123897](images/image-20200213013123897.png)
+
+#### 해결방법
+
+- `vi /etc/sudoers`를 입력하여 해당 계정에 대한 `sudo`권한 사용을 다음과 같이 설정 해주면 된다.
+
+![image-20200213013632840](images/image-20200213013632840.png)
+
+> root 계정에 대한 sudo 설정 부분, 위 부분처럼 `(계정)	ALL=(ALL:ALL) ALL`로 설정 해주면 된다.
