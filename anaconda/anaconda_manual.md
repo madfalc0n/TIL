@@ -220,3 +220,12 @@ Proceed ([y]/n)?
 
 - 아래의 명령어를 통해 가상환경 `import` 
   - conda env create -f [export 한 파일명]
+
+
+
+## 가상환경 이름변경
+
+> 따로 이름만 변경은 불가하다. 새로 clone 생성 후 기존 환경을 제거해주면 된다.
+
+- conda create --name [신규이름] --clone [기존이름]
+- conda env remove --name [기존이름]

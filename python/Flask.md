@@ -5,6 +5,7 @@ https://www.palletsprojects.com/p/flask/ 참조
 - 플라스크 마이크로서비스에 만드는거에 편리한 서비스
 - 장고도 있다, 장고는 올인원 패키지, DB에 관련된 프레임워크도 있고 
 - ORM 객체 만들었다 지웠다 하는 테이블이 동일하게 DB에서도 동일한 역활을 한다. 객체를 통해 DB를 관리
+- 하나의 파일에서 모든 경로(route)를 지정해야 하는 단점이 있음, 장고 프레임워크가 대안임
 
 
 
@@ -347,12 +348,6 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-
 ### 자바스크립트 이용하기
 
 - 소스예시
@@ -367,3 +362,6 @@ if __name__ == '__main__':
 
 ![image-20200212152403216](images/image-20200212152403216.png)
 
+### 실습
+
+- [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/WEB)
