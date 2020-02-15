@@ -353,7 +353,7 @@ print(contours)
 
 ##### 실습
 
-- [Contours](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/image_processing/20200109/1.3_binary_2.ipynb)
+- [Contours](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/image_processing/20200109/1.2_binary_2.ipynb)
 
 
 
@@ -422,7 +422,7 @@ print(contours)
 
 <img src="images/image-20200209195349033.png" alt="image-20200209195349033" style="zoom:50%;" />
 
-- [실습자료](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/image_processing/20200109/1.3_binary_2.ipynb)
+- [실습자료](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/image_processing/20200109/1.2_binary_2.ipynb)
 
 
 
@@ -511,8 +511,10 @@ print(contours)
   ```
 
   <img src="images/image-20200110112818072.png" alt="image-20200110112818072" style="zoom:50%;" /><img src="images/image-20200110112927465.png" alt="image-20200110112927465" style="zoom:50%;" />
-  
+
   > 왼쪽이 0이상일떄, 오른쪽이 -1일때
+
+##### 실습
 
 - [실습자료](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/image_processing/20200110/1.2_low_level_filter.ipynb)
 
