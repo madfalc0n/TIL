@@ -240,6 +240,15 @@ darknet-yolov3
 
 
 
+### 사용자 세션 타임아웃 설정
+
+- ubuntu 18.04 기준 , `sudo vi /etc/login.defs` 입력
+- `LOGIN_TIMEOUT` 항목을 찾아서 값을 수정한다.(단위는 분)
+
+<img src="images/Linux_command/image-20200217131551287.png" alt="image-20200217131551287" style="zoom:80%;" />
+
+
+
 ### 사용자가 `sudo` 명령어로 root 권한 얻지 못할 경우
 
 - 사용자가 sudo 명령어를 통해 root 권한 명령을 수행 중 다음의 에러가 발생할 수 있다.
