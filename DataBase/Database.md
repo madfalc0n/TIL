@@ -2,33 +2,35 @@
 
 DB를 물건에 비유한다면?
 
-* 물건 데이터
-* 창고 데이터베이스(디스크)
-* 창고관리인 DBMS - 잘 관리해야 빨리전달되고 할 수 있다.
-  * 데이터는 창고관리인을 통해 받을 수 있다
-* 직원 응용 프로그램 또는 사용자
+| 공장으로 비유 | 데이터                    |
+| ------------- | ------------------------- |
+| 물건          | 데이터                    |
+| 창고          | 데이터베이스(디스크)      |
+| 창고관리인    | DBMS(핵심)                |
+| 직원          | 응용 프로그램 또는 사용자 |
 
-데이터는 무결성이어야 한다.
+* 데이터는 어떤경로를 들어오든 오류가 있으면 안됨 즉, **무결성** 이어야 한다.
+* 데이터베이스와 응용 프로그램은 서로 의존적인 관계가 되면 안됨 즉, **독립성** 이어야 한다.
+* 데이터를 소유한 사람 또는 데이터에 접근이 허가된 사람만 접근이 가능하며 **보안** 이 철저해야 함
 
-독립성
+* 데이터베이스 내 **중복 최소화**가 이루어 져야 함
 
-보안
+* 통일된 방식으로 **응용 프로그램 제작 할 수 있고 유지 보수 및 수정이 용이함**
 
-중복 최소화
-
-응용 프로그램 제작 및 수정 용이
-
-안정성 향상- 데이터 손상문제가 발생할 경우 원상복구 가능해야 함
+* 데이터 손상문제가 발생할 경우 원상복구 가능해야 함 즉, **안정성**이 보장되어야 함
 
 ## 관계형 DB
 
 > 엑셀같은 DB...라고 보면 된다.
 
+* 모든 데이터는 테이블에 저장
+* 테이블 간의 관계는 **기본키(PK)**와 **외래키(FK)**를 사용하여 맺음(**부모-자식**관계)
+* 다른 DBMS에 비해 업무 변화에 따라 바로 순응 할 수있고 유지·보수 측면에서도 편리
+* 대용량 데이터를 체계적으로 관리 할 수있음
+* 데이터의 **무결성**도잘보장됨
+* 시스템 자원을 많이 차지하여 시스템이 전반적으로 느려지는 단점이있음
+
 <img src="images/Database/image-20200217093830656.png" alt="image-20200217093830656" style="zoom:80%;" />
-
-
-
-
 
 
 
@@ -41,7 +43,7 @@ DB를 물건에 비유한다면?
    - [테이블명]의 모든 컬럼과 값을 출력
  - where, group by, having, order by, 구문을 통해 조건에 따른 값을 출력 할 수 있음
 
-```oracle
+```sql
 select deptno, avg(sal)
 from emp
 group by deptno;  --그룹핑 
@@ -86,7 +88,7 @@ order by sal desc;
  - insert into [테이블명] (컬럼1, 컬럼2...) values (값1, 값2);
  - insert 후 commit 하기 전까지 다른 세션에서는 확인 불가
 
-```oracle
+```sql
 insert into dept (deptno, dname)
 values ( 50 , 'IT');
 
@@ -96,7 +98,7 @@ values (60,null,null); --insert~values 절로는 1개의 row만 추가됨
 
  - 이렇게도 쓸수 있다.
 
-```oracle
+```sql
 insert into tdepp select * from dept;  -- tdept테이블에 있던 테이블 값들 tdepp에 복사
 ```
 
@@ -105,7 +107,7 @@ insert into tdepp select * from dept;  -- tdept테이블에 있던 테이블 값
  - 테이블 새로 만들때
  - create table [테이블명] (컬럼1 타입1, 컬럼2 타입1,...);
 
-```oracle
+```sql
 create table tdepp (
 deptno number(3),
 dname varchar2(20),
@@ -129,7 +131,7 @@ SQL> create table tdepp (
 
  - 값 변경 후 롤백하여 복원된 값 확인
 
-```oracle
+```sql
 select ename, sal
 from emp;
 update emp set sal = 0 ;
@@ -144,7 +146,7 @@ from emp;
 
  - 사용예....
 
-```oracle
+```sql
 SQL> select ename, sal
   2  from emp;
 
@@ -239,7 +241,7 @@ SQL>
  - delete [from] 테이블명; - 해당 테이블에 모든 데이터 삭제
  - delete [from] 테이블명 where 조건;
 
-```oracle
+```sql
 delete from dept;
 select * from dept;
 rollback;
@@ -256,9 +258,36 @@ commit;
 
 
 
-## 조인
+## JOIN
 
-서로 다른 테이블을 합치는 것
+2개 이상의 서로 다른 테이블을 하나의 결과 테이블을 만드는 것
+
+* userid를 합쳐서 usertbl과 buytbl 항목을 전부 출력해보기
+
+```sql
+SELECT * from userTBL, buyTBL
+where userTBL.userID = buyTBL.userID
+```
+
+<img src="images/Database/image-20200217131810489.png" alt="image-20200217131810489" style="zoom:80%;" />
+
+
+
+* userid,와 username 을 그룹해서 amount 와 amount*price 나타내기
+
+<img src="images/Database/image-20200217132425303.png" alt="image-20200217132425303" style="zoom:80%;" />
+
+- select 뒤 컬럼에 표시할 항목에 대한 이름을 지정하려면 다음과 같이 하면 된다.
+
+<img src="images/Database/image-20200217132944582.png" alt="image-20200217132944582" style="zoom:80%;" />
+
+* 응용해서 이렇게 쓸 수도 있다.
+
+<img src="images/Database/image-20200217133451955.png" alt="image-20200217133451955" style="zoom:80%;" />
+
+
+
+
 
 
 
@@ -446,35 +475,6 @@ DB를 접근할 수 있는 UI 툴을 [웹](https://sqlitebrowser.org/dl/)에서 
 INSERT into userTBL VALUES
 ('KHI', '강호동', 1970, '서울', '011', '2222222',182, '2007-7-7')
 ```
-
-
-
-
-
-
-
-* userid를 합쳐서 usertbl과 buytbl 항목을 전부 출력해보기
-
-```sql
-SELECT * from userTBL, buyTBL
-where userTBL.userID = buyTBL.userID
-```
-
-<img src="images/Database/image-20200217131810489.png" alt="image-20200217131810489" style="zoom:80%;" />
-
-
-
-* userid,와 username 을 그룹해서 amount 와 amount*price 나타내기
-
-<img src="images/Database/image-20200217132425303.png" alt="image-20200217132425303" style="zoom:80%;" />
-
-- select 뒤 컬럼에 표시할 항목에 대한 이름을 지정하려면 다음과 같이 하면 된다.
-
-<img src="images/Database/image-20200217132944582.png" alt="image-20200217132944582" style="zoom:80%;" />
-
-* 응용해서 이렇게 쓸 수도 있다.
-
-<img src="images/Database/image-20200217133451955.png" alt="image-20200217133451955" style="zoom:80%;" />
 
 
 
