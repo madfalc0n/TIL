@@ -1,4 +1,4 @@
-# OCR 이용하기
+# Python + tesseract를 이용해 문자검출하기
 
 
 

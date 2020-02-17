@@ -1,22 +1,24 @@
 # Object Detection
 
-> 객체 인식과 검출은 엄연히 다른 말이다. 인식은 자동차가 정지 신호를 인식하고 보행자와 가로등을 구별할 수 있도록 하는 것이고 검출은 이미지 내에서 특정 feature를 검출 하는 것이다.
+객체 인식과 검출은 엄연히 다른 말이다. 인식은 자동차가 정지 신호를 인식하고 보행자와 가로등을 구별할 수 있도록 하는 것이고 검출은 이미지 내에서 특정 feature를 검출 하는 것이다.
 
 
 
 ## IoU(Intersection over Union)
 
-> - object detection에서 모델을 훈련하거나 예측할 때 사용하는 도구로 특정 데이터 집합에서 물체 탐지기의 정확도를 측정하는 데 사용되는 평가 지표이다.
->- 일반적으로 HOG + Linear SVM 물체 탐지기  및 Convolutional Neural Network 탐지기 (R-CNN, Faster R-CNN, YOLO 등) 의 성능을 평가하는 데 사용되는 Union over Intersection을 찾을 수 있다 . 그러나  예측을 생성하는 데 사용 된 실제 알고리즘 은 중요하지 않다.
+object detection에서 모델을 훈련하거나 예측할 때 사용하는 도구로 특정 데이터 집합에서 물체 탐지기의 정확도를 측정하는 데 사용되는 평가 지표이다.
+
+일반적으로 HOG + Linear SVM 물체 탐지기  및 Convolutional Neural Network 탐지기 (R-CNN, Faster R-CNN, YOLO 등) 의 성능을 평가하는 데 사용되는 Union over Intersection을 찾을 수 있다 . 그러나  예측을 생성하는 데 사용 된 실제 알고리즘 은 중요하지 않다.
 
 <img src="images/image-20200203184537757.png" alt="image-20200203184537757" style="zoom:40%;" /><img src="images/iou_equation-1580722503217.png" alt="iou_equation-1580722503217" style="zoom:40%;" />
 
-> - 수작업으로 표시한 진짜 경계상자(Ground-truth bounding box)와 모델이 예측한 경계상자(Predicted bounding box)
-> - IoU = 교집합의 영역 넓이/ 합집합의 영역 넓이
+수작업으로 표시한 **진짜 경계상자(Ground-truth bounding box)**와 모델이 **예측한 경계상자(Predicted bounding box)**
+
+ - IoU = 교집합의 영역 넓이/ 합집합의 영역 넓이
 
 ![image-20200203183721860](images/image-20200203183721860.png)
 
-> IOU의 평가지표, 영역이 많이 겹칠수록 점수도 높다. 성능을 올리기 위해 IoU threshold 값을 조절해서 모델링 하기도 한다.
+ IOU의 평가지표, 영역이 많이 겹칠수록 점수도 높다. 성능을 올리기 위해 IoU threshold 값을 조절해서 모델링 하기도 한다.
 
 
 
