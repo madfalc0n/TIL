@@ -1,20 +1,36 @@
 # DJANGO
 
+<img src="images/Django/image-20200218191654448.png" alt="image-20200218191654448" style="zoom:80%;" />
+
 > 파이썬의 경량 웹 프레임워크, 플라스크의 단점을 보완
 
-## 특징
+## 정의
 
-> 기존 웹 서버와 통합해서 사용
->
-> 컨피그 변경부분만 자동으로 갱신해주는 **Reload** 기능 제공
->
-> 컨피그 관련 에러가 발생해도 **서버가 다운 되지 않음** -> 확인 필요
+**장고**(Django, FAQ 발음으로는 "쟁고"([IPA](https://ko.wikipedia.org/wiki/위키백과:IPA): [ˈdʒæŋgoʊ])[[2\]](https://ko.wikipedia.org/wiki/장고_(웹_프레임워크)#cite_note-2))는 [파이썬](https://ko.wikipedia.org/wiki/파이썬)으로 작성된 [오픈 소스](https://ko.wikipedia.org/wiki/오픈_소스) [웹 애플리케이션 프레임워크](https://ko.wikipedia.org/wiki/웹_애플리케이션_프레임워크)로, [모델-뷰-컨트롤러](https://ko.wikipedia.org/wiki/모델-뷰-컨트롤러)(MVC) 패턴을 따르고 있다. 현재는 [장고 소프트웨어 재단](https://ko.wikipedia.org/wiki/장고_소프트웨어_재단)에 의해 관리되고 있다.
 
-- MVC & MTV
-  - https://revidream.tistory.com/16
-  - **M**odel
-  - **V**iew
-  - **C**ontrol, **T**emplate(Django)
+고도의 [데이터베이스](https://ko.wikipedia.org/wiki/데이터베이스) 기반 웹사이트를 작성하는 데 있어서 수고를 더는 것이 장고의 주된 목표이다. 장고는 콤포넌트의 재사용성(reusability)과 플러그인화 가능성(pluggability), 빠른 개발 등을 강조하고 있다. 또한, "DRY(Don't repeat yourself: [중복배제](https://ko.wikipedia.org/wiki/중복배제))" 원리를 따랐다. 설정 파일부터 데이터 모델에까지 파이썬 언어가 구석구석에 쓰였다.
+
+> 출처: 위키백과 [장고_위키백과](https://ko.wikipedia.org/wiki/%EC%9E%A5%EA%B3%A0_(%EC%9B%B9_%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC))
+
+
+
+### 특징
+
+장고는 파이썬으로 코딩한 모델을 관계형 데이터베이스로 구축해주는 모델(Model), HTTP 요청을 처리하는 웹 템플릿 시스템인 뷰(View), URL의 라우팅을 처리하는 URL 컨트롤러 (Controller) 로 구성된 **MVC** 디자인 패턴을 따른다. 하지만 전통적인 MVC 디자인 패턴에서 이야기하는 컨트롤러의 기능을 프레임워크를 자체에서 하기 때문에 모델(Model), 템플릿(Template), 뷰(View)로 분류해 **MTV** 프레임워크라고 보기도 한다.
+
+#### 모델
+
+모델은 데이터에 관한 정보를 담는다. 데이터에 대한 접근, 검증, 작동과 데이터 사이의 관계를 정의하는데, 일반적으로 각각의 모델은 데이터베이스에서 테이블에 해당한다. 장고에서는 모델을 정의할 때 필드의 종류를 지정해줘야 하는데, 이것이 데이터베이스에게 컬럼 타입을 알려주고 HTML 폼으로 표시 될 때의 입력 타입도 내포하는 역할을 한다. 또한 장고의 폼 자동 생성 API 를 이용할 때 데이터 검증에 쓰이기도 한다.
+
+#### 뷰
+
+어떤 데이터가 표시될 것인지를 정의한다. 뷰는 HTTP 응답(response)를 반환해야 하며 응답의 종류는 웹 페이지, 리디렉션, 문서 등의 다양한 형태가 가능하다. 장고에는 자주 사용되는 형태의 뷰를 패턴화하여 추상화 해둔 재사용 가능한 뷰들을 내장해 놓았는데, 이들을 제네릭 뷰(generic view) 라고 하며 원하는 제네릭 뷰를 상속한 클래스 뷰를 생성하여 사용할 수 있다.
+
+#### 템플릿
+
+데이터가 어떻게 표시되는 지를 정의한다. 템플릿은 사용자에게 실제로 보여지는 웹 페이지나 문서를 다룬다. 흔히 HTML 에 기반해서 템플릿을 만들며, HTML 에 동적인 요소를 추가하기 위해 파이썬의 일부 기능을 쓰게 도와주는 장고 템플릿 태그가 존재한다.
+
+
 
 
 
@@ -229,6 +245,75 @@ def login(request):
 <img src="images/Django/image-20200213130505225.png" alt="image-20200213130505225" style="zoom:80%;" /><img src="images/Django/image-20200213130434408.png" alt="image-20200213130434408" style="zoom:80%;" />
 
 > ip와 pwd 가 같을 경우와 다른경우
+
+
+
+
+
+
+
+
+
+## `HttpResponse`와 `render`와 `redirect`차이
+
+`HttpResponse`는 응답을 반환하는 가장 기초함수, 항상 응답코드를 200 OK 로 전달하며 아래와 같이 쓸 수 있다.
+
+```python
+#메인 urls.py
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+    path('blog/', include('blog.urls')),
+]
+
+#urls.py
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('',views.index),
+]
+
+#views.py
+from django.http import HttpResponse
+def index(request):
+    return HttpResponse('ok')
+```
+
+<img src="../web/images/Web/image-20200218174734287.png" alt="image-20200218174734287" style="zoom:80%;" />
+
+
+
+
+
+`render`는 페이지를 요청하면서 템플릿을 context와 같이 반환 하는 것이고 아래와 같이 쓸 수 있다.
+
+```python
+#views.py
+from django.shortcuts import render
+def detail(request,pk):
+    print(Post)
+    p = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/detailview.html', {'data':p})
+```
+
+<img src="../web/images/Web/image-20200218180520321.png" alt="image-20200218180520321" style="zoom:80%;" />
+
+이런식으로 템플릿에 context를 반영해서 출력 해줌
+
+
+
+`redirect`는 클라이언트 측에 해당 url에 대해 **다시 접속**하라는 응답을 보냄(응답코드 304)
+
+주로 로그인 기능에서 사용하며 http 접속 시 https 로 redirect 할 때도 사용
+
+```python
+# views.py
+from django.shortcuts import redirect
+def my_view(request):
+    return redirect('view_name')             # view_name 사용
+    # return redirect('/blog/list')                  # 상대 경로 
+    # return redirect('https://www.naver.com/') # 절대 경로 
+```
 
 
 
