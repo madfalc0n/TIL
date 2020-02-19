@@ -266,17 +266,7 @@ urlpatterns = [
 
 * detailview.html
 
-```python
-{% for i in data %}
-    <a href="{{i.pk}}/detail">  {{i.title}} </a>     <br>
-    <a href="{% url 'detail' i.pk %}">  {{i.title}} </a>     <br>
-    <a href="/blog/{{i.pk}}/detail">  {{i.title}} </a>     <br>
-    <a href="/blog/detail?id={{i.pk}}">  {{i.title}} </a>     <br>
-    <a href="detail?id={{i.pk}}">  {{i.title}} </a>     <br>
-    {% endfor %}
-
-{% endblock %}
-```
+<img src="images/Django_Blog/image-20200219210957126.png" alt="image-20200219210957126" style="zoom:80%;" />
 
 
 
