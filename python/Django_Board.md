@@ -33,7 +33,18 @@
    ]
    ```
 
-3. `myboard`에 `models.py` 추가
+3. `mysite - urls.py`에 다음과 같이 추가
+
+   ```python
+   from django.contrib import admin
+   from django.urls import path, include
+   
+   urlpatterns = [
+       path('myboard/', include('myboard.urls')),
+   ]
+   ```
+
+4. `myboard`에 `models.py` 추가
 
    - 실제 myboard 에 대한 DB를 구성할 때의 항목들이다.
    - 아래에 보면 title, text, cnt, image, category 가 있다.
@@ -60,7 +71,7 @@
            return self.title
    ```
 
-4. `myboard`에 `admin.py` 수정
+5. `myboard`에 `admin.py` 수정
 
    - myboard에 대한 DB 를 admin site에서 관리하기 위한 추가설정
 
@@ -72,7 +83,18 @@
    admin.site.register(models.Board)
    ```
 
-5. 쉘에서 `python manage.py makemigrations` 입력 후 `python manage.py migrate` 입력
+6. `myboard`에 `urls.py` 생성 및 아래코드 추가
+
+   ```python
+   from django.urls import path
+   from . import views # '.' current 폴더의 의미, 현재폴더에서 views.py를 import 하라는 의미
+   
+   urlpatterns = [
+       path('<category>/<int:pk>/<mode>/',views.BoardView.as_view(), name='myboard'),
+   ]# 외부로부터 localhost:8000/myboard/[카테고리종류]/[번호]/[모드종류]/ 식으로 받겠다는 선언
+   ```
+
+7. 쉘에서 `python manage.py makemigrations` 입력 후 `python manage.py migrate` 입력
 
    * models.py 가 수정될 경우 항상 `makemigrations` 를 적용해야하고(미리 db에 적용할 대상을 대기 시켜놓는다고 생각하면 됨)
 
@@ -82,7 +104,7 @@
 
    > admin 페이지에서 myboard DB가 생성된거 확인
 
-6. `myboard`에  `forms.py`를 추가하고 아래 소스코드를 넣는다.
+8. `myboard`에  `forms.py`를 추가하고 아래 소스코드를 넣는다.
 
    ```python
    from django.forms import ValidationError
@@ -107,7 +129,10 @@
    - `forms.py` 는 웹에서 게시글 작성시에 대한 폼을 제시한다.
    - 장고에서 제공하는  forms 모듈이 기본적인 양식을 제공한다.
 
-7. `myboard`에` view.py` 수정
+9. `myboard`에` view.py` 수정
+
+   - 클래스 선언 시 View의 메서드를 상속해서 사용한다.
+   - 정의된 get 과 post 함수는 사용자가 get으로 요청하는지 post로 요청하는지 View 메서드에서 자동으로 분리를 해준다.
 
    ```python
    from django.shortcuts import render, get_object_or_404,redirect
@@ -123,11 +148,12 @@
        def get(self, request, pk, mode, category):
            print("보드 뷰의 현장")
            print(pk , mode, category)
+           username = '이순신'
            if mode =='add': # 새 데이터 추가할 경우 빈폼으로
                form = forms.BoardForm()
            
-           elif mode == 'list': 
-               username = '이순신' #request.session["username"]
+           elif mode == 'list':  # 게시글 조회
+               #request.session["username"]
                user = User.objects.get(username=username)
                if category == 'category':
                    data = models.Board.objects.all().filter(author=user)
@@ -136,14 +162,19 @@
                context = {"data":data, "username":username}
                return render(request, "myboard/list.html", context)
            
-           elif mode == 'detail':
+           elif mode == 'detail': #게시글 확인
                p = get_object_or_404(models.Board, pk=pk)
                return render(request, "myboard/detailview.html", {"data":p})
            
-           elif mode == 'edit' :
+           elif mode == 'edit' : #게시글 수정
                post = get_object_or_404(models.Board, pk=pk)
                form = forms.BoardForm(instance=post)
            
+           elif mode == 'delete': #게시글 삭제
+               board = get_object_or_404(models.Board, pk=pk)
+               board.delete()
+               return redirect('myboard', category, 0 , 'list') # /myboard/category/0/list 로 리다이렉트
+   
            else:
                return HttpResponse("error")
            
@@ -174,7 +205,7 @@
 
    
 
-8. template-myboard 안에 base edit... html 파일들 추가
+10. template-myboard 안에 base edit... html 파일들 추가
 
    - bash.html
 
