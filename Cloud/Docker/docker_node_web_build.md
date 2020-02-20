@@ -2,17 +2,25 @@
 
 ### 1. 웹 서버 패키지(package.json, server.js) 및 Dockerfile 파일 생성 및 빌드
 
-#### 1.1 자신만의 개인 디렉토리 생성(예시: mkdir /var/tmp/docker_node_web)
-	
+#### 1.1 개인 디렉토리 생성
+
+`mkdir`명령어를 통해 웹 서버 패키지를 저장할 폴더를 생성한다.
+
+```bash
+$ mkdir /var/tmp/docker_node_web
+```
+
 #### 1.2 웹 서버 생성을 위한 패키지 파일과 서버파일 생성
+
  - node.js는 웹 서버 구축 시 응용프로그램과의 종속성을 설명하는 패키지(package.json) 파일과 웹 응용프로그램을 정의하는 서버(server.js) 파일을 만들어야 함
- - "sudo vi /var/tmp/docker_node_web/package.json" 입력 후 아래 붙여넣기
+ - `sudo vi /var/tmp/docker_node_web/package.json` 입력 후 아래 양식에 맞춰 붙여넣기
+
 ```bash
 	 {
-	   "name": "madfalcon_docker_web_app",
-	   "version": "1.0.0",
-	   "description": "Node.js on Docker",
-	   "author": "madfalcon <kmyong92@gmail.com>",
+	   "name": "[패키지 이름]", #"madfalcon_docker_web_app"
+	   "version": "1.0.0", #"버전"
+	   "description": "Node.js on Docker", #요약
+	   "author": "madfalcon <kmyong92@gmail.com>", #작성자 이름 과 이메일
 	   "main": "server.js",
 	   "scripts": {
 		 "start": "node server.js"
@@ -22,7 +30,9 @@
 	   }
 	 }
 ```
- - "sudo vi /var/tmp/docker_node_web/server.js" 입력 후 아래 붙여넣기
+
+ - `sudo vi /var/tmp/docker_node_web/server.js` 입력 후 아래 붙여넣기
+
 ```bash		
 	 var express = require('express');
 	 var PORT = 8080;
@@ -35,24 +45,32 @@
 	 console.log('Running on http://localhost:' + PORT);
 ```
 
-#### 1.3 touch 명령어를 통해 Dockerfile 생성(반드시 똑같이 생성할 것, 만약 이름이 'Dockerfile'이 아니라면 -f 옵션을 통해 해당파일이름을 지정해주어야 함)
+#### 1.3 touch 명령어를 통해 `Dockerfile` 생성
+
+반드시 대소문자를 구분해서 똑같이 생성해야 한다. 만약 이름이 `Dockerfile`이 아니라면 -f 옵션을 통해 해당파일이름을 지정해주어야 함
+
  - vi 편집기를 통해 다음과 같이 넣어준다.
- - "sudo vi /var/tmp/docker_node_web/Dockerfile" 입력 후 아래 붙여넣기
+ - `sudo vi /var/tmp/docker_node_web/Dockerfile` 입력 후 아래 붙여넣기
+
 ```bash
 	FROM node:alpine3.10
-	RUN mkdir -p /usr/src/madfalcon_first_app
-	WORKDIR /usr/src/madfalcon_first_app
-	COPY package.json /usr/src/madfalcon_first_app
+	RUN mkdir -p /usr/src/madfalcon_first_app #컨테이너 속 생성할 디렉토리 경로
+	WORKDIR /usr/src/madfalcon_first_app #컨테이너 속 생성할 디렉토리 경로
+	COPY package.json /usr/src/madfalcon_first_app#컨테이너 속 생성할 디렉토리 경로
 	RUN npm install
-	COPY . /usr/src/madfalcon_first_app
+	COPY . /usr/src/madfalcon_first_app#컨테이너 속 생성할 디렉토리 경로
 	EXPOSE 8080
 	CMD [ "npm", "start" ]
 ```
 
+> 참고로 FROM 뒤 node:alpine3.10 은 dockerhub 의 node 이미지를 불러오는 것이며 뒤 alpine3.10은 해당 이미지의 버전을 의미한다. alpine은 리눅스 버전에서 구동 시 꼭  필요한 기능만 있는 이미지로 기존 이미지 용량에 비해 훨씬 더 적다. 테스트할 때 알파인으로 사용해도 문제는 없다.
+
 #### 1.4 build 명령어를 통해 이미지 생성
+
  - sudo docker build -t [생성할 이미지명]:[버전명] [Dockerfile을 생성한 폴더 경로]
  - 이미지명은 무조건 소문자로 지정한다(버전생략시 latest로 생성)
- - "sudo docker build -t madfalcon/node-web-app /var/tmp/docker_node_web/" 입력
+ - `sudo docker build -t madfalcon/node-web-app /var/tmp/docker_node_web/` 입력
+
 ```bash
 	madfalcon@test_madfalcon_server:/var/tmp/docker_node_web$ docker build -t madfalcon/node-web-app /var/tmp/docker_node_web/
 		Sending build context to Docker daemon  4.096kB
@@ -101,7 +119,9 @@
 ```
 
 #### 1.5 빌드 후 이미지 리스트 확인
- - sudo docker images
+
+ - `sudo docker images`
+
 ```bash
 	madfalcon@test_madfalcon_server:/var/tmp/docker_node_web$ docker images
 		REPOSITORY               TAG                 IMAGE ID            CREATED              SIZE
@@ -114,18 +134,22 @@
 ### 2. build한 image 실행 및 접속 테스트
 
 #### 2.1 image 실행
+
  - sudo docker run -p [open할 port:Expose port] -d [생성한 이미지]
- - "sudo docker run -p 35000:8080 -d madfalcon/node-web-app" 입력
-	- 옵션 '-p' : port forwarding으로 외부에서 접근가능한 포트를 지정, 위는 35000으로 접속 가능하도록 설정
-	- 옵션 '-d' : 실행시킬 컨테이너가 백그라운드로 동작하도록 설정
+ - `sudo docker run -p 35000:8080 -d madfalcon/node-web-app` 입력
+   - 옵션 '-p' : port forwarding으로 외부에서 접근가능한 포트를 지정, 위는 35000으로 접속 가능하도록 설정
+   - 옵션 '-d' : 실행시킬 컨테이너가 백그라운드로 동작하도록 설정
+
 ```bash
 	madfalcon@test_madfalcon_server:~$ sudo docker run -p 35000:8080 -d madfalcon/node-web-app
 		95c5fc4d5ed5161035d7b491421ae2a0aa689af3cd66eec73eb8875b61f206ed
 ```
 
 #### 2.2 컨테이너 프로세스 상태를 통해 웹 서버 실행중인지 확인
- - sudo docker ps - 실행중인 컨테이너만 표시
+
+ - `sudo docker ps` - 실행중인 컨테이너만 표시
  - '-a' 옵션을 추가해서 입력하면 모든 컨테이너가 표시됨
+
 ```bash
 	madfalcon@test_madfalcon_server:~$ docker ps
 		CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                     NAMES
@@ -135,7 +159,9 @@
 ```
 
 #### 2.3 로컬 접속 테스트
+
  - curl 명령어를 통해 35000 포트로 웹 서버 호출이 가능하다.
+
 ```bash
 	madfalcon@test_madfalcon_server:~$ curl -i localhost:35000
 		HTTP/1.1 200 OK
@@ -151,5 +177,6 @@
 
 
 ### 3.참고주소: 
- - node.js 관련 :  https://riptutorial.com/ko/docker/example/27294/%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%97%90%EC%84%9C-basic-node-js-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0
- - dockerfile 옵션 관련 : http://longbe00.blogspot.com/2015/03/dockerfile.html
+
+ - [node.js 관련](https://riptutorial.com/ko/docker/example/27294/%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%97%90%EC%84%9C-basic-node-js-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0)
+ - [dockerfile 옵션 관련](http://longbe00.blogspot.com/2015/03/dockerfile.html)
