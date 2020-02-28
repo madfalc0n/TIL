@@ -6,6 +6,10 @@
 
 
 
+성능평가는 PCK(Percentage of Correct Keypoint) 지표를 이용
+
+
+
 ## Pose Estimation의 분류
 
 Pose Estimation 의 종류는 2D/3D Pose Estimation 으로 나뉜다.
@@ -44,7 +48,9 @@ detection 과정을 거치지 않으므로 빠르다는 장점이 있고 실시�
 
 
 
-성능평가는 PCK 지표를 이용
+<img src="images/Pose_Estimation/image-20200228223404656.png" alt="image-20200228223404656" style="zoom:80%;" />
+
+>  위가 Top-down 방식이고 아래가 Bottom-down 방식
 
 
 
@@ -54,4 +60,13 @@ detection 과정을 거치지 않으므로 빠르다는 장점이 있고 실시�
 
 
 
-Open Pose를 사용하여 pose estimation 을 구현할 계획이다.
+## OPEN POSE
+
+최근 가장 인기있는 bottom-up 방식의 포즈 추정방식으로 동작하며 포징 추정시 실시간으로 처리
+
+Multi-person keypoint detection 과 multi-threading written 지원
+
+C++ 전용이지만 파이썬도 사용가능
+
+
+
