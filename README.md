@@ -63,6 +63,7 @@
 
 - [Object Detection](computer_processing/Object_detection.md)
 - [Segmentation](computer_processing/Segmentation.md)
+- [Pose Estimation](computer_processing/Pose_Estimation.md)
 
 
 
