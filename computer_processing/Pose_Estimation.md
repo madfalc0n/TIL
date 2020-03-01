@@ -70,3 +70,25 @@ C++ 전용이지만 파이썬도 사용가능
 
 
 
+### 데모판 사용
+
+[오픈포즈](https://github.com/CMU-Perceptual-Computing-Lab/openpose)에서 제공하는 데모판이 있다. 간단하게 다운로드 하여 소스코드를 실행하면 된다.
+
+<img src="images/Pose_Estimation/image-20200301214142367.png" alt="image-20200301214142367" style="zoom:50%;" /><img src="images/Pose_Estimation/image-20200301214157717.png" alt="image-20200301214157717" style="zoom:50%;" />
+
+> 실제 데모판을 이용하여 pose estimation 구현한 모습, 테스트 환경의 사양이 너무 딸려서 동영상을 추정할 수 없었다..
+
+
+
+## Pose Estimation with TensorFlow + OpenCV
+
+[유튜브](https://www.youtube.com/watch?v=nUjGLjOmF7o)에서 제공하는 영상을 통해 구현을 할 예정이다.
+
+
+
+### 아나콘다 가상환경 생성
+
+```bash
+conda create -n 
+```
+
