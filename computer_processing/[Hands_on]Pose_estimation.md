@@ -12,6 +12,33 @@ C++ 전용이지만 파이썬도 사용가능
 
 [오픈포즈](https://github.com/CMU-Perceptual-Computing-Lab/openpose)에서 제공하는 데모판이 있다. 간단하게 다운로드 하여 소스코드를 실행하면 된다.
 
+윈도우에서 데모버전을 사용하는 방법은 간단하다
+
+1. [최신 데모버전](https://github.com/CMU-Perceptual-Computing-Lab/openpose/releases)을 다운받는다.
+
+2. 압축파일을 풀고 `models/getModels.bat` 를 실행시켜 학습된 모델을 다운 받는다.
+
+   <img src="images/[Hands_on]Pose_estimation/image-20200303001626452.png" alt="image-20200303001626452" style="zoom:80%;" />
+
+3. poweshell 또는 프롬프트 창을 열고 `openpose` 디렉토리에서 open pose를 실행한다.
+
+   ```bash
+   #실행예시
+   bin\OpenPoseDemo.exe --video examples\media\video.avi --model_pose COCO
+   ```
+   뒤에 `--model_pose`는 어떤 모델을 사용할 건지 명시하는 부분이다. 제공하는 모델은 BODY_25, COCO, MPI 를 제공하며 자세한 내용은 [링크](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/faq.md#difference-between-body_25-vs-coco-vs-mpi)를 통해 확인 가능하다. 요약하자면 COCO > BODY_25 > MPI 순이라고 얘기하는 것 같다. 
+   
+   > 원문: COCO model will eventually be removed. BODY_25 model is faster, more accurate, and it includes foot keypoints. However, COCO requires less memory on GPU (being able to fit into 2GB GPUs with the default settings) and it runs faster on CPU-only mode. MPI model is only meant for people requiring the MPI-keypoint structure. It is also slower than BODY_25 and far less accurate.
+
+
+   명령어와 관련하여 좀더 추가적으로 알고싶은사람은 [링크](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/demo_overview.md#main-flags) 를 통해서 명령어를 확인해보자
+
+
+
+
+
+4. 실행결과
+
 <img src="images/Pose_Estimation/image-20200301214142367.png" alt="image-20200301214142367" style="zoom:50%;" /><img src="images/Pose_Estimation/image-20200301214157717.png" alt="image-20200301214157717" style="zoom:50%;" />
 
 > 실제 데모판을 이용하여 pose estimation 구현한 모습, 테스트 환경의 사양이 너무 딸려서 동영상을 estimation 하는데에는 한계가 있었다.
@@ -145,13 +172,32 @@ swig는 간략하게 말하면 C나 C++ 코드를 파이썬 등의 다른 언어
 
 ### 4. Pose Estimation 실행시켜보기
 
-`tf-pose-estimation`경로로 이동 후 아래와 같이 명령어 입력
+`tf-pose-estimation`경로로 이동 후 `run.py`를 실행하면 되는데 아래와 같이 명령어를 입력한다.
 
 ```
-python run.py --model=mobilenet_thin --resize=432x368 --image=./images/p1.jpg
+python run.py --model=mobilenet_v2_large --resize=432x368 --image=./images/people4.PNG
 ```
 
-run.py를 실행시켜서 images 폴더의 `p1.jpg`라는 사진을 pose estimation 진행한다는 명령어이다.
+run.py를 실행시켜서 images 폴더의 `p1.jpg`라는 사진을 `mobilenet_v2_large`모델을 통해 pose estimation 진행한다는 명령어이다. 모델은 여러가지 사용 가능하며 모델별 성능은 [여기](https://github.com/ildoonet/tf-pose-estimation/blob/master/etcs/experiments.md)에 있다.
+
+실제 이미지들을 통해 실행시켜보면 아래와 같이 각 관절에 대한 위치가 추정됨을 확인할 수 있다.
+
+<img src="images/[Hands_on]Pose_estimation/image-20200302171229399.png" alt="image-20200302171229399" style="zoom:50%;" /><img src="images/[Hands_on]Pose_estimation/image-20200302171312440.png" alt="image-20200302171312440" style="zoom:50%;" />
 
 
 
+문제점은 항상 정확하지는 않다는 것이며 여러 이미지들을 통해 테스트한 결과로는 화질, 조명 및 모델 성능이 포즈 추정에 영향을 미치는 것 같다.
+
+손들고 있는사람 포즈 추정
+
+<img src="images/[Hands_on]Pose_estimation/image-20200302171421931.png" alt="image-20200302171421931" style="zoom:50%;" />
+
+> 얼굴과 몸 부분은 인식이 되지만 팔 부분은 제대로 인식이 되지 않음을 볼 수 있다.
+
+
+
+지하철 내 심장마비로 인해 쓰러진 사람
+
+<img src="images/[Hands_on]Pose_estimation/image-20200302171719300.png" alt="image-20200302171719300" style="zoom:50%;" />
+
+> 화질이 선명하지 않아 추정이 되지 않는다.
