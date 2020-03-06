@@ -294,7 +294,7 @@ for CLASS in CLS:
     list_file.close()
 ```
 
-실행하고 나면 2개의 텍스트 파일이 생긴다.
+실행하고 나면 2개의 텍스트 파일이 생긴다. 우리는 이 2개의 텍스트 파일을 통해 YOLO v3 모델에 train 할 수 있다.
 
 - `4_CLASS_test_classes.txt`
   - 다운 받은 이미지들에 대한 클래스 리스트
