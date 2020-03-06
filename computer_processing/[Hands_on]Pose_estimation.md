@@ -111,9 +111,9 @@ $ git clone https://github.com/ildoonet/tf-pose-estimation.git
 
 #### 3. Pose estimation 을 구현하기위한 라이브러리 설치
 
-생성한 가상환경에 대해 **activate** 후 라이브러리를 설치하기 앞서 Open Pose 기반으로 만들어 졌다보니 C++ 기반으로 작성되어 있다(tf-pose-estimation은 파이썬으로 코딩되어 있음).  C++ 코드와  연동하기 위해 `C++ Build Tools`를 설치해야 하는데 윈도우와 리눅스 사용자 별로 다르게 작업을 수행해야 한다.
+생성한 가상환경에 대해 **activate** 후 라이브러리를 설치하기 앞서 Open Pose 기반으로 만들어 졌다보니 C++ 기반으로 작성되어 있다(tf-pose-estimation은 파이썬으로 코딩되어 있음).  C++ 코드와  연동하기 위해 `C++ Build Tools`를 설치해야 하는데 윈도우만 추가적으로 설치해주면 된다. 
 
-##### 3.1 Window 사용자 C++ build Tools 설치
+##### 3.1 (Window 사용자만) C++ build Tools설치
 
 [링크](https://go.microsoft.com/fwlink/?LinkId=691126)에 접속하여 설치해주면 된다.
 
@@ -123,16 +123,19 @@ $ git clone https://github.com/ildoonet/tf-pose-estimation.git
 
 
 
-##### 3.2 Linux 환경에서 swig를 통한 C++, python 연동
-
-리눅스 사용자일 경우 [swig](https://ko.wikipedia.org/wiki/SWIG)를 통해 C++ 코드를 python과 연결해주어야 한다.
+##### 3.2 (Window, Linux 둘다) swig를 통한 C++, python 연동
 
 swig는 간략하게 말하면 C나 C++ 코드를 파이썬 등의 다른 언어들과 연결하는데 사용하는 오픈 소스 소프트웨어 도구이다.
 
 설치방법은 [링크](https://github.com/ildoonet/tf-pose-estimation/tree/master/tf_pose/pafprocess)를 통해 메뉴얼 대로 따라 하면 된다. 하지만 나는 가상환경을 이용하였기 때문에 가상환경에 swig 모듈을 설치하였다.
 
 1. `conda install -c anaconda swig` 를 통해 아나콘다에 swig 모듈을 설치
-2. `swig -python -c++ pafprocess.i && python3 setup.py build_ext --inplace` 를 입력하면된다.
+
+2. (**Linux 사용자!!!**)`swig -python -c++ pafprocess.i && python3 setup.py build_ext --inplace` 를 입력하면된다.
+
+3. (**Window 사용자!!!**)`swig -python -c++ pafprocess.i && python setup.py build_ext --inplace` 를 입력.
+
+   
 
 
 
