@@ -195,7 +195,7 @@ darknet-yolov3
 
 - `passwd [사용자계정]` - 계정에 대한 비밀번호를 지정해 줌
 
-  ![image-20200213014420161](images/image-20200213014420161.png)
+  ![image-20200213014420161](images/Linux_command/image-20200213014420161.png)
 
 ### 계정 수정
 
@@ -232,11 +232,11 @@ darknet-yolov3
 
 - `users` 명령어를 입력해 현재 접속중인 계정 정보를 확인
 
-  ![image-20200213015021025](images/image-20200213015021025.png)
+  ![image-20200213015021025](images/Linux_command/image-20200213015021025.png)
 
 - `id` 명령어를 입력해 계정에 대한 정보를 확인
 
-  <img src="images/image-20200213015040056.png" alt="image-20200213015040056" style="zoom:50%;" /><img src="images/image-20200213015108720.png" alt="image-20200213015108720" style="zoom:50%;" />
+  <img src="images/Linux_command/image-20200213015040056.png" alt="image-20200213015040056" style="zoom:50%;" /><img src="images/Linux_command/image-20200213015108720.png" alt="image-20200213015108720" style="zoom:50%;" />
 
 
 
@@ -253,12 +253,12 @@ darknet-yolov3
 
 - 사용자가 sudo 명령어를 통해 root 권한 명령을 수행 중 다음의 에러가 발생할 수 있다.
 
-![image-20200213013123897](images/image-20200213013123897.png)
+![image-20200213013123897](images/Linux_command/image-20200213013123897.png)
 
 #### 해결방법
 
 - `vi /etc/sudoers`를 입력하여 해당 계정에 대한 `sudo`권한 사용을 다음과 같이 설정 해주면 된다.
 
-![image-20200213013632840](images/image-20200213013632840.png)
+![image-20200213013632840](images/Linux_command/image-20200213013632840.png)
 
 > root 계정에 대한 sudo 설정 부분, 위 부분처럼 `(계정)	ALL=(ALL:ALL) ALL`로 설정 해주면 된다.
