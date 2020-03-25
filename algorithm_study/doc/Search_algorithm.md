@@ -52,4 +52,6 @@
 
 ## 코드
 
+python 기반으로 코드를 작성하였음.
+
 <script src="https://gist.github.com/madfalc0n/e3296f3b3d45580f55cc5c69afa6d00a.js"></script>
