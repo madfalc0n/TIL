@@ -75,7 +75,7 @@
 
 ## 7. Algorithm
 
-- [algorithm_study](algorithm_study/algorithm_study.md)
+- [algorithm_study](algorithm_study/algorithm_study/README.md)
 
 
 
