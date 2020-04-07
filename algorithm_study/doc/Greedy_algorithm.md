@@ -48,3 +48,7 @@ Greedy algorithm이 최적의 답을 보장해 주는 조건은 다음과 같다
 3. 지각자 분당 벌금내기
 
 <script src="https://gist.github.com/madfalc0n/576f10562261e6f3bf5a1b9765cdabcb.js"></script>
+
+4. 시간을 고려해서 수강신청 많이 듣기
+
+<script src="https://gist.github.com/madfalc0n/696e841f82c2ed7665bf49dda99d1490.js"></script>
