@@ -17,3 +17,5 @@
 - [Brute Force](doc/BruteForce_algorithm.md)
 - [Divide and Conquer](doc/Divide_and_Conquer.md)
 - [Greedy](doc/Greedy_algorithm.md)
+
+- [Dynamic Programming](doc/Dynamic_programming.md)
