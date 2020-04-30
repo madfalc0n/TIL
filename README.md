@@ -1,8 +1,8 @@
 # TIL (Today I Learned)
 
-> 매일 배운 내용을 정리합시다.
->
-> 완성이 덜 된 부분도 많으며 스택처럼 작성해 나갈 예정입니다.
+github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니다. 
+
+작성이 완료되지 않은 부분이 많습니다. 하지만 스택처럼 작성해 나갈 예정입니다
 
 
 
@@ -19,11 +19,9 @@
 - [Flask](python/Flask.md)
 - [Django](python/)
 
-## 3. Data Science
+## 3-1. Data Science
 
 - [deep_learning](https://github.com/madfalc0n/TIL/blob/master/data_science/Deep_Learning.md)
-- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Tensorflow.md)
-- [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Keras.md)
 - [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Perceptron.md)
 - [Neural_Net](data_science/Neural_Network.md)
 - [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/gradient_descent.md)
@@ -40,8 +38,13 @@
 
 
 
-## 3.1 Keras Functions
+## 3-2. Tensorflow
 
+- [tensorflow](https://github.com/madfalc0n/TIL/blob/master/data_science/Tensorflow.md)
+
+## 3-3. Keras
+
+- [keras](https://github.com/madfalc0n/TIL/blob/master/data_science/Keras.md)
 - [Callbacks](/data_science/Keras_callback_Function.md)
 - [ initializers](/data_science)
 
@@ -75,7 +78,7 @@
 
 ## 7. Algorithm
 
-- [algorithm_study](algorithm_study/algorithm_study/README.md)
+- [algorithm_study](algorithm_study/README.md)
 
 
 
@@ -89,4 +92,4 @@
 
 ## 9. Linux
 
-- [Commands](Linux/Linux_command.md)
+- [Command 관련 정리](Linux/Linux_command.md)
