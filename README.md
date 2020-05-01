@@ -93,3 +93,7 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 ## 9. Linux
 
 - [Command 관련 정리](Linux/Linux_command.md)
+
+## 10. Kaggle
+
+- [Kaggle API 사용자 매뉴얼](kaggle/kaggle_API_user_manual.md)
