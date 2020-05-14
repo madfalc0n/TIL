@@ -35,6 +35,7 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 - [UnSupervised_Learning.md](https://github.com/madfalc0n/TIL/blob/master/data_science/UnSupervised_Learning.md)
 - [Confusion Matrix](https://github.com/madfalc0n/TIL/blob/master/data_science/Confusion_Matrix.md)
 - [CNN(Convolutional Neural Network)](https://github.com/madfalc0n/TIL/blob/master/data_science/CNN.md)
+- [Transfer learning and Pre-trained model](data_science/Transfer_Learning_and_preTrained_model.md)
 
 
 
