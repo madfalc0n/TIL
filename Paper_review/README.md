@@ -6,7 +6,7 @@
 
 1. [An attention-based multi-resolution model for prostate whole slide image classification and localization](Deep_learning/)
 
-
+2. [efficientnet](Deep_learning/efficientnet)
 
 ## Computer Vision
 
