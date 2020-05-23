@@ -4,7 +4,7 @@
 
 ## Deep Learning
 
-1. [An attention-based multi-resolution model for prostate whole slide image classification and localization](Deep_learning/)
+1. [An attention-based multi-resolution model for prostate whole slide image classification and localization](Deep_learning/An_attention-based_multi-resolution_model_for_prostate_whole_slide_image_classification_and_localization)
 
 2. [efficientnet](Deep_learning/efficientnet)
 
