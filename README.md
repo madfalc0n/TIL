@@ -81,19 +81,15 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 
 - [algorithm_study](algorithm_study/README.md)
 
+## 8. Linux
 
+- [Command note](Linux/Linux_command.md)
 
-## 8. Cloud
+## 9. Cloud
 
-- [Docker](Cloud/Docker)
+- [Docker](Cloud/Docker/README.md)
 
-- [Kubernetes]()
-
-
-
-## 9. Linux
-
-- [Command 관련 정리](Linux/Linux_command.md)
+- [Kubernetes](Cloud/k8s/README.md)
 
 ## 10. Kaggle
 
