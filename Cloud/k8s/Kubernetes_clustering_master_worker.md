@@ -13,16 +13,11 @@
 
 시작하기 전에 Docker 및 K8s 가 우선적으로 설치되어 있어야 한다. 또한 각 환경에서 hostname 형식이 domain(test.server1.com) 형식으로 되어 있어야 한다.
 
-hostname을 변경하는 방법은 다음과 같이 변경하면 된다.
+hostname을 변경하는 방법은 /etc/hostname 에서 변경하면 된다.
 
-```bash
-madfalcon@madfalcon_master:~$ hostname
-madfalcon_master
-madfalcon@madfalcon_master:~$ sudo hostname madfalcon.master.com
-madfalcon@madfalcon_master:~$ hostname
-madfalcon.master.com
+<img src="images/Kubernetes_clustering_master_worker/image-20200529160543687.png" alt="image-20200529160543687" style="zoom:80%;" />
 
-```
+> 저장하고 빠져나오자
 
 
 
@@ -242,4 +237,12 @@ madfalcon.slave1.com   Ready    <none>   113s   v1.18.3
 ```
 
 
+
+
+
+## 발견된 문제
+
+### 1. Master node 재부팅 후 kubectl get nodes 실행불가 에러
+
+[참고](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/28) 
 
