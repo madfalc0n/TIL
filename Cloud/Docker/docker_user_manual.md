@@ -1,3 +1,9 @@
+# Docker user manual
+
+도커를 사용하기 위해 필요한 옵션을 정리해놓았다. 자세한 내용은 [Docker docs](https://docs.docker.com/)에서 확인 가능하다.
+
+
+
 ##  User 권한 설정
 
 리눅스에서 docker 명령을 사용시 **root** 권한으로 실행되기 때문에 항상 **sudo**를 붙힌 후 docker 명령을 실행해야 함. 아래 명령어를 통해 **sudo** 없이도 사용가능하도록 설정 가능
