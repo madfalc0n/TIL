@@ -7,7 +7,7 @@
 
 
 
-## Image 관련
+## 1. Image 관련
 
 `Docker image pull/push`
 
@@ -18,7 +18,7 @@
 
    - 내가 가지고 있는 docker image를 **원격 repository에 upload 함**
 
-### 1.1 Image 조회 및 삭제
+### 1.1 Docker image 조회 및 삭제
 
  - image 조회 : `docker images`
 
@@ -73,7 +73,7 @@ madfalcon@test_madfalcon_server:~$ docker images
 	hello-world               latest              fce289e99eb9        11 months ago       1.84kB
 ```
 
-### 1.2 push 및 pull 명령어를 이용해 Image upload 및 download
+### 1.2 Docker image push 및 pull 명령어를 이용해 Image upload 및 download
 
  - Image download : `docker push [회원가입ID/생성한이미지파일]`
    - Dockerhub 또는 private registry에 업로드 되어있는 Image 다운가능
@@ -118,11 +118,19 @@ madfalcon@test_madfalcon_server:~$ docker images
 	hello-world               latest              fce289e99eb9        11 months ago       1.84kB
 ```
 
-### 1.3 Image 실행
+### 1.3 Docker image 실행
 
  - Image 실행 : `docker run [이미지명:버전]`
-   - TIP : 웹서비스 경우 '-d' 옵션을 사용하여 백그라운드로 동작 하도록 설정할 수 있음
-   - TIP : 웹서비스 경우 '-p' 옵션을 사용해 외부에 포트를 개방할 수 있음
+
+#### Docker run option
+
+- `-name` : 컨테이너에 이름을 지정해줌
+- `-v` : 컨테이너와 호스트의 경로를 공유하는 옵션
+- `-e` : 컨테이너 내에서 사용할 환경변수
+- `-d` : 백그라운드로 동작 하도록 설정
+- `-p` : 외부에 포트를 개방
+- `-rm` : 해당 프로세스 종료시 자동으로 컨테이너 제거
+- `-it` : 프로세스 실행 후 터미널 접속, `/bin/bash` 명령어를 입력하여 쉘모드로 진입할 수 있음  
 
 ```bash
 madfalcon@test_madfalcon_server:~$ docker run chadool116/node-web-app
