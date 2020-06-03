@@ -25,6 +25,7 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 - [Perceptron](https://github.com/madfalc0n/TIL/blob/master/data_science/Perceptron.md)
 - [Neural_Net](data_science/Neural_Network.md)
 - [gradient_descent](https://github.com/madfalc0n/TIL/blob/master/data_science/gradient_descent.md)
+- [gradient vanishing](data_science/gradient_vanishing.md)
 - [back_propagation](https://github.com/madfalc0n/TIL/blob/master/data_science/back_propagation.md)
 - [correlation.md](https://github.com/madfalc0n/TIL/blob/master/data_science/correlation.md)
 - [K-Fold_cross_Validation.md](https://github.com/madfalc0n/TIL/blob/master/data_science/K-Fold_cross_Validation.md)
