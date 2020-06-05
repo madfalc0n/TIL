@@ -45,7 +45,8 @@ Docker run 명령어를 이용하여 mysql image를 실행시킨다.
 - `docker run --name madfalcon_mysql -e MYSQL_ROOT_PASSWORD=[mypass] -d -p 3306:3306 mysql`
   - `--name madfalcon_mysql` : image 실행 후 저장할 컨테이너 이름, 생성하면 `madfalcon_mysql`로 저장된다.
   - `-e MYSQL_ROOT_PASSWORD=[mypass]` : mysql에 접속하기 위한 root 패스워드를 지정한다. 필수로 기입해주어야 한다. `[mypass]`에는 원하는 패스워드로 설정한다.
-  - `-d` : 백그라운드로 실행하기 위한 옵션이다
+  - `-e MYSQL_DATABASE=[your_db]` : 컨테이너 실행시 `your_db`라는 데이터베이스를 생성한다.
+  - `-d` : 백그라운드로 실행하기 위한 옵션이다.
   - `-p` : 포트포워딩을 하기위한 옵션이다. 앞의 3306은 외부에서 접속하는 포트이고 뒤의 3306은 내부로 연결해주는 포트이다. DB경우 default 포트가 3306이다.  만약 8888:3306으로 지정되어 있다면 외부에서는 8888로 요청할 경우 3306 포트로 매핑시켜준다.
   - `mysql` : docker mysql 이미지이다.
 
