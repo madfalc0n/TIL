@@ -57,7 +57,7 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 - [Digital image processing](https://github.com/madfalc0n/TIL/blob/master/computer_processing/Digital_image_processing.md)
 - [OpenCV](https://github.com/madfalc0n/TIL/blob/master/computer_processing/OpenCV.md)
 - [OCR](computer_processing/use_OCR.md)
-- [Filter](computer_processing/filter.md)
+- [Filter](computer_processing/OpenCV_filter.md)
 - [Corner](computer_processing/Corner.md)
 - [QRcode](computer_processing/QRCODE.md)
 - [Stitching](computer_processing/stitching.md)
