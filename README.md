@@ -39,7 +39,8 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 - [Transfer learning and Pre-trained model](data_science/Transfer_Learning_and_preTrained_model.md)
 - [Reinforcement Learning](data_science/Reinforcement_learning.md)
 
-
+- [유사도 측정](data_science/Simirality_measure.md)
+- [Quadratic Weighted Kappa](data_science/metric_Quadratic_Weighted_Kappa.md)
 
 ## 3-2. Tensorflow
 
