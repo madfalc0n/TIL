@@ -6,10 +6,10 @@
 
 ## 사전환경
 
-|        | OS               | CPU core | RAM  |
-| ------ | :--------------- | :------- | :--- |
-| Master | ubuntu 18.04 LTS | 2        | 2    |
-| Worker | ubuntu 18.04 LTS | 1        | 1    |
+|        | OS                     | CPU core | RAM  |
+| ------ | :--------------------- | :------- | :--- |
+| Master | ubuntu 18.04/20.04 LTS | 2        | 2    |
+| Worker | ubuntu 18.04/20.04 LTS | 1        | 1    |
 
 시작하기 전에 Docker 및 K8s 가 우선적으로 설치되어 있어야 한다. 또한 각 환경에서 hostname 형식이 domain(test.server1.com) 형식으로 되어 있어야 한다.
 
@@ -140,11 +140,11 @@ kubeadm join 70.12.50.64:6443 --token k3tjms.lu28af6rost7rqcc \
 
 5. cluster 시작하기위한 설정
 
+   ```
    1. mkdir -p $HOME/.kube
    2. sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
    3. sudo chown $(id -u):$(id -g) $HOME/.kube/config
-   
-   
+   ```
 ```bash
 madfalcon@madfalcon_master:~/m_tmp$ mkdir -p $HOME/.kube
 madfalcon@madfalcon_master:~/m_tmp$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -160,17 +160,14 @@ madfalcon@madfalcon_master:~/m_tmp$
 
 
 ```bash
-madfalcon@madfalcon_master:~/m_tmp$ sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+madfalcon@madfalcon:~$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 podsecuritypolicy.policy/psp.flannel.unprivileged created
 clusterrole.rbac.authorization.k8s.io/flannel created
 clusterrolebinding.rbac.authorization.k8s.io/flannel created
-serviceaccount/flannel created
-configmap/kube-flannel-cfg created
-daemonset.apps/kube-flannel-ds-amd64 created
-daemonset.apps/kube-flannel-ds-arm64 created
-daemonset.apps/kube-flannel-ds-arm created
-daemonset.apps/kube-flannel-ds-ppc64le created
-daemonset.apps/kube-flannel-ds-s390x created
+serviceaccount/flannel unchanged
+configmap/kube-flannel-cfg configured
+daemonset.apps/kube-flannel-ds created
+madfalcon@madfalcon:~$ kubectl cluster-info
 ```
 
 `ifconfig`를 입력해보면 다음과 같은 네트워크 플러그인이 설치되어 있음을 확인할 수 있다.
@@ -242,7 +239,10 @@ madfalcon.slave1.com   Ready    <none>   113s   v1.18.3
 
 ## 발견된 문제
 
-### 1. Master node 재부팅 후 kubectl get nodes 실행불가 에러
+### 1. [Master node 재부팅 후 kubectl get nodes 실행불가 에러](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/28) 
 
-[참고](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/28) 
 
+
+## 참고
+
+1. [쿠버네티스 공식 문서](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
