@@ -243,3 +243,7 @@ helm을 통해 설치한 컨트롤러 같은경우 삭제를 통해 쉽게 관�
    ```
 
    
+
+## 참조
+
+1. [Helm 공식 홈페이지](https://www.haproxy.com/documentation/kubernetes/latest/installation/community/kubernetes/)

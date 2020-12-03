@@ -10,6 +10,78 @@
 
 ## 1. Deployment or ReplicaSet
 
+### 1. Deployment
+
+앱을 배포할 때 사용되는 기본중의 기본 컨트롤러이다. 배포를 위한 기능들을 제공한다.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-web
+  labels:
+    app: test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: test
+        image: chadool116/test-web-node:v1
+        ports:
+        - containerPort: 8080   
+        
+## metadata - name : kubectl get deploy 입력시 보여지는 name
+
+madfalcon@madfalcon:~/my_tmp/component$ kubectl get deploy 
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+test-web                             3/3     3            3           41m
+
+## spec 내 containers - image 본인이 업로드 한 image:tag 입력
+## containerPort : DockerFile을 통해 이미지를 생성했을 때 expose port 번호, 실제 서비스 open시 생성되는 port번호
+
+## kubectl apply -f 위.yaml 업로드 후 pod 생성되었는지, 
+madfalcon@madfalcon:~/my_tmp/component$ kubectl get pods
+NAME                                                  READY   STATUS    RESTARTS   AGE
+test-web-6dd5c847d7-7f22d                             1/1     Running   0          43m
+test-web-6dd5c847d7-s84hr                             1/1     Running   0          43m
+test-web-6dd5c847d7-xl8x2                             1/1     Running   0          43m
+
+## 웹 서비스 접속이 되는지 확인해보기
+## 1. 생성된 pods의 정보를 확인해보자
+madfalcon@madfalcon:~/my_tmp/component$ kubectl describe pods test-web-6dd5c847d7-7f22d
+Name:         test-web-6dd5c847d7-7f22d
+Namespace:    default
+Priority:     0
+Node:         madfalcon.slave.com/192.168.85.131
+Start Time:   Thu, 03 Dec 2020 15:04:22 +0000
+Labels:       app=test
+              pod-template-hash=6dd5c847d7
+Annotations:  <none>
+Status:       Running
+IP:           10.244.1.41
+IPs:
+  IP:           10.244.1.41
+Controlled By:  ReplicaSet/test-web-6dd5c847d7
+.........
+.........
+.........
+
+## 2. ip를 통해 접속 테스트 확인해보자, kubectl exec -it [pod 이름] -- curl [할당된IP]:[port]
+madfalcon@madfalcon:~/my_tmp/component$ kubectl exec -it test-web-6dd5c847d7-7f22d -- curl 10.244.1.41:8080
+Hello World! I'm test-web-6dd5c847d7-7f22d
+```
+
+
+
+
+
 
 
 ## 2. StatefulSet
