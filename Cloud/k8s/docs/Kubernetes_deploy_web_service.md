@@ -141,7 +141,7 @@ K8s 환경에서 외부에서 내부로 유입되는 트래픽을 `ingress traff
 
 1. 설치
    
-- ingress controller를 통해 외부에서 들어오는 트래픽을 라우팅 처리 할 수 있다. ingress controller 기능을 제공하는 업체는 다양하다. 여기서 나는 HAproxy를 사용할 예정이다. 설치방법은 [링크](https://github.com/madfalc0n/TIL/blob/master/Cloud/k8s/Kubernetes_install_haproxy.md)를 참고하여 설치하면 되겠다.
+- ingress controller를 통해 외부에서 들어오는 트래픽을 라우팅 처리 할 수 있다. ingress controller 기능을 제공하는 업체는 다양하다. 여기서 나는 HAproxy를 사용할 예정이다. 설치방법은 [링크](https://github.com/madfalc0n/TIL/blob/master/Cloud/k8s/docs/Kubernetes_install_haproxy.md)를 참고하여 설치하면 되겠다.
   
 2. 셋팅
 
@@ -177,7 +177,7 @@ K8s 환경에서 외부에서 내부로 유입되는 트래픽을 `ingress traff
 
 - 아래의 yaml 파일을 통해 서비스를 만들어 보자
 - 참고로 서비스는 이미 만들어놓은 것을 테스트하는 것이다.
-- deployment에 대해 알고 싶다면 [링크](https://github.com/madfalc0n/TIL/blob/master/Cloud/k8s/Kubernetes_workloads_resources.md)에서 좀 더 있다.
+- deployment에 대해 알고 싶다면 [링크](https://github.com/madfalc0n/TIL/blob/master/Cloud/k8s/docs/Kubernetes_workloads_resources.md)에서 좀 더 있다.
 - 서비스를 만드는 방법은 [링크](https://github.com/madfalc0n/TIL/blob/master/Cloud/Docker/docker_node_web_build.md)에서 좀 더 알 수 있다.
 
 ```bash
