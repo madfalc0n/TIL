@@ -1,6 +1,6 @@
-# Kubernetes expose web service
+# Kubernetes Deploy web service
 
-K8s를 통해 내부의 웹 서버(Pods)를 외부에 노출시켜 보자! 
+K8s를 통해 내부의 웹 서버(Pods)를 외부에 배포해보자! 
 
 
 
@@ -8,7 +8,15 @@ K8s를 통해 내부의 웹 서버(Pods)를 외부에 노출시켜 보자!
 
 ## 0. 테스트 환경
 
-docker와 K8s가 설치되어 있는 Ubuntu 환경의 master - worker node 구성이 되어 있어야 함
+docker와 K8s가 설치되어 있는 Ubuntu 환경의 master - worker node 구성이 되어 있어야 한다. 본인은 컴퓨터 리소스의 한계로 VMware를 통해 Master node와 Worker node를 각 1대씩 구성했다.
+
+<img src="images/Kubernetes_deploy_web_service/image-20201207223427847.png" alt="image-20201207223427847" style="zoom:80%;" />
+
+각 노드들에 대해 간단하게 설명하자면 worker node는 우리가 배포하고자 하는 서비스들이 실제 동작하는 곳이다. master node는 worker node에서 실행되는 서비스들을 관리(배포하거나 통합)해주는 역활을 한다.
+
+URL path에 따라 서비스를 라우팅 할 예정이며 `/test1`을 입력할 경우 version 2의 서비스를, `/test2`를 입력할 경우 version 3의 웹 서비스를 반환 할 계획이다.
+
+<img src="images/Kubernetes_deploy_web_service/image-20201207231828833.png" alt="image-20201207231828833" style="zoom:80%;" />
 
 
 
@@ -16,7 +24,19 @@ docker와 K8s가 설치되어 있는 Ubuntu 환경의 master - worker node 구�
 
 ## 1. Keepalived 설치 및 셋팅
 
-Keepalived는 공식문서에 따르면 C로 작성된 로드밸런싱 및 고가용성을 제공하는 프레임워크 이다. 여기서는 VIP만 셋팅할 예정인데 내부 K8s master-worker 간에 외부에서 유입받을 VIP가 있어야하기 때문이다. 설치는 간단하다.
+
+
+### 1-1. 왜 해야할까?
+
+Keepalived는 공식문서에 따르면 C로 작성된 로드밸런싱 및 고가용성을 제공하는 프레임워크 이다. 여기서는 웹 서비스를 요청받을 VIP만 셋팅할 예정이다. 
+
+VIP는 Virtual IP의 약자로 말 그대로 가상의 아이피다. 용도는 서비스 로드밸런싱 또는 네트워크 장비의 장애복구용으로 쓰이기도 하는데 이중화된 네트워크 장비에서 실제 트래픽을 전달하는 active 장비가 down 되었을 경우 fail-over를 통해 standy 장비가 active 상태로 전환되면서 해당 VIP를 선점하여 서비스를 처리해주는 역활을 하기도 한다. 자세한 내용은 구글을 통해 알아보도록...여기서는 서비스 로드밸런싱 용도로 사용할 예정이다.
+
+
+
+### 1-2. 설치해보자!
+
+ 설치는 간단하다.
 
 - `yum install keepalived` 입력
 
@@ -103,10 +123,26 @@ rtt min/avg/max/mdev = 0.063/0.079/0.090/0.010 ms
 
 ## 2. ingress controller 설치 및 셋팅
 
+
+
+### 2-1. 왜 해야할까?
+
+K8s 환경에서 외부에서 내부로 유입되는 트래픽을 `ingress traffic`이라 부르고 내부에서 외부로 나가는 트래픽을 `egress traffic`이라고 부른다. 
+
+<img src="images/Kubernetes_deploy_web_service/image-20201207231408735.png" alt="image-20201207231408735" style="zoom:80%;" />
+
+출처 : [쿠버네티스 공식 문서](https://kubernetes.io/ko/docs/concepts/services-networking/ingress/#%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4%EB%9E%80)
+
+인그레스(ingress)는 클러스터 외부에서 내부로 접근하는 요청들을 어떻게 처리할지 정의해둔 규칙들의 모음이다.  외부에서 서비스로 접속이 가능한 URL, 로드 밸런스 트래픽, SSL / TLS 종료 그리고 이름-기반의 가상 호스팅을 제공하도록 구성할 수 있다. 인그레스 자체는 이런 규칙들을 정의해둔 자원이고 이런 규칙들을 실제로 동작하게 해주는게 인그레스 컨트롤러(ingress controller)이다. 즉, ingress와 ingress controller는 쌍으로 셋팅을 해야한다는 뜻이다. 
+
+
+
+### 2-2. 설치해보자!
+
 1. 설치
    
 - ingress controller를 통해 외부에서 들어오는 트래픽을 라우팅 처리 할 수 있다. ingress controller 기능을 제공하는 업체는 다양하다. 여기서 나는 HAproxy를 사용할 예정이다. 설치방법은 [링크](https://github.com/madfalc0n/TIL/blob/master/Cloud/k8s/Kubernetes_install_haproxy.md)를 참고하여 설치하면 되겠다.
-   
+  
 2. 셋팅
 
    1. 아래 과정까지 완료되었다고 가정한 상황에서 진행한다.
@@ -330,9 +366,11 @@ Hello World! This is Version : 2 : test-web-2-558869d786-95nkhmadfalcon@madfalco
 
 
 
-## 참고
+## 6. 참고
 
 1. [쿠버네티스 공식 홈페이지 문서](https://kubernetes.io/ko/docs/concepts/services-networking/ingress/)
 2. [keepalived를 설치하고 셋팅해보자](http://blog.naver.com/PostView.nhn?blogId=hanajava&logNo=221626055915&parentCategoryNo=40&categoryNo=87&viewDate=&isShowPopularPosts=false&from=postList)
 
 2. [[Kubernetes] 1편 : 쿠버네티스 Ingress 개념 및 사용 방법, 온-프레미스 환경에서 Ingress 구축하기](https://m.blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221502890249&proxyReferer=&proxyReferer=https:%2F%2Fwww.google.co.kr%2F)
+
+4. [쿠버네티스 인그레스](https://arisu1000.tistory.com/27840)

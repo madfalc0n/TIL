@@ -1,12 +1,14 @@
 # Kubernetes install manual(NEW)
 
-## 사전환경
+## 1. 사전환경
 
 - Ubuntu 20.04.1 LTS(VMware)
 
 
 
-## 사전셋팅
+
+
+## 2. 사전셋팅
 
 1. ipbridge 셋팅
 
@@ -26,7 +28,9 @@
 
 
 
-## K8s 설치
+
+
+## 3. K8s 설치
 
 1. kubeadm, kublet, kubectl 총 3가지 패키지를 설치할 예정이다.
 
@@ -51,16 +55,25 @@
    sudo apt-mark hold kubelet kubeadm kubectl
    ```
 
+3. 설치확인
+
+   - `kubectl|kubeadm|kubelet version`
+
+   ```bash
+   madfalcon@madfalcon:~$ kubeadm version
+   kubeadm version: &version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.4", GitCommit:"d360454c9bcd1634cf4cc52d1867af5491dc9c5f", GitTreeState:"clean", BuildDate:"2020-11-11T13:15:05Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"linux/amd64"}
+   
+   madfalcon@madfalcon:~$ kubectl version
+   Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.4", GitCommit:"d360454c9bcd1634cf4cc52d1867af5491dc9c5f", GitTreeState:"clean", BuildDate:"2020-11-11T13:17:17Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"linux/amd64"}
+   Server Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.4", GitCommit:"d360454c9bcd1634cf4cc52d1867af5491dc9c5f", GitTreeState:"clean", BuildDate:"2020-11-11T13:09:17Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"linux/amd64"}
+   
+   #kubelet 은 뭔가 많이 떠서 생략
+   ```
+
    
 
 
 
-
-
-
-
-
-
-## 참고한 주소
+## 4. 참고한 주소
 
 - [쿠버네티스 공식 문서](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)

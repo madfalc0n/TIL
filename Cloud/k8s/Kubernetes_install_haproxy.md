@@ -1,12 +1,12 @@
 # Kubernetes Install HAproxy
 
-
+HAproxy는 오픈소스 기반의 L4/L7 로드밸런싱 소프트웨어이다. 자세한 내용은 [위키](https://en.wikipedia.org/wiki/HAProxy)를 참고하자. 우리는 HAproxy에서 제공하는 ingress controller를 사용할 예정이다.
 
 
 
 ## 0. Helm 설치
 
-HAproxy를 설치하기 위해 Helm이라는 쿠버네티스의 패키지를 관리하는 패키지 매니저를 설치하자. [Helm](https://helm.sh/) 사이트 접속해서 다운로드 하자. 본인은 snap이 설치되어 있어서 snap을 이용하여 설치했다.
+쿠버네티스의 패키지를 관리하는 패키지 매니저인 Helm을 통해 HAproxy를 설치할 수 있다. 먼저 [Helm](https://helm.sh/) 사이트 접속해서 다운로드 하자. 본인은 snap이 설치되어 있어서 snap을 이용하여 설치했다.
 
 ```
 sudo snap install helm --classic
@@ -186,7 +186,7 @@ sudo snap install helm --classic
 
    
 
-## 4. helm 명령어를 통한 설치한 컨트롤러 삭제
+## 4. helm 명령어를 통해 설치했던 컨트롤러 삭제
 
 helm을 통해 설치한 컨트롤러 같은경우 삭제를 통해 쉽게 관리가 가능하다.
 
