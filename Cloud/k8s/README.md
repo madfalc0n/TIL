@@ -23,8 +23,8 @@
 ### 3. User Manual
 
 1. [K8s : clustering master and worker](docs/Kubernetes_clustering_master_worker.md)
-
 2. [K8s : deploy Web Service tutorial](docs/Kubernetes_deploy_web_service.md)
+3. [K8s : Dashboard](docs/Kubernetes_dashboard.md)
 
 
 
