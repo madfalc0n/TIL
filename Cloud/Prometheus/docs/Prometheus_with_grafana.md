@@ -196,3 +196,5 @@ helm uninstall grafana
 ## 6. 참고
 
 1. [Install Prometheus and Grafana Using Helm](https://ystatit.medium.com/install-prometheus-and-grafana-using-helm-b83b5018a1c4)
+
+2. [Helm chart를 활용한 Prometheus & Grafana Kubernetes에 구성하기](https://waspro.tistory.com/588)
