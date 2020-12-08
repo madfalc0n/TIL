@@ -98,7 +98,8 @@ Helm을 이용하여 프로메테우스를 설치해보자!
    monitoring-system-prometheus-pushgateway-7b8768f885-h2q7t   1/1     Running   0          39m
    monitoring-system-prometheus-server-6cdc9c8c49-wtjb7        0/2     Pending   0          39m
    
-   # 프로메테우스의 alertmanager와 서버를 보면 Pending상태로 되어 있는데 describe를 통해 에러 내용을 확인해보면  PersistentVolumeClaims 설정을 추가적으로 진행해주어야 한다. 이유는 k8s클러스터에 StorageClass가 정의되어있지 않기 때문이다(pvc의 요청을 받아줄 provisioner가 없기 때문). 그래서 일단 pv옵션을 false로 변경해주어 EmptyDir을 사용하게 해야 한다.
+   # 프로메테우스의 Pods 중에서 Pending상태로 되어 있는데 describe를 통해 에러 내용을 확인해보면  PersistentVolumeClaims 설정을 추가적으로 진행해주어야 한다. 
+   #이유는 k8s클러스터에 StorageClass가 정의되어있지 않기 때문이다(pvc의 요청을 받아줄 provisioner가 없기 때문). 그래서 일단 pv옵션을 false로 변경해주어 EmptyDir을 사용하게 해야 한다.
    ```
 
 4. 수정하기 위한 yaml 파일을 생성한다.
