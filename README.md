@@ -90,9 +90,9 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 
 ## 9. Cloud
 
-- [Docker](Cloud/Docker/README.md)
-
-- [Kubernetes](Cloud/k8s/README.md)
+- [Docker](Cloud/Docker)
+- [Kubernetes](Cloud/k8s)
+- [Prometheus](Cloud/Prometheus)
 
 ## 10. Kaggle
 
