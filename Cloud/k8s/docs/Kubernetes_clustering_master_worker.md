@@ -1,15 +1,19 @@
 # K8s Clustering Master node and Worker node
 
-쿠버네티스를 통해 마스터노드와 워커노드를 구성하고 클러스터링 시켜보자
+여기서는 쿠버네티스를 통해 Master Node와 Worker Node를 구성하는 클러스터링 과정을 진행하는 단계이다.
+
+쿠버네티스 클러스터란 쿠버네티스의 여러 리소스를 관리하기 위한 집합체라고 생각하면 된다. 클러스터 내에서 worker node는 우리가 배포하고자 하는 서비스들이 실제 동작하는 곳이다. Master node는 worker node에서 실행되는 서비스들을 관리(배포하거나 통합) 해주는 역활을 한다.
+
+<img src="images/Kubernetes_clustering_master_worker/image-20201208235309859.png" alt="image-20201208235309859" style="zoom:80%;" />
 
 
 
 ## 사전환경
 
-|        | OS                     | CPU core | RAM  |
-| ------ | :--------------------- | :------- | :--- |
-| Master | ubuntu 18.04/20.04 LTS | 2        | 2    |
-| Worker | ubuntu 18.04/20.04 LTS | 1        | 1    |
+|        | OS                     | 최소 CPU core | 최소 RAM |
+| ------ | :--------------------- | :------------ | :------- |
+| Master | ubuntu 18.04/20.04 LTS | 2             | 2        |
+| Worker | ubuntu 18.04/20.04 LTS | 1             | 1        |
 
 시작하기 전에 Docker 및 K8s 가 우선적으로 설치되어 있어야 한다. 또한 각 환경에서 hostname 형식이 domain(test.server1.com) 형식으로 되어 있어야 한다.
 
