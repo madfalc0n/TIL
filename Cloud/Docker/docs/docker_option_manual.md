@@ -1,4 +1,4 @@
-# Docker user manual
+# Docker option manual
 
 도커를 사용하기 위해 필요한 옵션을 정리해놓았다. 자세한 내용은 [Docker docs](https://docs.docker.com/)에서 확인 가능하다.
 

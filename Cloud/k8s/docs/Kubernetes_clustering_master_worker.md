@@ -1,15 +1,19 @@
 # K8s Clustering Master node and Worker node
 
-쿠버네티스를 통해 마스터노드와 워커노드를 구성하고 클러스터링 시켜보자
+여기서는 쿠버네티스를 통해 Master Node와 Worker Node를 구성하는 클러스터링 과정을 진행하는 단계이다.
+
+쿠버네티스 클러스터란 쿠버네티스의 여러 리소스를 관리하기 위한 집합체라고 생각하면 된다. 클러스터 내에서 worker node는 우리가 배포하고자 하는 서비스들이 실제 동작하는 곳이다. Master node는 worker node에서 실행되는 서비스들을 관리(배포하거나 통합) 해주는 역활을 한다.
+
+<img src="images/Kubernetes_clustering_master_worker/image-20201208235309859.png" alt="image-20201208235309859" style="zoom:80%;" />
 
 
 
 ## 사전환경
 
-|        | OS               | CPU core | RAM  |
-| ------ | :--------------- | :------- | :--- |
-| Master | ubuntu 18.04 LTS | 2        | 2    |
-| Worker | ubuntu 18.04 LTS | 1        | 1    |
+|        | OS                     | 최소 CPU core | 최소 RAM |
+| ------ | :--------------------- | :------------ | :------- |
+| Master | ubuntu 18.04/20.04 LTS | 2             | 2        |
+| Worker | ubuntu 18.04/20.04 LTS | 1             | 1        |
 
 시작하기 전에 Docker 및 K8s 가 우선적으로 설치되어 있어야 한다. 또한 각 환경에서 hostname 형식이 domain(test.server1.com) 형식으로 되어 있어야 한다.
 
@@ -140,11 +144,11 @@ kubeadm join 70.12.50.64:6443 --token k3tjms.lu28af6rost7rqcc \
 
 5. cluster 시작하기위한 설정
 
+   ```
    1. mkdir -p $HOME/.kube
    2. sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
    3. sudo chown $(id -u):$(id -g) $HOME/.kube/config
-   
-   
+   ```
 ```bash
 madfalcon@madfalcon_master:~/m_tmp$ mkdir -p $HOME/.kube
 madfalcon@madfalcon_master:~/m_tmp$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -160,17 +164,14 @@ madfalcon@madfalcon_master:~/m_tmp$
 
 
 ```bash
-madfalcon@madfalcon_master:~/m_tmp$ sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+madfalcon@madfalcon:~$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 podsecuritypolicy.policy/psp.flannel.unprivileged created
 clusterrole.rbac.authorization.k8s.io/flannel created
 clusterrolebinding.rbac.authorization.k8s.io/flannel created
-serviceaccount/flannel created
-configmap/kube-flannel-cfg created
-daemonset.apps/kube-flannel-ds-amd64 created
-daemonset.apps/kube-flannel-ds-arm64 created
-daemonset.apps/kube-flannel-ds-arm created
-daemonset.apps/kube-flannel-ds-ppc64le created
-daemonset.apps/kube-flannel-ds-s390x created
+serviceaccount/flannel unchanged
+configmap/kube-flannel-cfg configured
+daemonset.apps/kube-flannel-ds created
+madfalcon@madfalcon:~$ kubectl cluster-info
 ```
 
 `ifconfig`를 입력해보면 다음과 같은 네트워크 플러그인이 설치되어 있음을 확인할 수 있다.
@@ -242,7 +243,10 @@ madfalcon.slave1.com   Ready    <none>   113s   v1.18.3
 
 ## 발견된 문제
 
-### 1. Master node 재부팅 후 kubectl get nodes 실행불가 에러
+### 1. [Master node 재부팅 후 kubectl get nodes 실행불가 에러](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/28) 
 
-[참고](https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/28) 
 
+
+## 참고
+
+1. [쿠버네티스 공식 문서](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
