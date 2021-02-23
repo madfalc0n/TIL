@@ -87,3 +87,23 @@ user:~/catkin_ws/src/myoung_lab/scripts$
 
 ```
 
+
+
+## 2. Subscriber
+
+
+
+
+
+
+
+## 3. Custom Topic msg 만들기
+
+Topic을 통해 커스텀 msg를 주고받기 위해서는 아래와 같은 일련의 과정이 필요하다. 
+
+1. Create a directory named 'msg' inside your package
+2. Inside this directory, create a file named Name_of_your_message.msg (more information down)
+3. Modify CMakeLists.txt file (more information down)
+4. Modify package.xml file (more information down)
+5. Compile
+6. Use in code
