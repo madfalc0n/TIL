@@ -347,13 +347,151 @@ if __name__ == '__main__':
   rospy.spin()
 ```
 
+### 3-2. Action 서버를 이용한 드론 조종
 
+아래 코드는 드론을 이용하여 사각형으로 움직이는 코드 이다. 동작과정은 다음과 같다.
+
+1. 드론 takeoff
+2. goal 값을 요청받으면 사각형으로 이동
+   - 전진, 방향전환, 정지 과정이 있음
+3. 완료 후 landing
+
+takeoff와 landing의 경우 기본형식인 Empty msg를 사용하여 제어한다. goal 값은 `rostopic pub` 를 이용하여 goal 값을 생성한 서버에게 전달
+
+```python
+#! /usr/bin/env python
+import rospy
+
+import actionlib
+from actionlib.msg import TestFeedback, TestResult, TestAction
+from std_msgs.msg import Empty
+from geometry_msgs.msg import Twist
+import time
+
+class TestClass(object):
+    _feedback = TestFeedback()
+    _result = TestResult()
+
+    def __init__(self):
+        self._as = actionlib.SimpleActionServer('move_drone_square', TestAction, self.goal_callback, False)
+        self._my_pub = rospy.Publisher('/cmd_vel', Twist, queue_size = 1)
+        self._my_move = Twist()
+        self._as.start()
+
+    def stop(self):
+        rospy.loginfo('stoping........')
+        self._my_move.linear.x = 0
+        self._my_move.angular.z = 0
+        self._my_pub.publish(self._my_move)
+
+    def turn(self):
+        rospy.loginfo('turning........')
+        self._my_move.linear.x = 0
+        self._my_move.angular.z = 1
+        self._my_pub.publish(self._my_move)
+
+    def move(self):
+        rospy.loginfo('moving........')
+        self._my_move.linear.x = 1
+        self._my_move.angular.z = 0
+        self._my_pub.publish(self._my_move)
+
+    def goal_callback(self, goal):
+        self.success = True
+        self._feedback.feedback = 0
+        moveside = goal.goal
+        turnside = 1.8
+        r = rospy.Rate(1)
+
+        rospy.loginfo('takeoff drone')
+        empty_msg = Empty()
+        takeoff = rospy.Publisher('/drone/takeoff',Empty, queue_size=1)
+        for _ in range(3):
+            takeoff.publish(empty_msg)
+            time.sleep(1)
+            # r.sleep()
+
+        
+        time.sleep(5)
+
+
+        for i in range(1,5):
+            self.move()
+            time.sleep(moveside)
+            self.turn()
+            time.sleep(1.8)
+
+            if self._as.is_preempt_requested():
+                rospy.loginfo('The goal has been cancelled/preempted')
+                # the following line, sets the client in preempted state (goal cancelled)
+                self._as.set_preempted()
+                self.success = False
+                # we end the calculation of the Fibonacci sequence
+                break
+            self._feedback.feedback = i
+            self._as.publish_feedback(self._feedback)
+        
+        self.stop()
+        if self.success:
+            self._result.result = self._feedback.feedback
+            rospy.loginfo('Succeeded moving sqaure drone')
+            self._as.set_succeeded(self._result)
+
+        rospy.loginfo('Landing drone')
+        land = rospy.Publisher('/drone/land',Empty, queue_size=1)
+        for _ in range(3):
+            land.publish(empty_msg)
+            time.sleep(1)
+            # r.sleep()
+        
+      
+if __name__ == '__main__':
+    rospy.init_node('moving_drone_square')
+    rospy.loginfo('initializing drone server')
+    TestClass()
+    rospy.spin()
+```
+
+<img src="images/ROS_tutorial_Actions/image-20210303184251738.png" alt="image-20210303184251738" style="zoom:80%;" />
+
+아래의 그림방향대로 움직임
+
+<img src="images/ROS_tutorial_Actions/image-20210303182628889.png" alt="image-20210303182628889" style="zoom:80%;" />
 
 
 
 
 
 ## 4. Custom Action 메시지를 만들어보자
+
+Action 메시지는 패키지 내 `action` 폴더를 생성하여 파일을 만든다. 파일명은 `파일명.action`형식으로 생성한다.
+
+포멧형태는 아래와 같다.
+
+```
+#goal
+package_where_message_is/message_type goal_var_name
+---
+#result
+package_where_message_is/message_type result_var_name
+---
+#feedback
+package_where_message_is/message_type feedback_var_name
+ㅅ
+------------------------------------------------------
+예시
+
+int32 goal
+---
+int32 result
+---
+int32 feedback
+
+```
+
+
+
+
 
 기본적인 메시지를 변경하는 과정은 똑같다고 생각하면 된다. 생성한 패키지 내 두 파일을 수정할 것이다.
 
