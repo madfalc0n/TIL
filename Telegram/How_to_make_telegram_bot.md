@@ -1,18 +1,24 @@
 # How to make telegram bot?
 
-텔레그램 봇을 어떻게 만들까?
+## 1. Telegram 이란?
+
+여러 플랫폼을 지원하면서 다양한 기기를 지원하는, 영리를 추구하지 않는 자유 클라우드 기반 인터넷 메신저이자 음성 인터넷 프로톨이다.
+
+> [위키백과](https://ko.wikipedia.org/wiki/%ED%85%94%EB%A0%88%EA%B7%B8%EB%9E%A8)
 
 
 
-방법은 간단하다.
+## 2. Telegram Bot 이란?
+
+사용자의 메시지 요청에 대해 응답을 해주는 Bot 서버이다. 이러한 특성을 활용하여 사용자로부터 날씨정보를 요청받을 경우 날씨에 대한 정보를 크롤링하여 응답으로 줄 수 있다.
 
 
 
-텔레그램 채널에서
+## 3. Bot을 어떻게 만들까?
 
+방법은 간단하다. 텔레그램 채널에서 `@botfather`을 검색해서 대화를 시작해보자
 
-
-`@fatherbot`을 검색해서 대화를 시작해보자
+<img src="images/How_to_make_telegram_bot/image-20210406173026105.png" alt="image-20210406173026105" style="zoom:80%;" />
 
 <img src="images/How_to_make_telegram_bot/image-20210406171340222.png" alt="image-20210406171340222" style="zoom:80%;" />
 
