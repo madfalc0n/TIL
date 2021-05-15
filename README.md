@@ -118,4 +118,4 @@ github 풀밭 가꾸기와 공부를 위해 매일 배운 내용을 정리합니
 
 ## 15. Qt
 
-- [PyQt](Qt/PyQt/README.md)
+- [PyQt](Qt/PyQt/)
