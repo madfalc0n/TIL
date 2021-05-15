@@ -15,19 +15,19 @@
 
    - 아나콘다 버전 확인
 
-     <img src="/images/anaconda_manual/image-20200302194501728.png" alt="image-20200302194501728" style="zoom:80%;" />
+     <img src="images/anaconda_manual/image-20200302194501728.png" alt="image-20200302194501728" style="zoom:80%;" />
 
  - `conda search python`
 
    - 아나콘다에 설치된 파이선 버전에 대한 목록을 불러옴
 
-     <img src="/images/anaconda_manual/image-20200302194524063.png" alt="image-20200302194524063" style="zoom:80%;" />
+     <img src="images/anaconda_manual/image-20200302194524063.png" alt="image-20200302194524063" style="zoom:80%;" />
 
 - `conda list`
 
   - 아나콘다에 설치된 패키지 정보를 불러옴
 
-    <img src="/images/anaconda_manual/image-20200302194553049.png" alt="image-20200302194553049" style="zoom:80%;" />
+    <img src="images/anaconda_manual/image-20200302194553049.png" alt="image-20200302194553049" style="zoom:80%;" />
 
 ## 1. 가상환경 설치 및 실행
 
@@ -37,13 +37,13 @@
 
      - `python374` 이름으로 python 버전이 3.7.4 인 가상환경을 생성한다.
 
-     <img src="/images/anaconda_manual/image-20200302194736442.png" alt="image-20200302194736442" style="zoom:80%;" />
+     <img src="images/anaconda_manual/image-20200302194736442.png" alt="image-20200302194736442" style="zoom:80%;" />
 
-     <img src="/images/anaconda_manual/image-20200302194834068.png" alt="image-20200302194834068" style="zoom:80%;" />
+     <img src="images/anaconda_manual/image-20200302194834068.png" alt="image-20200302194834068" style="zoom:80%;" />
 
      - 여기서 y를 입력하게 될 경우 가상환경이 생성 진행된다.
 
-       <img src="/images/anaconda_manual/image-20200302194932240.png" alt="image-20200302194932240" style="zoom:80%;" />
+       <img src="images/anaconda_manual/image-20200302194932240.png" alt="image-20200302194932240" style="zoom:80%;" />
 
 - `conda activate [생성한환경이름]`을 입력하여 활성화 모드로 전환한다.
 
