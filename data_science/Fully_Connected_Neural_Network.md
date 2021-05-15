@@ -1,1 +1,0 @@
-# Fully Connected Neural Network
